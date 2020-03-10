@@ -10,6 +10,7 @@ import 'package:qiangdan_app/view/welcome/forget_login_password.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
 import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_edit.dart';
 import 'package:qiangdan_app/view/share/share_invitation.dart';
+import 'package:qiangdan_app/view/welcome/get_phone_code.dart';
 import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/welcome/splash.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_page.dart';
@@ -86,6 +87,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     ForgetLoginPassword.tag: (context) => ForgetLoginPassword(),
     UserInfoSet.tag: (context) => UserInfoSet(),
     RegisterPage.tag: (context) => RegisterPage(),
+    GetCodePassword.tag:(context) => GetCodePassword(),
 
   };
 

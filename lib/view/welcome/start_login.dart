@@ -19,6 +19,8 @@ import 'package:qiangdan_app/view/main_view/main_page.dart';
 import 'package:qiangdan_app/view/welcome/get_phone_code.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 
+import 'forget_login_password.dart';
+
 class StartLoginPage extends StatefulWidget {
   static String tag = "StartPage";
   bool needBack = true;
@@ -131,7 +133,7 @@ class _StartLoginPageState extends State<StartLoginPage>
           margin: EdgeInsets.only(top: 70),
           height: 120,
           child: Image.asset(
-            "assets/omni-logo.png",
+            Tools.imagePath('login_account_unselect'),
             fit: BoxFit.cover,
             height: 120,
             width: 120,
@@ -268,8 +270,10 @@ class _StartLoginPageState extends State<StartLoginPage>
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(GetCodePassword.tag);
-
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => ForgetLoginPassword()),
+                    (route) => route == null,
+              );
             },
             child: Text(
               WalletLocalizations.of(context).startPageRegistedUser,

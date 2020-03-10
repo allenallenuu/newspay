@@ -17,7 +17,11 @@ class WalletLocalizations {
       'appVersionNoNewerVersion': '已经是最新的版本',
 
       'startPagePhoneInput': '用户名或手机号',
+      'startPagePhoneInputs': '请输入手机号',
       'startPagePasswordInput': '请输入密码',
+      'startPageNewPasswordInput': '请再次输入密码',
+      'startPageNoEqual': '输入密码不一致',
+
       'startPageForgetPassword': '忘记密码?',
       'startPageRegistedUser': '注册用户',
       'startPageCodeInput': '请输入验证码',
@@ -26,10 +30,11 @@ class WalletLocalizations {
       'startPagePhoneLogin': '登录',
       'startPagePhoneError1': '手机号不能为空',
       'startPagePhoneError2': '请输入正确的手机号',
-      'startPageCodeError': '请输入验证码',
+      'startPageCodeError': '请输入正确的验证码',
       'startPagePwdError': '请输入密码',
       'startPageUserInfoError': '用户信息获取失败',
       'welcomePageTwoButtonBack': '返回',
+      'startPageChangePasswordButton': '修改密码',
 
     },
     'en': {
@@ -43,8 +48,13 @@ class WalletLocalizations {
       'appVersionNoNewerVersion': 'Already the latest version',
       'startPageRegistedUser': 'Registered',
 
-      'startPagePhoneInput': 'Please enter a phone number',
+      'startPagePhoneInput': 'Please enter a phone number or account',
+      'startPagePhoneInputs': 'Please enter a phone number',
+
       'startPagePasswordInput': 'Please enter a password',
+      'startPageNewPasswordInput': 'Please again enter a password',
+      'startPageNoEqual': 'Enter the password inconsistently',
+
       'startPageForgetPassword': 'Forgot your password?',
       'startPageCodeInput': 'Please enter a verification code',
       'startPageSendCode': 'Get Verification Code',
@@ -56,6 +66,7 @@ class WalletLocalizations {
       'startPagePwdError': 'Please enter a password',
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
+      'startPageChangePasswordButton': 'Change',
 
     }
   };
@@ -84,10 +95,17 @@ class WalletLocalizations {
 
   get startPagePhoneInput =>
       _localizedValues[locale.languageCode]['startPagePhoneInput'];
+  get startPagePhoneInputs =>
+      _localizedValues[locale.languageCode]['startPagePhoneInputs'];
   get startPageRegistedUser =>
       _localizedValues[locale.languageCode]['startPageRegistedUser'];
   get startPagePasswordInput =>
       _localizedValues[locale.languageCode]['startPagePasswordInput'];
+  get startPageNewPasswordInput =>
+      _localizedValues[locale.languageCode]['startPageNewPasswordInput'];
+  get startPageNoEqual =>
+      _localizedValues[locale.languageCode]['startPageNoEqual'];
+
 
   get startPageForgetPassword =>
       _localizedValues[locale.languageCode]['startPageForgetPassword'];
@@ -120,6 +138,10 @@ class WalletLocalizations {
       _localizedValues[locale.languageCode]['startPageUserInfoError'];
   get welcomePageTwoButtonBack =>
       _localizedValues[locale.languageCode]['welcomePageTwoButtonBack'];
+
+  get startPageChangePasswordButton =>
+      _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
+
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
   }
