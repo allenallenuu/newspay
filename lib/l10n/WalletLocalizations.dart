@@ -16,9 +16,10 @@ class WalletLocalizations {
       'appVersionBtn2': '好的',
       'appVersionNoNewerVersion': '已经是最新的版本',
 
-      'startPagePhoneInput': '请输入手机号',
+      'startPagePhoneInput': '用户名或手机号',
       'startPagePasswordInput': '请输入密码',
       'startPageForgetPassword': '忘记密码?',
+      'startPageRegistedUser': '注册用户',
       'startPageCodeInput': '请输入验证码',
       'startPageSendCode': '获取验证码',
       'startPageSendCodeRetry': '重新发送',
@@ -28,6 +29,8 @@ class WalletLocalizations {
       'startPageCodeError': '请输入验证码',
       'startPagePwdError': '请输入密码',
       'startPageUserInfoError': '用户信息获取失败',
+      'welcomePageTwoButtonBack': '返回',
+
     },
     'en': {
       'network_error': 'Please check the network',
@@ -38,6 +41,7 @@ class WalletLocalizations {
       'appVersionBtn1': 'Speak later',
       'appVersionBtn2': 'OK',
       'appVersionNoNewerVersion': 'Already the latest version',
+      'startPageRegistedUser': 'Registered',
 
       'startPagePhoneInput': 'Please enter a phone number',
       'startPagePasswordInput': 'Please enter a password',
@@ -51,6 +55,8 @@ class WalletLocalizations {
       'startPageCodeError': 'Please enter a verification code',
       'startPagePwdError': 'Please enter a password',
       'startPageUserInfoError': 'Failed to get user information',
+      'welcomePageTwoButtonBack': 'Return',
+
     }
   };
 
@@ -78,7 +84,8 @@ class WalletLocalizations {
 
   get startPagePhoneInput =>
       _localizedValues[locale.languageCode]['startPagePhoneInput'];
-
+  get startPageRegistedUser =>
+      _localizedValues[locale.languageCode]['startPageRegistedUser'];
   get startPagePasswordInput =>
       _localizedValues[locale.languageCode]['startPagePasswordInput'];
 
@@ -111,7 +118,8 @@ class WalletLocalizations {
 
   get startPageUserInfoError =>
       _localizedValues[locale.languageCode]['startPageUserInfoError'];
-
+  get welcomePageTwoButtonBack =>
+      _localizedValues[locale.languageCode]['welcomePageTwoButtonBack'];
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
   }

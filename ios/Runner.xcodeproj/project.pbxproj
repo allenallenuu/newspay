@@ -411,7 +411,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.uumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.qiangdan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_Dev;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -549,7 +549,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.uumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.qiangdan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_Dev;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -579,7 +579,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.uumi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheng.qiangdan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_AppStore;
 				TARGETED_DEVICE_FAMILY = 1;

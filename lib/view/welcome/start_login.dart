@@ -34,7 +34,11 @@ class _StartLoginPageState extends State<StartLoginPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String log;
+  bool _hasClearIcon = true;
+  bool _hasClearIcon1 = false;
 
+  FocusNode _nodeNickPassword = FocusNode();
+  FocusNode _nodeNickPassword1 = FocusNode();
   //手机号控制器
   TextEditingController userphoneCtrl = TextEditingController(text: "");
 
@@ -56,51 +60,60 @@ class _StartLoginPageState extends State<StartLoginPage>
 
   @override
   void initState() {
+    _nodeNickPassword.addListener(() {
+      if (_nodeNickPassword.hasFocus) { // get focus
+        _hasClearIcon = true;
+        _hasClearIcon1 = false;
+      }
+      setState(() {});
+    });
+    _nodeNickPassword1.addListener(() {
+      if (_nodeNickPassword1.hasFocus) { // get focus
+        _hasClearIcon1 = true;
+        _hasClearIcon = false;
+      }
+      setState(() {});
+    });
     super.initState();
     initPlatformState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        key: _scaffoldKey,
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(Tools.imagePath('login_bg_black')),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                  child: Column(
+      key: _scaffoldKey,
+      body: Container(
+          color: Colors.white,
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+              child: Column(
                 children: <Widget>[
                   _showTopView(),
                   Container(
                       margin: EdgeInsets.only(top: 50, left: 15, right: 15),
-                      padding: EdgeInsets.only(
-                          bottom: 40, top: 10, left: 20, right: 20),
+                      padding:
+                      EdgeInsets.only(bottom: 40, top: 10, left: 20, right: 20),
                       decoration: new BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Colors.transparent,
+//                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       alignment: Alignment.center,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             _getPhoneInput(),
-                            SizedBox(height: 30),
+                            SizedBox(height: 25),
                             _getPasswordInput(),
-                            _forgetPassword(),
-                            SizedBox(height: 50),
+                            SizedBox(height: 40),
                             _getLogin(),
+                            SizedBox(height: 24),
+                            _forgetPassword(),
                           ])),
                 ],
               ))),
-        ));
+    );
   }
+
 
   @override
   void dispose() {
@@ -127,15 +140,12 @@ class _StartLoginPageState extends State<StartLoginPage>
       ],
     );
   }
-
-  /// Get 手机号
   Widget _getPhoneInput() {
     return new Container(
       decoration: new BoxDecoration(
         color: Colors.white,
-        border: Border(
-            bottom:
-                BorderSide(color: Color.fromRGBO(84, 149, 230, 1), width: 1)),
+        borderRadius: BorderRadius.all(Radius.circular(22)),
+        border: new Border.all(width: 1, color: _hasClearIcon ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
       ),
       padding: EdgeInsets.only(left: 5, right: 5),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -143,106 +153,109 @@ class _StartLoginPageState extends State<StartLoginPage>
         child: new Row(
           children: <Widget>[
             new Container(
+                padding: new EdgeInsets.only(left: 24.0),
                 child: new Center(
-              child: new Image.asset(
-                Tools.imagePath('login_account_select'),
-                width: 24.0,
-                height: 24.0,
-              ),
-            )),
+                  child: new Image.asset(
+                    Tools.imagePath(_hasClearIcon ? 'login_account_select' : 'login_account_unselect'),
+                    width: 19.0,
+                    height: 24.0,
+                  ),
+                )),
             new Expanded(
                 child: new Container(
                     height: 50.0,
-                    padding: new EdgeInsets.only(left: 4.0),
+                    padding: new EdgeInsets.only(left: 10.0),
                     child: new Center(
                         child: new Container(
-                      height: 50.0,
-                      child: new TextField(
-                        controller: userphoneCtrl,
-                        keyboardType: TextInputType.phone,
-                        maxLines: 1,
-                        maxLength: 11,
-                        maxLengthEnforced: true,
-                        style:
+                          height: 50.0,
+                          child: new TextField(
+                            controller: userphoneCtrl,
+                            focusNode:   _nodeNickPassword,
+                            maxLines: 1,
+                            maxLength: 11,
+                            maxLengthEnforced: true,
+                            style:
                             new TextStyle(color: Colors.black, fontSize: 16.0),
-                        decoration: new InputDecoration(
-                            hintText: WalletLocalizations.of(context)
-                                .startPagePhoneInput,
-                            counterText: '',
-                            border: InputBorder.none,
-                            hintStyle: new TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.0,
-                            )),
-                      ),
-                    )))),
+                            decoration: new InputDecoration(
+                                hintText: WalletLocalizations.of(context)
+                                    .startPagePhoneInput,
+                                counterText: '',
+                                border: InputBorder.none,
+                                hintStyle: new TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                        )))),
           ],
         ),
       ),
     );
   }
 
-  ///验证码
+
+  ///密码
   Widget _getPasswordInput() {
-    return new Container(
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        border: Border(
-            bottom:
-                BorderSide(color: Color.fromRGBO(84, 149, 230, 1), width: 1)),
-      ),
-      padding: EdgeInsets.only(left: 5, right: 5),
-      width: MediaQuery.of(context).size.width * 0.9,
-      child: new Center(
-        child: new Row(
-          children: <Widget>[
-            new Container(
-                child: new Center(
-              child: new Image.asset(
-                Tools.imagePath('login_password_select'),
-                width: 24.0,
-                height: 24.0,
-              ),
-            )),
-            new Expanded(
-                child: new Container(
-                    height: 50.0,
-                    padding: new EdgeInsets.only(left: 4.0),
-                    child: new Center(
-                        child: new Container(
-                      height: 50.0,
-                      child: new TextField(
-                        controller: passwdCtrl,
-                        keyboardType: TextInputType.phone,
-                        maxLines: 1,
-                        maxLength: 11,
-                        maxLengthEnforced: true,
-                        style:
-                            new TextStyle(color: Colors.black, fontSize: 16.0),
-                        decoration: new InputDecoration(
-                            hintText: WalletLocalizations.of(context)
-                                .startPagePasswordInput,
-                            counterText: '',
-                            border: InputBorder.none,
-                            hintStyle: new TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.0,
-                            )),
-                      ),
-                    )))),
-          ],
+      return new Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(22)),
+          border: new Border.all(width: 1, color: _hasClearIcon1 ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
         ),
-      ),
-    );
-  }
+        padding: EdgeInsets.only(left: 5, right: 5),
+        width: MediaQuery.of(context).size.width * 0.9,
+        child: new Center(
+          child: new Row(
+            children: <Widget>[
+              new Container(
+                  padding: new EdgeInsets.only(left: 24.0),
+
+                  child: new Center(
+                child: new Image.asset(
+                  Tools.imagePath(_hasClearIcon1 ? 'login_password_select' : 'login_password_unselect'),
+                  width: 19.0,
+                  height: 24.0,
+                ),
+              )),
+              new Expanded(
+                  child: new Container(
+                      height: 50.0,
+                      padding: new EdgeInsets.only(left: 10.0),
+                      child: new Center(
+                          child: new Container(
+                        height: 50.0,
+                        child: new TextField(
+                          controller: passwdCtrl,
+                          focusNode:   _nodeNickPassword1,
+                          keyboardType: TextInputType.phone,
+                          maxLines: 1,
+                          maxLength: 11,
+                          maxLengthEnforced: true,
+                          style:
+                              new TextStyle(color: Colors.black, fontSize: 16.0),
+                          decoration: new InputDecoration(
+                              hintText: WalletLocalizations.of(context)
+                                  .startPagePasswordInput,
+                              counterText: '',
+                              border: InputBorder.none,
+                              hintStyle: new TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16.0,
+                              )),
+                        ),
+                      )))),
+            ],
+          ),
+        ),
+      );
+    }
 
   ///忘记密码
   Widget _forgetPassword() {
     return Container(
       height: 30,
-      padding: EdgeInsets.only(top: 5, right: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           InkWell(
             onTap: () {
@@ -252,17 +265,30 @@ class _StartLoginPageState extends State<StartLoginPage>
               WalletLocalizations.of(context).startPageForgetPassword,
               style: TextStyle(fontSize: 14, color: Color(0xFFC0C0C0)),
             ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(GetCodePassword.tag);
+
+            },
+            child: Text(
+              WalletLocalizations.of(context).startPageRegistedUser,
+              style: TextStyle(fontSize: 14, color: Colors.red),
+            ),
           )
         ],
       ),
     );
   }
-
   ///登录
   Widget _getLogin() {
     return new Card(
-      color: AppCustomColor.tabbarBackgroudColor,
-      elevation: 11.0,
+      color: Colors.red,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+          side: BorderSide(color: Colors.red)
+      ),
+      elevation: 1.0,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
         child: CustomRaiseButton(
