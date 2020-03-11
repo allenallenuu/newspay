@@ -259,14 +259,14 @@ class _RegisterPageState extends State<RegisterPage> {
             var phoneNums = phoneCtrl.text;
             var passwdNums = passwdCtrl.text;
             var verificationCodeNums = verificationCodeCtrl.text;
-            print('$inviteCodeNums == $verificationCodeNums');
 
-            if (inviteCodeNums.length == 0 || inviteCodeNums == null) {
-              Tools.showToast(
-                  _scaffoldKey,
-                  WalletLocalizations.of(context).startPageInviteCode);
-              return;
-            }
+//            if (inviteCodeNums.length == 0 || inviteCodeNums == null) {
+//              Tools.showToast(
+//                  _scaffoldKey,
+//                  WalletLocalizations.of(context).startPageInviteCode);
+//              return;
+//            }
+
             if (phoneNums.length == 0 || phoneNums == null) {
               Tools.showToast(
                   _scaffoldKey,
@@ -299,7 +299,7 @@ class _RegisterPageState extends State<RegisterPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        title: Text(WalletLocalizations.of(context).startPageForgetPassword),
+        title: Text(WalletLocalizations.of(context).startPageRegister),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -332,14 +332,17 @@ class _RegisterPageState extends State<RegisterPage> {
     var codeNums = verificationCodeCtrl.text;
     var passwdNums = passwdCtrl.text;
 
-    Future result = NetConfig.post(context, NetConfig.isCode, {
+    Future result = NetConfig.post(context, NetConfig.registerAccount, {
       'cellphone': phoneNums,
       'code': codeNums,
+      'password':passwdNums,
+      'invitationCode':'',
+      'earningsRatio':''
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
     });
     result.then((data) {
-      print('isCode = $data');
+      print('registerAccount = $data');
       if (data != null) {
 //        Navigator.of(context)
 //            .push(MaterialPageRoute(builder: (BuildContext context) {
@@ -349,6 +352,7 @@ class _RegisterPageState extends State<RegisterPage> {
 //          );
 //        }));
       print('注册成功');
+      Navigator.of(context).pop();
       }
     });
   }
