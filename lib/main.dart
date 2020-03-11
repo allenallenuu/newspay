@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +20,7 @@ import 'package:qiangdan_app/view/share/share_receive_page.dart';
 import 'package:qiangdan_app/view_model/main_model.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
+import 'dart:js' as js;
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
@@ -87,8 +89,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     ForgetAccount.tag: (context) => ForgetAccount(),
     UserInfoSet.tag: (context) => UserInfoSet(),
     RegisterPage.tag: (context) => RegisterPage(),
-    ChangePassword.tag:(context) => ChangePassword(),
-
+    ChangePassword.tag: (context) => ChangePassword(),
   };
 
   Brightness brightness = Brightness.light;
@@ -103,6 +104,28 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
     initPlatformState();
+    switchPlatForm();
+  }
+
+  bool isSharePlatForm = false;
+
+  void switchPlatForm() {
+    //webVersion
+    if (kIsWeb) {
+      var uri = Uri.tryParse(js.context['location']['href']);
+      if (uri != null) {
+        if (uri.queryParameters['shareCode'] != null &&
+            uri.queryParameters['shareRato'] != null) {
+          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
+          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
+          isSharePlatForm = true;
+        } else {
+          GlobalInfo.userInfo.webShareCode = '';
+          GlobalInfo.userInfo.webShareRatio = '';
+          isSharePlatForm = false;
+        }
+      }
+    }
   }
 
   @override
@@ -221,7 +244,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         routes: routes,
         // home: BackupWalletIndex(),
         navigatorObservers: [routeObserver],
-        home: Splash(),
+        home: kIsWeb
+            ? isSharePlatForm ? RegisterPage() : StartLoginPage()
+            : Splash(),
       ),
     );
   }

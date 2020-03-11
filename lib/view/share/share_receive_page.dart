@@ -100,7 +100,7 @@ class _ShareReceivePageState extends State<ShareReceivePage> {
                                ),
                                SizedBox(height: 10),
                                Text(
-                                 GlobalInfo.userInfo.inviteCode,
+                                 GlobalInfo.userInfo.webShareAddress,
                                  style: TextStyle(
                                      fontSize: 22,
                                      fontWeight: FontWeight.bold,
@@ -109,7 +109,7 @@ class _ShareReceivePageState extends State<ShareReceivePage> {
                                SizedBox(height: 10),
                                InkWell(
                                  onTap: () {
-                                   copyAddress(GlobalInfo.userInfo.inviteCode);
+                                   GlobalInfo.userInfo.webShareAddress;
                                  },
                                  child: Container(
                                    width: 100,

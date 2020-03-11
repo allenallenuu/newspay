@@ -255,23 +255,12 @@ class _SplashState extends State<Splash> {
     data.then((data) {
       print("getUserInfo = $data");
       if (NetConfig.checkData(data)) {
-        GlobalInfo.userInfo.isPwd = data['isPwd'];
-        GlobalInfo.userInfo.isPayPwd = data['isPayPwd'];
-        GlobalInfo.userInfo.isReal = data['isReal'];
-
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.virtualCoinAmount = data['virtualCoinAmount'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-        GlobalInfo.userInfo.level = data['level'];
-        GlobalInfo.userInfo.ifBind = data['ifBind'];
-        GlobalInfo.userInfo.inviteCode = data['inviteCode'];
 
         if (data['webUrl'] != null) {
           GlobalInfo.userInfo.webShareAddress = data['webUrl'];
-        }
-
-        if (data['downloadUrl'] != null) {
-          GlobalInfo.userInfo.appShareAddress = data['downloadUrl'];
         }
 
         if (data['uid'] != null) {

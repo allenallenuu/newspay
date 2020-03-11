@@ -97,13 +97,7 @@ class _ShareInvitationState extends State<ShareInvitation>
         titleColor: Colors.white,
         color: AppCustomColor.btnConfirm,
         callback: () {
-          var address = kIsWeb
-              ? GlobalInfo.userInfo.webShareAddress == null
-                  ? ''
-                  : GlobalInfo.userInfo.webShareAddress
-              : GlobalInfo.userInfo.appShareAddress == null
-                  ? ''
-                  : GlobalInfo.userInfo.appShareAddress;
+          var address = GlobalInfo.userInfo.webShareAddress;
           ShareReceiveModel model = ShareReceiveModel(shareAddress: address);
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {
