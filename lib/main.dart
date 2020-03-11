@@ -128,6 +128,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 //    }
 //  }
 
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     print("==> lifeChanged = $state");
@@ -219,6 +220,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {
             this.locale = deviceLocale;
+          }
+          if (kIsWeb) {
+            this.locale = Locale('zh', 'CH');
           }
           return this.locale;
         },

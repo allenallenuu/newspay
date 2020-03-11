@@ -9,8 +9,8 @@ class UserInfo {
   String appDownloadAddress;
 
   String webShareAddress;
-  String webShareCode;
-  String webShareRatio;
+  String webShareCode = null;
+  String webShareRatio = null;
 
   FPUserInfo fpUserInfo;
 
