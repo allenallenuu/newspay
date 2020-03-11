@@ -201,7 +201,7 @@ class _StartLoginPageState extends State<StartLoginPage>
   Widget _getPasswordInput() {
       return new Container(
         decoration: new BoxDecoration(
-          color: AppCustomColor.tabbarBackgroudColor,
+          color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(22)),
           border: new Border.all(width: 1, color: _hasPasswordFocus ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
         ),
