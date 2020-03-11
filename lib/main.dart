@@ -120,8 +120,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
           isSharePlatForm = true;
         } else {
-          GlobalInfo.userInfo.webShareCode = '';
-          GlobalInfo.userInfo.webShareRatio = '';
+          GlobalInfo.userInfo.webShareCode = null;
+          GlobalInfo.userInfo.webShareRatio = null;
           isSharePlatForm = false;
         }
       }
@@ -219,6 +219,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {
             this.locale = deviceLocale;
+          }
+          if (kIsWeb) {
+            this.locale = Locale('zh', 'CH');
           }
           return this.locale;
         },

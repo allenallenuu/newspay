@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   FocusNode _nodePhone = FocusNode();
   FocusNode _nodeVerificationCode = FocusNode();
   FocusNode _nodePasswd = FocusNode();
-  
+
   TextEditingController inviteCodeCtrl = TextEditingController(text: "");
   TextEditingController phoneCtrl = TextEditingController(text: "");
   TextEditingController verificationCodeCtrl = TextEditingController();
@@ -55,10 +55,21 @@ class _RegisterPageState extends State<RegisterPage> {
   String buttonText = "获取验证码";
   var reg = new RegExp('^1[0-9]{10}');
 
+  //判断是否是分享成功
+  bool shareSuccess = false;
+
   @override
   void initState() {
+    shareSuccess = (kIsWeb &&
+        (GlobalInfo.userInfo.webShareCode != null &&
+            GlobalInfo.userInfo.webShareRatio != null));
+    if (shareSuccess) {
+      inviteCodeCtrl.text = GlobalInfo.userInfo.webShareCode;
+    }
+
     _nodeInviteCode.addListener(() {
-      if (_nodeInviteCode.hasFocus) { // get focus
+      if (_nodeInviteCode.hasFocus) {
+        // get focus
         _hasInviteCodeFocus = true;
         _hasPhoneFocus = false;
         _hasVerificationCodeFocus = false;
@@ -67,32 +78,32 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {});
     });
     _nodePhone.addListener(() {
-      if (_nodePhone.hasFocus) { // get focus
+      if (_nodePhone.hasFocus) {
+        // get focus
         _hasInviteCodeFocus = false;
         _hasPhoneFocus = true;
         _hasVerificationCodeFocus = false;
         _hasPasswdFocus = false;
-
       }
       setState(() {});
     });
     _nodeVerificationCode.addListener(() {
-      if (_nodeVerificationCode.hasFocus) { // get focus
+      if (_nodeVerificationCode.hasFocus) {
+        // get focus
         _hasInviteCodeFocus = false;
         _hasPhoneFocus = false;
         _hasVerificationCodeFocus = true;
         _hasPasswdFocus = false;
-
       }
       setState(() {});
     });
     _nodePasswd.addListener(() {
-      if (_nodePasswd.hasFocus) { // get focus
+      if (_nodePasswd.hasFocus) {
+        // get focus
         _hasInviteCodeFocus = false;
         _hasPhoneFocus = false;
         _hasVerificationCodeFocus = false;
         _hasPasswdFocus = true;
-
       }
       setState(() {});
     });
@@ -151,7 +162,6 @@ class _RegisterPageState extends State<RegisterPage> {
       Future response = NetConfig.post(context, NetConfig.sendCode, {
         'cellphone': phoneCtrl.text.toString(),
       }, errorCallback: (msg) {
-
         Tools.showToast(_scaffoldKey, msg);
       });
 
@@ -163,12 +173,25 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
-  Widget _getPhoneInput(bool fcousIs,String selectImgae,String unSelectImage,TextEditingController controller,FocusNode focusNodes,String hitText, bool isCode) {
+
+  Widget _getPhoneInput(
+      bool enable,
+      bool fcousIs,
+      String selectImgae,
+      String unSelectImage,
+      TextEditingController controller,
+      FocusNode focusNodes,
+      String hitText,
+      bool isCode) {
     return new Container(
       decoration: new BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(22)),
-        border: new Border.all(width: 1, color: fcousIs ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
+        border: new Border.all(
+            width: 1,
+            color: fcousIs
+                ? Color.fromRGBO(243, 69, 69, 1)
+                : Color.fromRGBO(222, 222, 222, 1)),
       ),
       padding: EdgeInsets.only(left: 5, right: 5),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -180,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: new Center(
                   child: new Image.asset(
                     Tools.imagePath(fcousIs ? selectImgae : unSelectImage),
-                    gaplessPlayback:true,
+                    gaplessPlayback: true,
                     width: 19.0,
                     height: 24.0,
                   ),
@@ -191,60 +214,61 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: new EdgeInsets.only(left: 10.0),
                     child: new Center(
                         child: new Container(
-                          height: 50.0,
-                          child: new TextField(
-                            controller: controller,
-                            focusNode:   focusNodes,
-                            maxLines: 1,
-                            maxLength: 11,
-                            maxLengthEnforced: true,
-                            style:
+                      height: 50.0,
+                      child: new TextField(
+                        enabled: enable,
+                        controller: controller,
+                        focusNode: focusNodes,
+                        maxLines: 1,
+                        maxLength: 11,
+                        maxLengthEnforced: true,
+                        style:
                             new TextStyle(color: Colors.black, fontSize: 16.0),
-                            decoration: new InputDecoration(
-                                hintText: hitText,
-                                counterText: '',
-                                border: InputBorder.none,
-                                hintStyle: new TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16.0,
-                                )),
-                          ),
-                        )))),
-
-            isCode? RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-
-              ),
-              color: Color.fromRGBO(243, 69, 69,1),
-              child: Container(
-                child: Text(
-                  buttonText,
-                  style: TextStyle(fontSize: 12, color: Colors.white),
-                ),
-              ),
-              onPressed: () {
-                var phoneNums = phoneCtrl.text;
-                if (phoneNums.length == 0 || phoneNums == null) {
-                  Tools.showToast(_scaffoldKey, '请输入正确的手机号');
-                  return;
-                }
-                _sendCode(phoneCtrl.toString());
-              },
-            ): SizedBox(),
+                        decoration: new InputDecoration(
+                            hintText: hitText,
+                            counterText: '',
+                            border: InputBorder.none,
+                            hintStyle: new TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16.0,
+                            )),
+                      ),
+                    )))),
+            isCode
+                ? RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    color: Color.fromRGBO(243, 69, 69, 1),
+                    child: Container(
+                      child: Text(
+                        buttonText,
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () {
+                      var phoneNums = phoneCtrl.text;
+                      if (phoneNums.length == 0 || phoneNums == null) {
+                        Tools.showToast(_scaffoldKey, '请输入正确的手机号');
+                        return;
+                      }
+                      _sendCode(phoneCtrl.toString());
+                    },
+                  )
+                : SizedBox(),
           ],
         ),
       ),
     );
   }
+
   ///注册
   Widget _getDataInfo() {
     return new Card(
       color: Colors.red,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
-          side: BorderSide(color: Colors.red)
-      ),
+          side: BorderSide(color: Colors.red)),
       elevation: 1.0,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
@@ -260,28 +284,21 @@ class _RegisterPageState extends State<RegisterPage> {
             var passwdNums = passwdCtrl.text;
             var verificationCodeNums = verificationCodeCtrl.text;
 
-//            if (inviteCodeNums.length == 0 || inviteCodeNums == null) {
-//              Tools.showToast(
-//                  _scaffoldKey,
-//                  WalletLocalizations.of(context).startPageInviteCode);
-//              return;
-//            }
-
             if (phoneNums.length == 0 || phoneNums == null) {
-              Tools.showToast(
-                  _scaffoldKey,
+              Tools.showToast(_scaffoldKey,
                   WalletLocalizations.of(context).startPagePhoneInputs);
               return;
             }
             if (passwdNums.length == 0 || passwdNums == null) {
-              Tools.showToast(
-                  _scaffoldKey,
+              Tools.showToast(_scaffoldKey,
                   WalletLocalizations.of(context).startPagePasswordInput);
               return;
             }
 
-            if (verificationCodeNums.length == 0 || verificationCodeNums == null) {
-              Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).startPageCodeError);
+            if (verificationCodeNums.length == 0 ||
+                verificationCodeNums == null) {
+              Tools.showToast(_scaffoldKey,
+                  WalletLocalizations.of(context).startPageCodeError);
               return;
             }
 
@@ -292,6 +309,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -300,29 +318,62 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         elevation: 0,
         title: Text(WalletLocalizations.of(context).startPageRegister),
+        centerTitle: true,
       ),
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.all(15),
-        child: Column(
-          children: <Widget>[
-            _getPhoneInput(_hasInviteCodeFocus,'login_inviteCode_select','login_inviteCode_unselect',inviteCodeCtrl,_nodeInviteCode,WalletLocalizations.of(context)
-                .startPageInviteCode,false),
-            SizedBox(height: 24),
-            _getPhoneInput(_hasPhoneFocus,'login_phone_select','login_phone_unselect',phoneCtrl,_nodePhone,WalletLocalizations.of(context)
-                .startPagePhoneInputs,false),
-            SizedBox(height: 24,),
-            _getPhoneInput(_hasVerificationCodeFocus,'login_code_select','login_code_unselect',verificationCodeCtrl,_nodeVerificationCode,WalletLocalizations.of(context)
-                .startPageCodeInput,true),
-            SizedBox(height: 24,),
-            _getPhoneInput(_hasPasswdFocus,'login_password_select','login_password_unselect',passwdCtrl,_nodePasswd,WalletLocalizations.of(context)
-                .startPagePwdError,false),
-            SizedBox(height: 24),
-            _getDataInfo(),
-
-          ],
-        ),
-      ),
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.all(15),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _getPhoneInput(
+                    !shareSuccess,
+                    _hasInviteCodeFocus,
+                    'login_inviteCode_select',
+                    'login_inviteCode_unselect',
+                    inviteCodeCtrl,
+                    _nodeInviteCode,
+                    WalletLocalizations.of(context).startPageInviteCode,
+                    false),
+                SizedBox(height: 24),
+                _getPhoneInput(
+                    true,
+                    _hasPhoneFocus,
+                    'login_phone_select',
+                    'login_phone_unselect',
+                    phoneCtrl,
+                    _nodePhone,
+                    WalletLocalizations.of(context).startPagePhoneInputs,
+                    false),
+                SizedBox(
+                  height: 24,
+                ),
+                _getPhoneInput(
+                    true,
+                    _hasVerificationCodeFocus,
+                    'login_code_select',
+                    'login_code_unselect',
+                    verificationCodeCtrl,
+                    _nodeVerificationCode,
+                    WalletLocalizations.of(context).startPageCodeInput,
+                    true),
+                SizedBox(
+                  height: 24,
+                ),
+                _getPhoneInput(
+                    true,
+                    _hasPasswdFocus,
+                    'login_password_select',
+                    'login_password_unselect',
+                    passwdCtrl,
+                    _nodePasswd,
+                    WalletLocalizations.of(context).startPagePwdError,
+                    false),
+                SizedBox(height: 24),
+                _getDataInfo(),
+              ],
+            ),
+          )),
     );
   }
 
@@ -335,24 +386,17 @@ class _RegisterPageState extends State<RegisterPage> {
     Future result = NetConfig.post(context, NetConfig.registerAccount, {
       'cellphone': phoneNums,
       'code': codeNums,
-      'password':passwdNums,
-      'invitationCode':'',
-      'earningsRatio':''
+      'password': passwdNums,
+      'invitationCode': shareSuccess ? GlobalInfo.userInfo.webShareCode : '',
+      'earningsRatio': shareSuccess ? GlobalInfo.userInfo.webShareRatio : ''
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
     });
     result.then((data) {
       print('registerAccount = $data');
       if (data != null) {
-//        Navigator.of(context)
-//            .push(MaterialPageRoute(builder: (BuildContext context) {
-//          return ForgetLoginPassword(
-//            phoneNums: phonesNums,
-//            codeNmus: codeNums,
-//          );
-//        }));
-      print('注册成功');
-      Navigator.of(context).pop();
+        print('注册成功');
+        Navigator.of(context).pop();
       }
     });
   }
