@@ -39,12 +39,17 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+    if(kIsWeb){
+      MyApp.setThemeColor(context, Brightness.light);
+      MyApp.setLocale(context,  Locale('zh', "CH"));
+    }else{
+      Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+      prefs.then((share) {
+        // check language, currency unit, theme.
+        _getSettings(share);
+      });
+    }
 
-    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-    prefs.then((share) {
-      // check language, currency unit, theme.
-      _getSettings(share);
-    });
 
     _timer = Timer(Duration(seconds: 1), () {
       _checkVersion();
@@ -328,7 +333,7 @@ class _SplashState extends State<Splash> {
       } else if (languageCode == 'en') {
         setLanguage = KeyConfig.languageEn;
       } else {
-        setLanguage = KeyConfig.languageEn;
+        setLanguage = KeyConfig.languageCn;
       }
     }
 
@@ -339,7 +344,7 @@ class _SplashState extends State<Splash> {
       } else if (languageCode == 'en') {
         setCurrencyUnit = KeyConfig.usd;
       } else {
-        setCurrencyUnit = KeyConfig.usd;
+        setCurrencyUnit = KeyConfig.cny;
       }
     }
 
