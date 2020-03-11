@@ -20,7 +20,7 @@ import 'package:qiangdan_app/view/share/share_receive_page.dart';
 import 'package:qiangdan_app/view_model/main_model.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
-import 'dart:js' as js;
+//import 'dart:js' as js;
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
@@ -104,29 +104,29 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
     initPlatformState();
-    switchPlatForm();
+//    switchPlatForm();
   }
 
   bool isSharePlatForm = false;
 
-  void switchPlatForm() {
-    //webVersion
-    if (kIsWeb) {
-      var uri = Uri.tryParse(js.context['location']['href']);
-      if (uri != null) {
-        if (uri.queryParameters['shareCode'] != null &&
-            uri.queryParameters['shareRato'] != null) {
-          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
-          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
-          isSharePlatForm = true;
-        } else {
-          GlobalInfo.userInfo.webShareCode = '';
-          GlobalInfo.userInfo.webShareRatio = '';
-          isSharePlatForm = false;
-        }
-      }
-    }
-  }
+//  void switchPlatForm() {
+//    //webVersion
+//    if (kIsWeb) {
+//      var uri = Uri.tryParse(js.context['location']['href']);
+//      if (uri != null) {
+//        if (uri.queryParameters['shareCode'] != null &&
+//            uri.queryParameters['shareRato'] != null) {
+//          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
+//          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
+//          isSharePlatForm = true;
+//        } else {
+//          GlobalInfo.userInfo.webShareCode = '';
+//          GlobalInfo.userInfo.webShareRatio = '';
+//          isSharePlatForm = false;
+//        }
+//      }
+//    }
+//  }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
