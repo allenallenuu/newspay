@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:qiangdan_app/l10n/chinese_local.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/forget_login_password.dart';
+import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
 import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_edit.dart';
 import 'package:qiangdan_app/view/share/share_invitation.dart';
-import 'package:qiangdan_app/view/welcome/get_phone_code.dart';
+import 'package:qiangdan_app/view/welcome/change_password.dart';
 import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/welcome/splash.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_page.dart';
@@ -84,10 +84,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     StartLoginPage.tag: (context) => StartLoginPage(needBack: true),
     ShareInvitation.tag: (context) => ShareInvitation(),
     ShareReceivePage.tag: (context) => ShareReceivePage(),
-    ForgetLoginPassword.tag: (context) => ForgetLoginPassword(),
+    ForgetAccount.tag: (context) => ForgetAccount(),
     UserInfoSet.tag: (context) => UserInfoSet(),
     RegisterPage.tag: (context) => RegisterPage(),
-    GetCodePassword.tag:(context) => GetCodePassword(),
+    ChangePassword.tag:(context) => ChangePassword(),
 
   };
 

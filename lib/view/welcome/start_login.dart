@@ -16,10 +16,11 @@ import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/tools/key_config.dart';
 import 'package:qiangdan_app/tools/net_config.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/get_phone_code.dart';
+import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 
-import 'forget_login_password.dart';
+import 'forget_account.dart';
 
 class StartLoginPage extends StatefulWidget {
   static String tag = "StartPage";
@@ -200,7 +201,7 @@ class _StartLoginPageState extends State<StartLoginPage>
   Widget _getPasswordInput() {
       return new Container(
         decoration: new BoxDecoration(
-          color: Colors.white,
+          color: AppCustomColor.tabbarBackgroudColor,
           borderRadius: BorderRadius.all(Radius.circular(22)),
           border: new Border.all(width: 1, color: _hasClearIcon1 ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
         ),
@@ -252,7 +253,7 @@ class _StartLoginPageState extends State<StartLoginPage>
       );
     }
 
-  ///忘记密码
+  ///忘记密码和注册
   Widget _forgetPassword() {
     return Container(
       height: 30,
@@ -261,7 +262,7 @@ class _StartLoginPageState extends State<StartLoginPage>
         children: <Widget>[
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(GetCodePassword.tag);
+              Navigator.of(context).pushNamed(ChangePassword.tag);
             },
             child: Text(
               WalletLocalizations.of(context).startPageForgetPassword,
@@ -270,14 +271,11 @@ class _StartLoginPageState extends State<StartLoginPage>
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => ForgetLoginPassword()),
-                    (route) => route == null,
-              );
+              Navigator.of(context).pushNamed(RegisterPage.tag);
             },
             child: Text(
               WalletLocalizations.of(context).startPageRegistedUser,
-              style: TextStyle(fontSize: 14, color: Colors.red),
+              style: TextStyle(fontSize: 14, color: AppCustomColor.tabbarBackgroudColor),
             ),
           )
         ],
@@ -290,7 +288,7 @@ class _StartLoginPageState extends State<StartLoginPage>
       color: Colors.red,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
-          side: BorderSide(color: Colors.red)
+          side: BorderSide(color: AppCustomColor.tabbarBackgroudColor)
       ),
       elevation: 1.0,
       child: Container(
