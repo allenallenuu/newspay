@@ -37,11 +37,11 @@ class _StartLoginPageState extends State<StartLoginPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String log;
-  bool _hasClearIcon = true;
-  bool _hasClearIcon1 = false;
+  bool _hasAccountFocus = true;
+  bool _hasPasswordFocus = false;
 
-  FocusNode _nodeNickPassword = FocusNode();
-  FocusNode _nodeNickPassword1 = FocusNode();
+  FocusNode _nodeAccount = FocusNode();
+  FocusNode _nodePassword = FocusNode();
   //手机号控制器
   TextEditingController userphoneCtrl = TextEditingController(text: "");
 
@@ -63,17 +63,17 @@ class _StartLoginPageState extends State<StartLoginPage>
 
   @override
   void initState() {
-    _nodeNickPassword.addListener(() {
-      if (_nodeNickPassword.hasFocus) { // get focus
-        _hasClearIcon = true;
-        _hasClearIcon1 = false;
+    _nodeAccount.addListener(() {
+      if (_nodeAccount.hasFocus) { // get focus
+        _hasAccountFocus = true;
+        _hasPasswordFocus = false;
       }
       setState(() {});
     });
-    _nodeNickPassword1.addListener(() {
-      if (_nodeNickPassword1.hasFocus) { // get focus
-        _hasClearIcon1 = true;
-        _hasClearIcon = false;
+    _nodePassword.addListener(() {
+      if (_nodePassword.hasFocus) { // get focus
+        _hasPasswordFocus = true;
+        _hasAccountFocus = false;
       }
       setState(() {});
     });
@@ -148,7 +148,7 @@ class _StartLoginPageState extends State<StartLoginPage>
       decoration: new BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(22)),
-        border: new Border.all(width: 1, color: _hasClearIcon ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
+        border: new Border.all(width: 1, color: _hasAccountFocus ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
       ),
       padding: EdgeInsets.only(left: 5, right: 5),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -159,7 +159,7 @@ class _StartLoginPageState extends State<StartLoginPage>
                 padding: new EdgeInsets.only(left: 24.0),
                 child: new Center(
                   child: new Image.asset(
-                    Tools.imagePath(_hasClearIcon ? 'login_account_select' : 'login_account_unselect'),
+                    Tools.imagePath(_hasAccountFocus ? 'login_account_select' : 'login_account_unselect'),
                     width: 19.0,
                     height: 24.0,
                   ),
@@ -173,7 +173,7 @@ class _StartLoginPageState extends State<StartLoginPage>
                           height: 50.0,
                           child: new TextField(
                             controller: userphoneCtrl,
-                            focusNode:   _nodeNickPassword,
+                            focusNode:   _nodeAccount,
                             maxLines: 1,
                             maxLength: 11,
                             maxLengthEnforced: true,
@@ -203,7 +203,7 @@ class _StartLoginPageState extends State<StartLoginPage>
         decoration: new BoxDecoration(
           color: AppCustomColor.tabbarBackgroudColor,
           borderRadius: BorderRadius.all(Radius.circular(22)),
-          border: new Border.all(width: 1, color: _hasClearIcon1 ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
+          border: new Border.all(width: 1, color: _hasPasswordFocus ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
         ),
         padding: EdgeInsets.only(left: 5, right: 5),
         width: MediaQuery.of(context).size.width * 0.9,
@@ -215,7 +215,7 @@ class _StartLoginPageState extends State<StartLoginPage>
 
                   child: new Center(
                 child: new Image.asset(
-                  Tools.imagePath(_hasClearIcon1 ? 'login_password_select' : 'login_password_unselect'),
+                  Tools.imagePath(_hasPasswordFocus ? 'login_password_select' : 'login_password_unselect'),
                   width: 19.0,
                   height: 24.0,
                 ),
@@ -229,7 +229,7 @@ class _StartLoginPageState extends State<StartLoginPage>
                         height: 50.0,
                         child: new TextField(
                           controller: passwdCtrl,
-                          focusNode:   _nodeNickPassword1,
+                          focusNode:   _nodePassword,
                           keyboardType: TextInputType.phone,
                           maxLines: 1,
                           maxLength: 11,
