@@ -300,12 +300,8 @@ class _StartLoginPageState extends State<StartLoginPage>
           titleColor: Colors.white,
           titleSize: 18.0,
           callback: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              // remove unlock page
-              MaterialPageRoute(builder: (context) => MainPage()),
-                  (route) => route == null,
-            );
-//            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
+
+            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
           },
         ),
       ),
@@ -331,22 +327,23 @@ class _StartLoginPageState extends State<StartLoginPage>
 
     Future response = NetConfig.post(context, NetConfig.loginByPwd, {
       'cellphone': userphoneCtrl.text,
-      'code': passwdCtrl.text,
+      'password': passwdCtrl.text,
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
     });
 
     response.then((data) {
       if (NetConfig.checkData(data)) {
+        print('loginByPwd = $data');
         GlobalInfo.userInfo.loginToken = data['token'];
-        GlobalInfo.userInfo.userId = data['userId'];
+        GlobalInfo.userInfo.userId = data['uid'].toString();
         Tools.saveStringKeyValue(
             KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
         Tools.saveStringKeyValue(
             KeyConfig.user_login_userId, GlobalInfo.userInfo.userId);
 
         _getUserInfo();
-      } else {
+      }else {
         Navigator.pop(context);
       }
     });
@@ -360,16 +357,17 @@ class _StartLoginPageState extends State<StartLoginPage>
 
     data.then((data) {
       if (NetConfig.checkData(data)) {
-        GlobalInfo.userInfo.isPwd = data['isPwd'];
-        GlobalInfo.userInfo.isPayPwd = data['isPayPwd'];
-        GlobalInfo.userInfo.isReal = data['isReal'];
-
-        GlobalInfo.userInfo.nickname = data['nickname'];
-        GlobalInfo.userInfo.virtualCoinAmount = data['virtualCoinAmount'];
-        GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-        GlobalInfo.userInfo.level = data['level'];
-        GlobalInfo.userInfo.ifBind = data['ifBind'];
-        GlobalInfo.userInfo.inviteCode = data['inviteCode'];
+        print('getUserInfo = $data');
+//        GlobalInfo.userInfo.isPwd = data['isPwd'];
+//        GlobalInfo.userInfo.isPayPwd = data['isPayPwd'];
+//        GlobalInfo.userInfo.isReal = data['isReal'];
+//
+//        GlobalInfo.userInfo.nickname = data['nickname'];
+//        GlobalInfo.userInfo.virtualCoinAmount = data['virtualCoinAmount'];
+//        GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+//        GlobalInfo.userInfo.level = data['level'];
+//        GlobalInfo.userInfo.ifBind = data['ifBind'];
+//        GlobalInfo.userInfo.inviteCode = data['inviteCode'];
 
         if (data['webUrl'] != null) {
           GlobalInfo.userInfo.webShareAddress = data['webUrl'];
@@ -382,25 +380,33 @@ class _StartLoginPageState extends State<StartLoginPage>
         if (data['uid'] != null) {
           GlobalInfo.userInfo.uid = data['uid'].toString();
         }
-
-        if (data["fpUserInfo"] != null &&
-            data["fpUserInfo"]["username"] != null) {
-          FPUserInfo fpUserInfo = FPUserInfo();
-          fpUserInfo.hyperUsername = data["fpUserInfo"]["username"];
-          List list = data["fpUserInfo"]["addresses"];
-          fpUserInfo.addresses = [];
-          for (int i = 0; i < list.length; i++) {
-            fpUserInfo.addresses.add(list[i]);
-          }
-          GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+        if (data['faceUrl'] != null) {
+          GlobalInfo.userInfo.faceUrl = data['faceUrl'].toString();
         }
+        if (data['nickname'] != null) {
+          GlobalInfo.userInfo.nickname = data['nickname'].toString();
+        }
+        if (data['userId'] != null) {
+          GlobalInfo.userInfo.userId = data['userid'].toString();
+        }
+//        if (data["fpUserInfo"] != null &&
+//            data["fpUserInfo"]["username"] != null) {
+//          FPUserInfo fpUserInfo = FPUserInfo();
+//          fpUserInfo.hyperUsername = data["fpUserInfo"]["username"];
+//          List list = data["fpUserInfo"]["addresses"];
+//          fpUserInfo.addresses = [];
+//          for (int i = 0; i < list.length; i++) {
+//            fpUserInfo.addresses.add(list[i]);
+//          }
+//          GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+//        }
 
         Navigator.of(context).pushAndRemoveUntil(
           // remove unlock page
           MaterialPageRoute(builder: (context) => MainPage()),
           (route) => route == null,
         );
-      } else {
+      }else {
         Navigator.pop(context);
       }
     });

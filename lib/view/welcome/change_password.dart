@@ -327,9 +327,10 @@ class _ChangePasswordState extends State<ChangePassword> {
     var newPasswdNums = newPasswdCtrl.text;
     var codeNums = verificationCodeCtrl.text;
 
-    Future result = NetConfig.post(context, NetConfig.isCode, {
+    Future result = NetConfig.post(context, NetConfig.retrievePassword, {
       'cellphone': phonesNums,
       'code': codeNums,
+      'password':passwdNums
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
     });

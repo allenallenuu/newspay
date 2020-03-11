@@ -275,7 +275,7 @@ class _ForgetAccountState extends State<ForgetAccount> {
     var phoneNums = phoneCtrl.text;
     var codeNums = verificationCodeCtrl.text;
 
-    Future result = NetConfig.post(context, NetConfig.isCode, {
+    Future result = NetConfig.post(context, NetConfig.retrievePassword, {
       'cellphone': phoneNums,
       'code': codeNums,
     }, errorCallback: (msg) {

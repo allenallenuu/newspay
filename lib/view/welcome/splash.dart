@@ -252,16 +252,16 @@ class _SplashState extends State<Splash> {
     data.then((data) {
       print("getUserInfo = $data");
       if (NetConfig.checkData(data)) {
-        GlobalInfo.userInfo.isPwd = data['isPwd'];
-        GlobalInfo.userInfo.isPayPwd = data['isPayPwd'];
-        GlobalInfo.userInfo.isReal = data['isReal'];
-
-        GlobalInfo.userInfo.nickname = data['nickname'];
-        GlobalInfo.userInfo.virtualCoinAmount = data['virtualCoinAmount'];
-        GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-        GlobalInfo.userInfo.level = data['level'];
-        GlobalInfo.userInfo.ifBind = data['ifBind'];
-        GlobalInfo.userInfo.inviteCode = data['inviteCode'];
+//        GlobalInfo.userInfo.isPwd = data['isPwd'];
+//        GlobalInfo.userInfo.isPayPwd = data['isPayPwd'];
+//        GlobalInfo.userInfo.isReal = data['isReal'];
+//
+//        GlobalInfo.userInfo.nickname = data['nickname'];
+//        GlobalInfo.userInfo.virtualCoinAmount = data['virtualCoinAmount'];
+//        GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+//        GlobalInfo.userInfo.level = data['level'];
+//        GlobalInfo.userInfo.ifBind = data['ifBind'];
+//        GlobalInfo.userInfo.inviteCode = data['inviteCode'];
 
         if (data['webUrl'] != null) {
           GlobalInfo.userInfo.webShareAddress = data['webUrl'];
@@ -275,16 +275,25 @@ class _SplashState extends State<Splash> {
           GlobalInfo.userInfo.uid = data['uid'].toString();
         }
 
-        if (data["fpUserInfo"] != null &&
-            data["fpUserInfo"]["username"] != null) {
-          FPUserInfo fpUserInfo = FPUserInfo();
-          fpUserInfo.hyperUsername = data["fpUserInfo"]["username"];
-          List list = data["fpUserInfo"]["addresses"];
-          fpUserInfo.addresses = [];
-          for (int i = 0; i < list.length; i++) {
-            fpUserInfo.addresses.add(list[i]);
-          }
-          GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+//        if (data["fpUserInfo"] != null &&
+//            data["fpUserInfo"]["username"] != null) {
+//          FPUserInfo fpUserInfo = FPUserInfo();
+//          fpUserInfo.hyperUsername = data["fpUserInfo"]["username"];
+//          List list = data["fpUserInfo"]["addresses"];
+//          fpUserInfo.addresses = [];
+//          for (int i = 0; i < list.length; i++) {
+//            fpUserInfo.addresses.add(list[i]);
+//          }
+//          GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+//        }
+        if (data['faceUrl'] != null) {
+          GlobalInfo.userInfo.faceUrl = data['faceUrl'].toString();
+        }
+        if (data['nickname'] != null) {
+          GlobalInfo.userInfo.nickname = data['nickname'].toString();
+        }
+        if (data['userId'] != null) {
+          GlobalInfo.userInfo.userId = data['userid'].toString();
         }
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.

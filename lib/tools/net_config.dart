@@ -16,7 +16,7 @@ import 'package:http_parser/http_parser.dart';
 
 class NetConfig {
   static String imageHost = 'http://api.qiangdan:8080';
-  static String apiHost = 'http://api.qiangdan:8080/walletClientTest/api/';
+  static String apiHost = 'http://api.uumi.io:9040/walletClientTest/api/';
 
   /// 图片上传
   static String uploadImage = 'common/uploadImage';
@@ -37,7 +37,7 @@ class NetConfig {
   static String loginByPhone = 'common/activeByPhone';
 
   //密码登录
-  static String loginByPwd = 'common/activeByPwd';
+  static String loginByPwd = 'common/login';
 
   /// 获取用户信息
   static String getUserInfo = 'user/getUserInfo';
@@ -45,11 +45,14 @@ class NetConfig {
   //忘记登录密码
   static String forgetPwd = 'common/forgetPwd';
 
+  //修改密码
+  static String retrievePassword = 'common/retrievePassword';
+
   //忘记安全密码
   static String forgetPayPwd = 'common/forgetPayPwd';
 
   //验证码验证
-  static String isCode = 'common/isCode';
+  static String registerAccount = 'common/activeByPhone';
 
   //联系我们
   static String contactusGet = 'contactus/get';
