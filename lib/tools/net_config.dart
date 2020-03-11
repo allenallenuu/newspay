@@ -17,6 +17,9 @@ class NetConfig {
   static String imageHost = 'http://api.qiangdan:8080';
   static String apiHost = 'http://api.uumi.io:9040/walletClientTest/api/';
 
+  /// 获取最新的版本信息
+  static String getNewestVersion = 'common/getNewestVersion';
+
 
   /// 图片上传
   static String uploadImage = 'common/uploadImage';
