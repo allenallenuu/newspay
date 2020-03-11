@@ -12,13 +12,15 @@ import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
 import 'package:qiangdan_app/model/global_model.dart';
 import 'package:qiangdan_app/model/user_info.dart';
 import 'package:qiangdan_app/tools/Tools.dart';
+import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/tools/key_config.dart';
 import 'package:qiangdan_app/tools/net_config.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/get_phone_code.dart';
+import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 
-import 'forget_login_password.dart';
+import 'forget_account.dart';
 
 class StartLoginPage extends StatefulWidget {
   static String tag = "StartPage";
@@ -35,18 +37,16 @@ class _StartLoginPageState extends State<StartLoginPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String log;
-  bool _hasAccountFocus = false;
+  bool _hasAccountFocus = true;
   bool _hasPasswordFocus = false;
 
   FocusNode _nodeAccount = FocusNode();
   FocusNode _nodePassword = FocusNode();
-
   //手机号控制器
   TextEditingController userphoneCtrl = TextEditingController(text: "");
 
   //密码控制器
   TextEditingController passwdCtrl = TextEditingController();
-  Image accountSelect, accountUnselect, passwordSelect, passwordUnselect;
 
   var reg = new RegExp('^1[0-9]{10}');
 
@@ -63,77 +63,22 @@ class _StartLoginPageState extends State<StartLoginPage>
 
   @override
   void initState() {
-    accountSelect = Image.asset(
-      Tools.imagePath('login_account_select'),
-      width: 19.0,
-      height: 24.0,
-      gaplessPlayback: true,
-    );
-    accountUnselect = Image.asset(
-      Tools.imagePath('login_account_unselect'),
-      width: 19.0,
-      height: 24.0,
-      gaplessPlayback: true,
-    );
-    passwordSelect = Image.asset(
-      Tools.imagePath('login_password_select'),
-      width: 19.0,
-      height: 24.0,
-      gaplessPlayback: true,
-    );
-    passwordUnselect = Image.asset(
-      Tools.imagePath('login_password_unselect'),
-      width: 19.0,
-      height: 24.0,
-      gaplessPlayback: true,
-    );
-
     _nodeAccount.addListener(() {
-      if (_nodeAccount.hasFocus) {
-        // get focus
+      if (_nodeAccount.hasFocus) { // get focus
         _hasAccountFocus = true;
         _hasPasswordFocus = false;
-      }else{
-        _hasAccountFocus = false;
-        _hasPasswordFocus = true;
       }
       setState(() {});
     });
     _nodePassword.addListener(() {
-      if (_nodePassword.hasFocus) {
-        // get focus
+      if (_nodePassword.hasFocus) { // get focus
         _hasPasswordFocus = true;
         _hasAccountFocus = false;
-      }else{
-        _hasPasswordFocus = false;
-        _hasAccountFocus = true;
       }
       setState(() {});
     });
     super.initState();
     initPlatformState();
-  }
-
-  @override
-  void didchangedependencies() {
-    super.didChangeDependencies();
-    precacheImage(
-      accountSelect.image,
-      context,
-    );
-    precacheImage(
-      accountUnselect.image,
-      context,
-    );
-
-    precacheImage(
-      passwordSelect.image,
-      context,
-    );
-    precacheImage(
-      passwordUnselect.image,
-      context,
-    );
   }
 
   @override
@@ -145,32 +90,33 @@ class _StartLoginPageState extends State<StartLoginPage>
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
               child: Column(
-            children: <Widget>[
-              _showTopView(),
-              Container(
-                  margin: EdgeInsets.only(top: 50, left: 15, right: 15),
-                  padding:
+                children: <Widget>[
+                  _showTopView(),
+                  Container(
+                      margin: EdgeInsets.only(top: 50, left: 15, right: 15),
+                      padding:
                       EdgeInsets.only(bottom: 40, top: 10, left: 20, right: 20),
-                  decoration: new BoxDecoration(
-                    color: Colors.transparent,
+                      decoration: new BoxDecoration(
+                        color: Colors.transparent,
 //                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  alignment: Alignment.center,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        _getPhoneInput(),
-                        SizedBox(height: 25),
-                        _getPasswordInput(),
-                        SizedBox(height: 40),
-                        _getLogin(),
-                        SizedBox(height: 24),
-                        _forgetPassword(),
-                      ])),
-            ],
-          ))),
+                      ),
+                      alignment: Alignment.center,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            _getPhoneInput(),
+                            SizedBox(height: 25),
+                            _getPasswordInput(),
+                            SizedBox(height: 40),
+                            _getLogin(),
+                            SizedBox(height: 24),
+                            _forgetPassword(),
+                          ])),
+                ],
+              ))),
     );
   }
+
 
   @override
   void dispose() {
@@ -197,17 +143,12 @@ class _StartLoginPageState extends State<StartLoginPage>
       ],
     );
   }
-
   Widget _getPhoneInput() {
     return new Container(
       decoration: new BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(22)),
-        border: new Border.all(
-            width: 1,
-            color: _hasAccountFocus
-                ? Color.fromRGBO(243, 69, 69, 1)
-                : Color.fromRGBO(222, 222, 222, 1)),
+        border: new Border.all(width: 1, color: _hasAccountFocus ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
       ),
       padding: EdgeInsets.only(left: 5, right: 5),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -215,109 +156,104 @@ class _StartLoginPageState extends State<StartLoginPage>
         child: new Row(
           children: <Widget>[
             new Container(
-                padding: new EdgeInsets.only(left: 16.0),
-                child: _hasAccountFocus ? accountSelect : accountUnselect
-//                new Center(
-//                  child: new Image.asset(
-//                    Tools.imagePath(_hasAccountFocus ? 'login_account_select' : 'login_account_unselect'),
-//                    width: 19.0,
-//                    height: 24.0,
-//                  ),
-//                )
-                ),
+                padding: new EdgeInsets.only(left: 24.0),
+                child: new Center(
+                  child: new Image.asset(
+                    Tools.imagePath(_hasAccountFocus ? 'login_account_select' : 'login_account_unselect'),
+                    width: 19.0,
+                    height: 24.0,
+                  ),
+                )),
             new Expanded(
                 child: new Container(
                     height: 50.0,
                     padding: new EdgeInsets.only(left: 10.0),
                     child: new Center(
                         child: new Container(
-                      height: 50.0,
-                      child: new TextField(
-                        controller: userphoneCtrl,
-                        focusNode: _nodeAccount,
-                        maxLines: 1,
-                        maxLength: 11,
-                        maxLengthEnforced: true,
-                        style:
+                          height: 50.0,
+                          child: new TextField(
+                            controller: userphoneCtrl,
+                            focusNode:   _nodeAccount,
+                            maxLines: 1,
+                            maxLength: 11,
+                            maxLengthEnforced: true,
+                            style:
                             new TextStyle(color: Colors.black, fontSize: 16.0),
-                        decoration: new InputDecoration(
-                            hintText: WalletLocalizations.of(context)
-                                .startPagePhoneInput,
-                            counterText: '',
-                            border: InputBorder.none,
-                            hintStyle: new TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.0,
-                            )),
-                      ),
-                    )))),
+                            decoration: new InputDecoration(
+                                hintText: WalletLocalizations.of(context)
+                                    .startPagePhoneInput,
+                                counterText: '',
+                                border: InputBorder.none,
+                                hintStyle: new TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16.0,
+                                )),
+                          ),
+                        )))),
           ],
         ),
       ),
     );
   }
+
 
   ///密码
   Widget _getPasswordInput() {
-    return new Container(
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(22)),
-        border: new Border.all(
-            width: 1,
-            color: _hasPasswordFocus
-                ? Color.fromRGBO(243, 69, 69, 1)
-                : Color.fromRGBO(222, 222, 222, 1)),
-      ),
-      padding: EdgeInsets.only(left: 5, right: 5),
-      width: MediaQuery.of(context).size.width * 0.9,
-      child: new Center(
-        child: new Row(
-          children: <Widget>[
-            new Container(
-                padding: new EdgeInsets.only(left: 16.0),
-                child: new Center(
-                    child: _hasPasswordFocus ? passwordSelect : passwordUnselect
-//                new Image.asset(
-//                  Tools.imagePath(_hasPasswordFocus ? 'login_password_select' : 'login_password_unselect'),
-//                  width: 19.0,
-//                  height: 24.0,
-//                ),
-                    )),
-            new Expanded(
-                child: new Container(
-                    height: 50.0,
-                    padding: new EdgeInsets.only(left: 10.0),
-                    child: new Center(
-                        child: new Container(
-                      height: 50.0,
-                      child: new TextField(
-                        controller: passwdCtrl,
-                        focusNode: _nodePassword,
-                        keyboardType: TextInputType.phone,
-                        maxLines: 1,
-                        maxLength: 11,
-                        maxLengthEnforced: true,
-                        style:
-                            new TextStyle(color: Colors.black, fontSize: 16.0),
-                        decoration: new InputDecoration(
-                            hintText: WalletLocalizations.of(context)
-                                .startPagePasswordInput,
-                            counterText: '',
-                            border: InputBorder.none,
-                            hintStyle: new TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16.0,
-                            )),
-                      ),
-                    )))),
-          ],
+      return new Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(22)),
+          border: new Border.all(width: 1, color: _hasPasswordFocus ? Color.fromRGBO(243, 69, 69,1) : Color.fromRGBO(222, 222, 222,1)),
         ),
-      ),
-    );
-  }
+        padding: EdgeInsets.only(left: 5, right: 5),
+        width: MediaQuery.of(context).size.width * 0.9,
+        child: new Center(
+          child: new Row(
+            children: <Widget>[
+              new Container(
+                  padding: new EdgeInsets.only(left: 24.0),
 
-  ///忘记密码
+                  child: new Center(
+                child: new Image.asset(
+                  Tools.imagePath(_hasPasswordFocus ? 'login_password_select' : 'login_password_unselect'),
+                  width: 19.0,
+                  height: 24.0,
+                ),
+              )),
+              new Expanded(
+                  child: new Container(
+                      height: 50.0,
+                      padding: new EdgeInsets.only(left: 10.0),
+                      child: new Center(
+                          child: new Container(
+                        height: 50.0,
+                        child: new TextField(
+                          controller: passwdCtrl,
+                          focusNode:   _nodePassword,
+                          keyboardType: TextInputType.phone,
+                          maxLines: 1,
+                          maxLength: 11,
+                          maxLengthEnforced: true,
+                          style:
+                              new TextStyle(color: Colors.black, fontSize: 16.0),
+                          decoration: new InputDecoration(
+                              hintText: WalletLocalizations.of(context)
+                                  .startPagePasswordInput,
+                              counterText: '',
+                              border: InputBorder.none,
+                              hintStyle: new TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16.0,
+                              )),
+                        ),
+                      )))),
+            ],
+          ),
+        ),
+      );
+    }
+
+  ///忘记密码和注册
   Widget _forgetPassword() {
     return Container(
       height: 30,
@@ -326,7 +262,7 @@ class _StartLoginPageState extends State<StartLoginPage>
         children: <Widget>[
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(GetCodePassword.tag);
+              Navigator.of(context).pushNamed(ChangePassword.tag);
             },
             child: Text(
               WalletLocalizations.of(context).startPageForgetPassword,
@@ -335,28 +271,25 @@ class _StartLoginPageState extends State<StartLoginPage>
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => ForgetLoginPassword()),
-                (route) => route == null,
-              );
+              Navigator.of(context).pushNamed(RegisterPage.tag);
             },
             child: Text(
               WalletLocalizations.of(context).startPageRegistedUser,
-              style: TextStyle(fontSize: 14, color: Colors.red),
+              style: TextStyle(fontSize: 14, color: AppCustomColor.tabbarBackgroudColor),
             ),
           )
         ],
       ),
     );
   }
-
   ///登录
   Widget _getLogin() {
     return new Card(
       color: Colors.red,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
-          side: BorderSide(color: Colors.red)),
+          side: BorderSide(color: AppCustomColor.tabbarBackgroudColor)
+      ),
       elevation: 1.0,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,

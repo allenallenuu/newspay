@@ -26,7 +26,7 @@ class AppCustomColor{
    * 主题背景颜色
    */
   static Color themeBackgroudColor =  Colors.white;
-  static Color tabbarBackgroudColor =  Color.fromRGBO(87, 151, 227, 1);
+  static Color tabbarBackgroudColor =  Color.fromRGBO(243, 69, 69,1);
 
   /// About Page Banner Area Backgroud Color
   static Color aboutPageBannerBGColor =  Colors.blue[50];

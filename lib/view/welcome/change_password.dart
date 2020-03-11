@@ -1,53 +1,37 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-
-/// Start page.
-/// [author] tt
-/// [time] 2019-3-5
-
 import 'package:flutter/material.dart';
 import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/model/user_info.dart';
-import 'package:qiangdan_app/tools/CustomTabbar/CustomTabIndicator.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/tools/key_config.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:qiangdan_app/view_model/state_lib.dart';
 
-import 'forget_account.dart';
+class ChangePassword extends StatefulWidget {
+  var typeSet;
 
-class RegisterPage extends StatefulWidget {
-  static String tag = "RegisterPage";
-  bool needBack = true;
-
-  RegisterPage({Key key, this.needBack}) : super(key: key);
+  ChangePassword({Key key, this.typeSet}) : super(key: key);
+  static String tag = "ChangePassword";
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _ChangePasswordState createState() => _ChangePasswordState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _ChangePasswordState extends State<ChangePassword> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _hasInviteCodeFocus = true;
-  bool _hasPhoneFocus = false;
-  bool _hasVerificationCodeFocus = false;
+  bool _hasUserPhoneFocus = true;
   bool _hasPasswdFocus = false;
-
-  FocusNode _nodeInviteCode = FocusNode();
-  FocusNode _nodePhone = FocusNode();
-  FocusNode _nodeVerificationCode = FocusNode();
+  bool _hasNewPasswdFocus = false;
+  bool _hasCodeFocus = false;
+  FocusNode _nodeUserPhone = FocusNode();
   FocusNode _nodePasswd = FocusNode();
-  
-  TextEditingController inviteCodeCtrl = TextEditingController(text: "");
-  TextEditingController phoneCtrl = TextEditingController(text: "");
-  TextEditingController verificationCodeCtrl = TextEditingController();
+  FocusNode _nodeNewPasswd = FocusNode();
+  FocusNode _nodeCode = FocusNode();
+  TextEditingController userphoneCtrl = TextEditingController(text: "");
   TextEditingController passwdCtrl = TextEditingController(text: "");
+  TextEditingController newPasswdCtrl = TextEditingController(text: "");
+  TextEditingController verificationCodeCtrl = TextEditingController();
 
   bool isSendCodeEnable = true; //按钮状态  是否可点击
   int count = 60; //初始倒计时时间
@@ -57,41 +41,41 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void initState() {
-    _nodeInviteCode.addListener(() {
-      if (_nodeInviteCode.hasFocus) { // get focus
-        _hasInviteCodeFocus = true;
-        _hasPhoneFocus = false;
-        _hasVerificationCodeFocus = false;
+    _nodeUserPhone.addListener(() {
+      if (_nodeUserPhone.hasFocus) { // get focus
+        _hasUserPhoneFocus = true;
         _hasPasswdFocus = false;
-      }
-      setState(() {});
-    });
-    _nodePhone.addListener(() {
-      if (_nodePhone.hasFocus) { // get focus
-        _hasInviteCodeFocus = false;
-        _hasPhoneFocus = true;
-        _hasVerificationCodeFocus = false;
-        _hasPasswdFocus = false;
-
-      }
-      setState(() {});
-    });
-    _nodeVerificationCode.addListener(() {
-      if (_nodeVerificationCode.hasFocus) { // get focus
-        _hasInviteCodeFocus = false;
-        _hasPhoneFocus = false;
-        _hasVerificationCodeFocus = true;
-        _hasPasswdFocus = false;
-
+        _hasNewPasswdFocus = false;
+        _hasCodeFocus = false;
       }
       setState(() {});
     });
     _nodePasswd.addListener(() {
       if (_nodePasswd.hasFocus) { // get focus
-        _hasInviteCodeFocus = false;
-        _hasPhoneFocus = false;
-        _hasVerificationCodeFocus = false;
         _hasPasswdFocus = true;
+        _hasUserPhoneFocus = false;
+        _hasNewPasswdFocus = false;
+        _hasCodeFocus = false;
+
+      }
+      setState(() {});
+    });
+    _nodeNewPasswd.addListener(() {
+      if (_nodeNewPasswd.hasFocus) { // get focus
+        _hasNewPasswdFocus = true;
+        _hasUserPhoneFocus = false;
+        _hasPasswdFocus = false;
+        _hasCodeFocus = false;
+
+      }
+      setState(() {});
+    });
+    _nodeCode.addListener(() {
+      if (_nodeCode.hasFocus) { // get focus
+        _hasCodeFocus = true;
+        _hasUserPhoneFocus = false;
+        _hasPasswdFocus = false;
+        _hasNewPasswdFocus = false;
 
       }
       setState(() {});
@@ -104,9 +88,9 @@ class _RegisterPageState extends State<RegisterPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    inviteCodeCtrl.dispose();
-    phoneCtrl.dispose();
+    userphoneCtrl.dispose();
     passwdCtrl.dispose();
+    newPasswdCtrl.dispose();
     verificationCodeCtrl.dispose();
     if (timer != null) {
       timer.cancel();
@@ -134,11 +118,11 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Function _sendCode(String phone) {
-    if (phoneCtrl.text.toString().trim() == '') {
+    if (userphoneCtrl.text.toString().trim() == '') {
       Tools.showToast(
           _scaffoldKey, WalletLocalizations.of(context).startPagePhoneError1);
       return null;
-    } else if (!reg.hasMatch(phoneCtrl.text.toString().trim())) {
+    } else if (!reg.hasMatch(userphoneCtrl.text.toString().trim())) {
       Tools.showToast(
           _scaffoldKey, WalletLocalizations.of(context).startPagePhoneError2);
       return null;
@@ -149,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
       isSendCodeEnable = false; //按钮状态标记
 
       Future response = NetConfig.post(context, NetConfig.sendCode, {
-        'cellphone': phoneCtrl.text.toString(),
+        'cellphone': userphoneCtrl.text.toString(),
       }, errorCallback: (msg) {
 
         Tools.showToast(_scaffoldKey, msg);
@@ -224,12 +208,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               onPressed: () {
-                var phoneNums = phoneCtrl.text;
-                if (phoneNums.length == 0 || phoneNums == null) {
+                var passwordNums = userphoneCtrl.text;
+                if (passwordNums.length == 0 || passwordNums == null) {
                   Tools.showToast(_scaffoldKey, '请输入正确的手机号');
                   return;
                 }
-                _sendCode(phoneCtrl.toString());
+                _sendCode(userphoneCtrl.toString());
               },
             ): SizedBox(),
           ],
@@ -237,7 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-  ///注册
+  ///修改密码
   Widget _getDataInfo() {
     return new Card(
       color: Colors.red,
@@ -251,26 +235,20 @@ class _RegisterPageState extends State<RegisterPage> {
         child: CustomRaiseButton(
           context: context,
           hasRow: false,
-          title: WalletLocalizations.of(context).startPageRegisterAndLogin,
+          title: WalletLocalizations.of(context).startPageChangePasswordButton,
           titleColor: Colors.white,
           titleSize: 18.0,
           callback: () {
-            var inviteCodeNums = inviteCodeCtrl.text;
-            var phoneNums = phoneCtrl.text;
+            var phonesNums = userphoneCtrl.text;
             var passwdNums = passwdCtrl.text;
-            var verificationCodeNums = verificationCodeCtrl.text;
-            print('$inviteCodeNums == $verificationCodeNums');
+            var newPasswdNums = newPasswdCtrl.text;
+            var codeNums = verificationCodeCtrl.text;
+            print('$phonesNums == $codeNums');
 
-            if (inviteCodeNums.length == 0 || inviteCodeNums == null) {
+            if (phonesNums.length == 0 || phonesNums == null) {
               Tools.showToast(
                   _scaffoldKey,
-                  WalletLocalizations.of(context).startPageInviteCode);
-              return;
-            }
-            if (phoneNums.length == 0 || phoneNums == null) {
-              Tools.showToast(
-                  _scaffoldKey,
-                  WalletLocalizations.of(context).startPagePhoneInputs);
+                  WalletLocalizations.of(context).startPageChangePasswordButton);
               return;
             }
             if (passwdNums.length == 0 || passwdNums == null) {
@@ -279,14 +257,25 @@ class _RegisterPageState extends State<RegisterPage> {
                   WalletLocalizations.of(context).startPagePasswordInput);
               return;
             }
-
-            if (verificationCodeNums.length == 0 || verificationCodeNums == null) {
+            if (newPasswdNums.length == 0 || newPasswdNums == null) {
+              Tools.showToast(
+                  _scaffoldKey,
+                  WalletLocalizations.of(context).startPagePasswordInput);
+              return;
+            }
+            if (newPasswdNums != passwdNums) {
+              Tools.showToast(
+                  _scaffoldKey,
+                  WalletLocalizations.of(context).startPageNoEqual);
+              return;
+            }
+            if (codeNums.length == 0 || codeNums == null) {
               Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).startPageCodeError);
               return;
             }
 
             _onSubmit();
-//            _loginActionByPwd(inviteCodeCtrl.text, phoneCtrl.text);
+//            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
           },
         ),
       ),
@@ -306,18 +295,24 @@ class _RegisterPageState extends State<RegisterPage> {
         margin: EdgeInsets.all(15),
         child: Column(
           children: <Widget>[
-            _getPhoneInput(_hasInviteCodeFocus,'login_inviteCode_select','login_inviteCode_unselect',inviteCodeCtrl,_nodeInviteCode,WalletLocalizations.of(context)
-                .startPageInviteCode,false),
-            SizedBox(height: 24),
-            _getPhoneInput(_hasPhoneFocus,'login_phone_select','login_phone_unselect',phoneCtrl,_nodePhone,WalletLocalizations.of(context)
+            _getPhoneInput(_hasUserPhoneFocus,'login_phone_select','login_phone_unselect',userphoneCtrl,_nodeUserPhone,WalletLocalizations.of(context)
                 .startPagePhoneInputs,false),
-            SizedBox(height: 24,),
-            _getPhoneInput(_hasVerificationCodeFocus,'login_code_select','login_code_unselect',verificationCodeCtrl,_nodeVerificationCode,WalletLocalizations.of(context)
-                .startPageCodeInput,true),
-            SizedBox(height: 24,),
+            SizedBox(height: 24),
+
             _getPhoneInput(_hasPasswdFocus,'login_password_select','login_password_unselect',passwdCtrl,_nodePasswd,WalletLocalizations.of(context)
                 .startPagePwdError,false),
             SizedBox(height: 24),
+
+            _getPhoneInput(_hasNewPasswdFocus,'login_password_select','login_password_unselect',newPasswdCtrl,_nodeNewPasswd,WalletLocalizations.of(context)
+                .startPageNewPasswordInput,false),
+            SizedBox(
+              height: 24,
+            ),
+            _getPhoneInput(_hasCodeFocus,'login_code_select','login_code_unselect',verificationCodeCtrl,_nodeCode,WalletLocalizations.of(context)
+                .startPageCodeInput,true),
+            SizedBox(
+              height: 30,
+            ),
             _getDataInfo(),
 
           ],
@@ -327,13 +322,13 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _onSubmit() {
-    var inviteCodeNums = inviteCodeCtrl.text;
-    var phoneNums = phoneCtrl.text;
-    var codeNums = verificationCodeCtrl.text;
+    var phonesNums = userphoneCtrl.text;
     var passwdNums = passwdCtrl.text;
+    var newPasswdNums = newPasswdCtrl.text;
+    var codeNums = verificationCodeCtrl.text;
 
     Future result = NetConfig.post(context, NetConfig.isCode, {
-      'cellphone': phoneNums,
+      'cellphone': phonesNums,
       'code': codeNums,
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
@@ -341,14 +336,9 @@ class _RegisterPageState extends State<RegisterPage> {
     result.then((data) {
       print('isCode = $data');
       if (data != null) {
-//        Navigator.of(context)
-//            .push(MaterialPageRoute(builder: (BuildContext context) {
-//          return ForgetLoginPassword(
-//            phoneNums: phonesNums,
-//            codeNmus: codeNums,
-//          );
-//        }));
-      print('注册成功');
+
+        Navigator.of(context).pop();
+
       }
     });
   }

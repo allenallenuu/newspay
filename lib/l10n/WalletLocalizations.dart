@@ -21,6 +21,11 @@ class WalletLocalizations {
       'startPagePasswordInput': '请输入密码',
       'startPageNewPasswordInput': '请再次输入密码',
       'startPageNoEqual': '输入密码不一致',
+      'startPageInviteCode': '请输入邀请码',
+
+      'startPageRegisterAndLogin': '注册并登陆',
+      'startPageForgetAccount': '忘记用户名',
+      'startPageSearchAccount': '找回用户名',
 
       'startPageForgetPassword': '忘记密码?',
       'startPageRegistedUser': '注册用户',
@@ -35,6 +40,7 @@ class WalletLocalizations {
       'startPageUserInfoError': '用户信息获取失败',
       'welcomePageTwoButtonBack': '返回',
       'startPageChangePasswordButton': '修改密码',
+      'startPageRegister': '注册',
 
     },
     'en': {
@@ -54,6 +60,10 @@ class WalletLocalizations {
       'startPagePasswordInput': 'Please enter a password',
       'startPageNewPasswordInput': 'Please again enter a password',
       'startPageNoEqual': 'Enter the password inconsistently',
+      'startPageRegisterAndLogin': 'Register',
+      'startPageInviteCode': 'Please enter a inviteCode',
+      'startPageForgetAccount': 'Forget account',
+      'startPageSearchAccount': 'Search account',
 
       'startPageForgetPassword': 'Forgot your password?',
       'startPageCodeInput': 'Please enter a verification code',
@@ -67,6 +77,7 @@ class WalletLocalizations {
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
       'startPageChangePasswordButton': 'Change',
+      'startPageRegister': 'Register',
 
     }
   };
@@ -105,8 +116,15 @@ class WalletLocalizations {
       _localizedValues[locale.languageCode]['startPageNewPasswordInput'];
   get startPageNoEqual =>
       _localizedValues[locale.languageCode]['startPageNoEqual'];
+  get startPageInviteCode =>
+      _localizedValues[locale.languageCode]['startPageInviteCode'];
 
-
+  get startPageRegisterAndLogin =>
+      _localizedValues[locale.languageCode]['startPageRegisterAndLogin'];
+  get startPageForgetAccount =>
+      _localizedValues[locale.languageCode]['startPageForgetAccount'];
+  get startPageSearchAccount =>
+      _localizedValues[locale.languageCode]['startPageSearchAccount'];
   get startPageForgetPassword =>
       _localizedValues[locale.languageCode]['startPageForgetPassword'];
 
@@ -142,6 +160,8 @@ class WalletLocalizations {
   get startPageChangePasswordButton =>
       _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
 
+  get startPageRegister =>
+      _localizedValues[locale.languageCode]['startPageRegister'];
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
   }
