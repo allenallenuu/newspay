@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:path/path.dart';
@@ -15,8 +14,12 @@ import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
 
 class NetConfig {
-  static String imageHost = 'http://api.qiangdan:8080';
-  static String apiHost = 'http://api.qiangdan:8080/walletClientTest/api/';
+  static String imageHost = 'http://api.uumi.io:9040';
+  static String apiHost = 'http://api.uumi.io:9040/walletClientTest/api/';
+
+  /// 获取最新的版本信息
+  static String getNewestVersion = 'common/getNewestVersion';
+
 
   /// 图片上传
   static String uploadImage = 'common/uploadImage';
@@ -27,8 +30,6 @@ class NetConfig {
   /// user/updateUserFace   更新用户头像
   static String updateUserFace = 'user/updateUserFace';
 
-  /// 获取最新的版本信息
-  static String getNewestVersion = 'common/getNewestVersion';
 
   //发送短信
   static String sendCode = 'common/getSmsCode';

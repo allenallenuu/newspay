@@ -39,10 +39,11 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    if(kIsWeb){
-      MyApp.setThemeColor(context, Brightness.light);
-      MyApp.setLocale(context,  Locale('zh', "CH"));
-    }else{
+    if (kIsWeb) {
+      _getSettingsWeb().then((value) => () {
+            setState(() {});
+          });
+    } else {
       Future<SharedPreferences> prefs = SharedPreferences.getInstance();
       prefs.then((share) {
         // check language, currency unit, theme.
@@ -50,17 +51,26 @@ class _SplashState extends State<Splash> {
       });
     }
 
-
-    _timer = Timer(Duration(seconds: 1), () {
-      _checkVersion();
+    _timer = Timer(Duration(seconds: 2), () {
+      if (kIsWeb) {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => StartLoginPage()),
+          (route) => route == null,
+        );
+      } else {
+        _checkVersion();
+      }
     });
   }
 
   @override
   void dispose() {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    _timer.cancel();
-    _timer = null;
+    if (_timer != null) {
+      _timer.cancel();
+      _timer = null;
+    }
+
     super.dispose();
   }
 
@@ -74,7 +84,7 @@ class _SplashState extends State<Splash> {
         key: _scaffoldKey,
         body: SafeArea(
             child: image1 == null || imageIcon == null
-                ? Container()
+                ? Center(child: CircularProgressIndicator())
                 : Stack(
                     children: <Widget>[
                       Align(
@@ -216,30 +226,23 @@ class _SplashState extends State<Splash> {
 
   ///
   void _processData() async {
-    if (kIsWeb) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => StartLoginPage()),
-        (route) => route == null,
-      );
-    } else {
-      Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-      prefs.then((share) {
-        // Check login status
-        String val = share.getString(KeyConfig.user_login_token);
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+    prefs.then((share) {
+      // Check login status
+      String val = share.getString(KeyConfig.user_login_token);
 
-        if (val != null && val != '') {
-          GlobalInfo.userInfo.loginToken = val;
-          _getUserInfo(share);
-        } else {
-          // new user or logout (delete id)
-          print('==> new user or logout (delete id)');
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => StartLoginPage()),
-            (route) => route == null,
-          );
-        }
-      });
-    }
+      if (val != null && val != '') {
+        GlobalInfo.userInfo.loginToken = val;
+        _getUserInfo(share);
+      } else {
+        // new user or logout (delete id)
+        print('==> new user or logout (delete id)');
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => StartLoginPage()),
+          (route) => route == null,
+        );
+      }
+    });
   }
 
   //
@@ -379,5 +382,35 @@ class _SplashState extends State<Splash> {
       context,
     );
     setState(() {});
+  }
+
+  Future _getSettingsWeb() {
+    return Future(() {
+      Locale locale = Localizations.localeOf(context);
+      locale = Locale('zh', "CH");
+      // for color theme
+      MyApp.setThemeColor(context, Brightness.light);
+
+      MyApp.setLocale(context, locale);
+
+      image1 = Image.asset(
+        Tools.imagePath('splash_bg_black'),
+        fit: BoxFit.fill,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      );
+      imageIcon = Image.asset(
+        Tools.imagePath('splash_bg_icon_black'),
+      );
+
+      precacheImage(
+        image1.image,
+        context,
+      );
+      precacheImage(
+        imageIcon.image,
+        context,
+      );
+    });
   }
 }
