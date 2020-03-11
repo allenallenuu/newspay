@@ -28,43 +28,13 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: AppBar(
-        centerTitle: false,
-        title: Image.asset(
-          Tools.imagePath('logo'),
-          fit: BoxFit.fitHeight,
-          height: 30,
+        centerTitle: true,
+        title: Text(
+          WalletLocalizations.of(context).homePage,
         ),
-        actions: <Widget>[
-          GlobalInfo.userInfo.loginToken == null
-              ? FlatButton(
-                  // records button
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                            '1',
-                            style: TextStyle(fontSize: 16)),
-                        SizedBox(width: 5,),
-                        Image.asset(Tools.imagePath('login'),width: 30,height: 30,fit: BoxFit.fill,)
-                      ],
-                    ),
-                  ),
-                  textColor: Colors.blue,
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(StartLoginPage.tag);
-                  },
-                )
-              : SizedBox(),
-        ],
       ),
       body: Text('主页'),
     );
   }
 
-  bool canTouchAdd = true;
-
-
-  showSnackBar(String content) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(content)));
-  }
 }

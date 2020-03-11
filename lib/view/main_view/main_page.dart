@@ -71,24 +71,24 @@ class _MainPageState extends State<MainPage>
     var navList = [
       BottomNavigationBarItem(
           icon: Image.asset(
-            Tools.imagePath('nav_wallet_off'),
+            Tools.imagePath('ic_home_unselect'),
             width: 24,
             height: 24,
           ),
           activeIcon: Image.asset(
-            Tools.imagePath('nav_wallet_on'),
+            Tools.imagePath('ic_home_select'),
             width: 24,
             height: 24,
           ),
           title: Text(
-            '1',
+            WalletLocalizations.of(context).homePage,
           )),
 
       BottomNavigationBarItem(
           icon: Stack(
             children: <Widget>[
               Image.asset(
-                Tools.imagePath('nav_order_off'),
+                Tools.imagePath('ic_single_unselect'),
                 width: 24,
                 height: 24,
               ),
@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage>
           activeIcon: Stack(
             children: <Widget>[
               Image.asset(
-                Tools.imagePath('nav_order_on'),
+                Tools.imagePath('ic_single_select'),
                 width: 24,
                 height: 24,
               ),
@@ -126,21 +126,21 @@ class _MainPageState extends State<MainPage>
             ],
           ),
           title: Text(
-            '1',
+            WalletLocalizations.of(context).singlePage,
           )),
       BottomNavigationBarItem(
           icon: Image.asset(
-            Tools.imagePath('nav_my_off'),
+            Tools.imagePath('ic_mine_unselect'),
             width: 24,
             height: 24,
           ),
           activeIcon: Image.asset(
-            Tools.imagePath('nav_my_on'),
+            Tools.imagePath('ic_mine_select'),
             width: 24,
             height: 24,
           ),
           title: Text(
-           '1',
+            WalletLocalizations.of(context).minePage,
           )),
     ];
     return Scaffold(

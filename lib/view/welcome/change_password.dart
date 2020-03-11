@@ -20,7 +20,7 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _hasUserPhoneFocus = true;
+  bool _hasUserPhoneFocus = false;
   bool _hasPasswdFocus = false;
   bool _hasNewPasswdFocus = false;
   bool _hasCodeFocus = false;
