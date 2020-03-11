@@ -37,7 +37,7 @@ class _StartLoginPageState extends State<StartLoginPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String log;
-  bool _hasAccountFocus = true;
+  bool _hasAccountFocus = false;
   bool _hasPasswordFocus = false;
 
   FocusNode _nodeAccount = FocusNode();
@@ -156,12 +156,13 @@ class _StartLoginPageState extends State<StartLoginPage>
         child: new Row(
           children: <Widget>[
             new Container(
-                padding: new EdgeInsets.only(left: 24.0),
+                padding: new EdgeInsets.only(left: 19.0),
                 child: new Center(
                   child: new Image.asset(
                     Tools.imagePath(_hasAccountFocus ? 'login_account_select' : 'login_account_unselect'),
                     width: 19.0,
                     height: 24.0,
+                    gaplessPlayback: true,
                   ),
                 )),
             new Expanded(
@@ -211,13 +212,14 @@ class _StartLoginPageState extends State<StartLoginPage>
           child: new Row(
             children: <Widget>[
               new Container(
-                  padding: new EdgeInsets.only(left: 24.0),
+                  padding: new EdgeInsets.only(left: 19.0),
 
                   child: new Center(
                 child: new Image.asset(
                   Tools.imagePath(_hasPasswordFocus ? 'login_password_select' : 'login_password_unselect'),
                   width: 19.0,
                   height: 24.0,
+                  gaplessPlayback: true,
                 ),
               )),
               new Expanded(

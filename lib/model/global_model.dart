@@ -11,7 +11,7 @@ class  GlobalInfo{
   static String dataEncodeString= 'P@ssw)2d!UPRETSCLIENT';
 
   ///当前版本号
-  static int currVersionCode = 2;
+  static int currVersionCode = 1;
 
   static String currLanguage = KeyConfig.languageEn;
 
