@@ -41,6 +41,9 @@ class WalletLocalizations {
       'welcomePageTwoButtonBack': '返回',
       'startPageChangePasswordButton': '修改密码',
       'startPageRegister': '注册',
+      'homePage': '首页',
+      'singlePage': '抢单',
+      'minePage': '我的',
 
     },
     'en': {
@@ -78,7 +81,9 @@ class WalletLocalizations {
       'welcomePageTwoButtonBack': 'Return',
       'startPageChangePasswordButton': 'Change',
       'startPageRegister': 'Register',
-
+      'homePage': 'Home',
+      'singlePage': 'Single',
+      'minePage': 'Mine',
     }
   };
 
@@ -162,6 +167,13 @@ class WalletLocalizations {
 
   get startPageRegister =>
       _localizedValues[locale.languageCode]['startPageRegister'];
+  get homePage =>
+      _localizedValues[locale.languageCode]['homePage'];
+  get singlePage =>
+      _localizedValues[locale.languageCode]['singlePage'];
+  get minePage =>
+      _localizedValues[locale.languageCode]['minePage'];
+
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
   }

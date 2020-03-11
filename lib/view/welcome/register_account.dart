@@ -34,7 +34,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _hasInviteCodeFocus = true;
+  bool _hasInviteCodeFocus = false;
   bool _hasPhoneFocus = false;
   bool _hasVerificationCodeFocus = false;
   bool _hasPasswdFocus = false;

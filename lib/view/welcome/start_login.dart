@@ -302,7 +302,12 @@ class _StartLoginPageState extends State<StartLoginPage>
           titleColor: Colors.white,
           titleSize: 18.0,
           callback: () {
-            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
+            Navigator.of(context).pushAndRemoveUntil(
+              // remove unlock page
+              MaterialPageRoute(builder: (context) => MainPage()),
+                  (route) => route == null,
+            );
+//            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
           },
         ),
       ),
