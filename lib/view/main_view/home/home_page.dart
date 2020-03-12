@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -69,6 +70,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget buildImage(String imageName, int tag) {
+    return InkWell(
+      onTap: () {
+        if (tag == 1) {
+          Navigator.of(context).pushNamed(HomePageAgent.tag);
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2.2,
+        child: Image.asset(
+          Tools.imagePath(imageName),
+          width: MediaQuery.of(context).size.width / 2.2,
+          height: 93,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
   Widget buildItemes(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -96,94 +116,47 @@ class _HomePageState extends State<HomePage> {
         ),
         //银行卡和代理模式
         Container(
-          width: MediaQuery.of(context).size.width,
-          height: 100,
-          child: GridView.builder(
-            physics: new NeverScrollableScrollPhysics(),
-            itemCount: 2,
-            itemBuilder: (BuildContext context, int index) {
-              //Widget Function(BuildContext context, int index)
-              return InkWell(
-                onTap: () {
-                  print(index);
-                  if(index == 1){
-                    Navigator.of(context).pushNamed(HomePageAgent.tag);
-
-                  }
-                },
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.only(top: 0),
-                        alignment: Alignment.center,
-                        child: Image.asset(
-                          Tools.imagePath(imageList[index]),
-                          width: 164,
-                          height: 93,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-            //SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                //横轴元素个数
-                crossAxisCount: 2,
-                //纵轴间距
-                mainAxisSpacing: 5.0,
-                //子组件宽高长度比例
-                childAspectRatio: 1.8),
-          ),
-        ),
+            width: MediaQuery.of(context).size.width,
+            height: 100,
+            margin: EdgeInsets.symmetric( horizontal: 10),
+            padding: EdgeInsets.only(top: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                buildImage(imageList[0], 0),
+                buildImage(imageList[1], 1),
+              ],
+            )),
         //通知
         HomeNoticeView(),
 
         //入门手册
         Container(
-          width: MediaQuery.of(context).size.width,
-          height: 200,
-          child: GridView.builder(
-            physics: new NeverScrollableScrollPhysics(),
-            itemCount: 4,
-            itemBuilder: (BuildContext context, int index) {
-              //Widget Function(BuildContext context, int index)
-              return InkWell(
-                onTap: () {
-                  print(index);
-                },
-                child: Row(
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            margin: EdgeInsets.symmetric( horizontal: 10),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.only(top: 0),
-                        alignment: Alignment.center,
-                        child: Image.asset(
-                          Tools.imagePath(imageList1[index]),
-                          width: 164,
-                          height: 85,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
+                    buildImage(imageList1[0], 2),
+                    buildImage(imageList1[1], 3),
                   ],
                 ),
-              );
-            },
-            //SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                //横轴元素个数
-                crossAxisCount: 2,
-                //纵轴间距
-                mainAxisSpacing: 0.0,
-                //横轴间距
-                crossAxisSpacing: 0.0,
-                //子组件宽高长度比例
-                childAspectRatio: 2),
-          ),
+                SizedBox(height: 10),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    buildImage(imageList1[2], 4),
+                    buildImage(imageList1[3], 5),
+                  ],
+                )
+              ],
+            )
         ),
 
 //        Container(
