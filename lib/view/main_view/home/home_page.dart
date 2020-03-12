@@ -10,6 +10,7 @@ import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_manual.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
@@ -75,6 +76,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: () {
         if(tag == 0){
+          Navigator.of(context).pushNamed(HomePageCard.tag);
         }else if (tag == 1) {
           Navigator.of(context).pushNamed(HomePageAgent.tag);
         }else if(tag == 2){
