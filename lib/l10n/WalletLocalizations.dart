@@ -39,6 +39,14 @@ class WalletLocalizations {
       'startPageChangePasswordButton': '修改密码',
       'startPageRegister': '注册',
       'homePage': '首页',
+      'homePageManual': '入门手册',
+      'homePageManualFlow': '使用流程',
+      'homePageManualChannel': '收款渠道',
+      'homePageManualRecharge': '充值提现',
+      'homePageManualSpeedy': '便捷抢单',
+      'homePageManualFlows': '抢单流程',
+      'homePageManualCourse': '抢单教程',
+
       'homePageAgent': '代理模式',
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
@@ -130,6 +138,13 @@ class WalletLocalizations {
       'my_page_server_safe': 'Safety center',
       'my_page_server_share': 'Share',
       'my_page_server_wait': 'Soon',
+      'homePageManual': 'Manual',
+      'homePageManualFlow': 'Flow',
+      'homePageManualChannel': 'Channel',
+      'homePageManualRecharge': 'Recharge',
+      'homePageManualSpeedy': 'Speedy Manual',
+      'homePageManualFlows': 'Manual Flow',
+      'homePageManualCourse': 'Course',
     }
   };
 
@@ -295,6 +310,21 @@ class WalletLocalizations {
       _localizedValues[locale.languageCode]['my_page_server_share'];
   get my_page_server_wait =>
       _localizedValues[locale.languageCode]['my_page_server_wait'];
+
+  get homePageManual =>
+      _localizedValues[locale.languageCode]['homePageManual'];
+  get homePageManualFlow =>
+      _localizedValues[locale.languageCode]['homePageManualFlow'];
+  get homePageManualChannel =>
+      _localizedValues[locale.languageCode]['homePageManualChannel'];
+  get homePageManualRecharge =>
+      _localizedValues[locale.languageCode]['homePageManualRecharge'];
+  get homePageManualSpeedy =>
+      _localizedValues[locale.languageCode]['homePageManualSpeedy'];
+  get homePageManualFlows =>
+      _localizedValues[locale.languageCode]['homePageManualFlows'];
+  get homePageManualCourse =>
+      _localizedValues[locale.languageCode]['homePageManualCourse'];
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
