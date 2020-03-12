@@ -75,6 +75,9 @@ class NetConfig {
   ///代理用户提现接口
   static String AgentInvitationSave = 'userAgency/addAgencyWithdraw';
 
+  /// 获取 用户余额列表
+  static String balanceList = 'user/getBalance';
+
   static post(
     BuildContext context,
     String url,
