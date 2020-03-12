@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qiangdan_app/model/BalanceModel.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 
 class UserCenter extends StatefulWidget {
@@ -137,36 +138,39 @@ class _UserCenterState extends State<UserCenter> {
   Widget refreshView() {
     return Expanded(
       child: SmartRefresher(
-        enablePullDown: true,
-        enablePullUp: false,
-        header: ClassicHeader(
-            releaseText:
-                WalletLocalizations.of(context).pull_to_refresh_releaseText,
-            refreshingText:
-                WalletLocalizations.of(context).pull_to_refresh_refreshingText,
-            completeText:
-                WalletLocalizations.of(context).pull_to_refresh_completeText,
-            idleText: WalletLocalizations.of(context).pull_to_refresh_idleText),
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        child: Column(
-          children: <Widget>[
-            infoView(),
-            Container(
-              color: Color(0xffF6F6F6),
-              width: MediaQuery.of(context).size.width,
-              height: 10,
+          enablePullDown: true,
+          enablePullUp: false,
+          header: ClassicHeader(
+              releaseText:
+                  WalletLocalizations.of(context).pull_to_refresh_releaseText,
+              refreshingText: WalletLocalizations.of(context)
+                  .pull_to_refresh_refreshingText,
+              completeText:
+                  WalletLocalizations.of(context).pull_to_refresh_completeText,
+              idleText:
+                  WalletLocalizations.of(context).pull_to_refresh_idleText),
+          controller: _refreshController,
+          onRefresh: _onRefresh,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                infoView(),
+                Container(
+                  color: Color(0xffF6F6F6),
+                  width: MediaQuery.of(context).size.width,
+                  height: 10,
+                ),
+                HomeNoticeView(),
+                menuView(),
+                Container(
+                  color: Color(0xffF6F6F6),
+                  width: MediaQuery.of(context).size.width,
+                  height: 10,
+                ),
+                serverMenu(),
+              ],
             ),
-            menuView(),
-            Container(
-              color: Color(0xffF6F6F6),
-              width: MediaQuery.of(context).size.width,
-              height: 10,
-            ),
-            serverMenu(),
-          ],
-        ),
-      ),
+          )),
     );
   }
 
@@ -205,7 +209,7 @@ class _UserCenterState extends State<UserCenter> {
                 Text(
                   _balanceModel != null && _balanceModel.balance != null
                       ? _balanceModel.balance.toString()
-                      : '',
+                      : '0.0',
                   style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -231,7 +235,7 @@ class _UserCenterState extends State<UserCenter> {
                         _balanceModel != null &&
                                 _balanceModel.totalProfit != null
                             ? _balanceModel.totalProfit.toString()
-                            : '',
+                            : '0.0',
                         style: TextStyle(fontSize: 24, color: Colors.white),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -253,7 +257,7 @@ class _UserCenterState extends State<UserCenter> {
                         _balanceModel != null &&
                                 _balanceModel.frozenBalance != null
                             ? _balanceModel.frozenBalance.toString()
-                            : '',
+                            : '0.0',
                         style: TextStyle(fontSize: 24, color: Colors.white),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -270,7 +274,7 @@ class _UserCenterState extends State<UserCenter> {
 
   Widget menuView() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.only(top: 20, bottom: 20),
       child: Row(
         children: <Widget>[
           menuItem('my_page_qiangdan',
