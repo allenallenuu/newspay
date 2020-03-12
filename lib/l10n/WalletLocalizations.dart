@@ -39,6 +39,14 @@ class WalletLocalizations {
       'startPageChangePasswordButton': '修改密码',
       'startPageRegister': '注册',
       'homePage': '首页',
+      'homePageAgent': '代理模式',
+      'sellcoinTotalAssets': '代理总收益',
+      'homePageAgentNums': '代理总个数',
+      'homePageAgentRatio': '我的比例',
+      'homePageAgentSubordinate': '我的下级',
+      'homePageAgentDetail': '查看详情',
+      'homePageAgentChangeRatio': '修改他的比例',
+
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -93,8 +101,16 @@ class WalletLocalizations {
       'startPageChangePasswordButton': 'Change',
       'startPageRegister': 'Register',
       'homePage': 'Home',
+      'homePageAgent': 'Agent',
       'singlePage': 'Single',
       'minePage': 'Mine',
+      'sellcoinTotalAssets': 'Total Assets',
+      'homePageAgentNums': 'number of agents',
+      'homePageAgentRatio': 'Ratio',
+      'homePageAgentSubordinate': 'Subordinate',
+      'homePageAgentDetail': 'Detail',
+      'homePageAgentChangeRatio': 'Change Ratio',
+
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -204,15 +220,34 @@ class WalletLocalizations {
 
   get startPageChangePasswordButton =>
       _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
+  get homePageAgentDetail =>
+      _localizedValues[locale.languageCode]['homePageAgentDetail'];
+  get homePageAgentChangeRatio =>
+      _localizedValues[locale.languageCode]['homePageAgentChangeRatio'];
 
   get startPageRegister =>
       _localizedValues[locale.languageCode]['startPageRegister'];
+  get homePage =>
+      _localizedValues[locale.languageCode]['homePage'];
+  get homePageAgentRatio =>
+      _localizedValues[locale.languageCode]['homePageAgentRatio'];
+  get homePageAgentSubordinate =>
+      _localizedValues[locale.languageCode]['homePageAgentSubordinate'];
 
-  get homePage => _localizedValues[locale.languageCode]['homePage'];
+  get homePageAgentNums =>
+      _localizedValues[locale.languageCode]['homePageAgentNums'];
 
-  get singlePage => _localizedValues[locale.languageCode]['singlePage'];
+  get sellcoinTotalAssets =>
+      _localizedValues[locale.languageCode]['sellcoinTotalAssets'];
+  get homePageAgent =>
+      _localizedValues[locale.languageCode]['homePageAgent'];
 
-  get minePage => _localizedValues[locale.languageCode]['minePage'];
+
+  get singlePage =>
+      _localizedValues[locale.languageCode]['singlePage'];
+  get minePage =>
+      _localizedValues[locale.languageCode]['minePage'];
+
 
   get pull_to_refresh_releaseText =>
       _localizedValues[locale.languageCode]['pull_to_refresh_releaseText'];
