@@ -30,7 +30,7 @@ class _HomeNoticeView extends State<HomeNoticeView> {
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
           image: AssetImage(Tools.imagePath('home_notice')),
-          fit: BoxFit.cover,
+          fit: BoxFit.fitHeight,
         ),
       ),
       child: Row(
