@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:qiangdan_app/l10n/chinese_local.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_agent_detail.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
 import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
@@ -90,6 +92,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UserInfoSet.tag: (context) => UserInfoSet(),
     RegisterPage.tag: (context) => RegisterPage(),
     ChangePassword.tag: (context) => ChangePassword(),
+    HomePageAgent.tag: (context) => HomePageAgent(),
+    HomePageAgentDetail.tag: (context) => HomePageAgentDetail(),
+
   };
 
   Brightness brightness = Brightness.light;

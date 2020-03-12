@@ -7,6 +7,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
 import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
 
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MainStateModel stateModel = null;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List _bannerImageList = [
     "banner_one",
@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: AppCustomColor.themeBackgroudColor,
@@ -110,6 +109,10 @@ class _HomePageState extends State<HomePage> {
               return InkWell(
                 onTap: () {
                   print(index);
+                  if(index == 1){
+                    Navigator.of(context).pushNamed(HomePageAgent.tag);
+
+                  }
                 },
                 child: Row(
                   children: <Widget>[

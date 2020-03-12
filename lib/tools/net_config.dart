@@ -19,8 +19,10 @@ class NetConfig {
 
   /// 获取最新的版本信息
   static String getNewestVersion = 'common/getNewestVersion';
-
-
+  //我的代理信息
+  static String getOwnInfo = 'share/getOwnInfo';
+  //我的下级代理信息
+  static String getInfoByUid = 'share/getInfoByUid';
   /// 图片上传
   static String uploadImage = 'common/uploadImage';
 
