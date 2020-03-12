@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 /// [time] 2019-3-21
 
 import 'package:flutter/material.dart';
+import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
+import 'package:qiangdan_app/tools/Tools.dart';
+import 'package:qiangdan_app/tools/app_data_setting.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -12,7 +15,7 @@ class OrderCenter extends StatefulWidget {
 }
 
 class _OrderCenterState extends State<OrderCenter> {
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -26,8 +29,44 @@ class _OrderCenterState extends State<OrderCenter> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Text('抢单');
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(top: 50),
+                color: Color(0xffF34545),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      WalletLocalizations.of(context).singlePage,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ],
+                )),
+            topView(),
+          ],
+        ),
+      ),
+    );
   }
 
+  Widget topView() {
+    return Container(
+        height: 200.0,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage(Tools.imagePath('order_top_bg')),
+          ),
+
+        ));
+  }
 }
