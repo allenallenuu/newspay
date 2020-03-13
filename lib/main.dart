@@ -14,6 +14,7 @@ import 'package:qiangdan_app/view/main_view/home/home_page_manual_detail.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_manual_monad.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
+import 'package:qiangdan_app/view/main_view/me/user_info_record.dart';
 import 'package:qiangdan_app/view/welcome/change_password.dart';
 import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
@@ -106,6 +107,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     HomePageCard.tag: (context) => HomePageCard(),
     ChangePassword.tag: (context) => ChangePassword(),
     UserInfoCenter.tag: (context) => UserInfoCenter(),
+    UserInfoRecord.tag: (context) => UserInfoRecord(),
+
 
 
   };

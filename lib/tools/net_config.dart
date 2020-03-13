@@ -42,6 +42,15 @@ class NetConfig {
   //发送短信
   static String sendCode = 'common/getSmsCode';
 
+  //金额变动
+  static String balanceLogList = 'user/balanceLogList';
+
+  //提现记录
+  static String withdrawList = 'withdraw/withdrawList';
+
+  //充值记录
+  static String rechargeList = 'recharge/rechargeList';
+
   //登录
   static String loginByPhone = 'common/activeByPhone';
 
