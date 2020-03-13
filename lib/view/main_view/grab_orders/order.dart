@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 
 /// My profile page.
@@ -6,8 +8,10 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
+import 'package:qiangdan_app/model/grap_model.dart';
 import 'package:qiangdan_app/tools/Tools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/tools/net_config.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -16,10 +20,34 @@ class OrderCenter extends StatefulWidget {
 
 class _OrderCenterState extends State<OrderCenter> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isSwitch = false;
+
+  GrapModel _grapModel;
+  List<GrapListModel> _grapListModel;
+  Timer _timePeriodic;
 
   @override
   void initState() {
     super.initState();
+
+    grapOrderInfo();
+
+    _timePeriodic = Timer.periodic(Duration(milliseconds: 5000), (timer) {
+      grapOrderInfo();
+    });
+  }
+
+  void cancelTimer() {
+    if (_timePeriodic != null) {
+      _timePeriodic.cancel();
+      _timePeriodic = null;
+    }
+  }
+
+  @override
+  void deactivate() {
+    print('离开界面');
+    cancelTimer();
   }
 
   @override
@@ -31,42 +59,470 @@ class _OrderCenterState extends State<OrderCenter> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(top: 50),
-                color: Color(0xffF34545),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      WalletLocalizations.of(context).singlePage,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ],
-                )),
-            topView(),
-          ],
-        ),
-      ),
+      backgroundColor: Color(0xffF6F6F6),
+      body: _grapModel == null
+          ? Center(child: CircularProgressIndicator())
+          : Column(
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.only(top: 50),
+                    color: Color(0xffF34545),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          WalletLocalizations.of(context).singlePage,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    )),
+                topView(),
+                SizedBox(
+                  height: 5,
+                ),
+                _grapModel == null
+                    ? Container()
+                    : _grapModel.errorMessage.trim().length == 0
+                        ? contentView()
+                        : errorView(),
+              ],
+            ),
     );
   }
 
   Widget topView() {
-    return Container(
-        height: 200.0,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage(Tools.imagePath('order_top_bg')),
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: 200.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage(Tools.imagePath('order_top_bg')),
+            ),
           ),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                      decoration: BoxDecoration(
+                          color: Color(0x33000000),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(90),
+                              topRight: Radius.circular(90))),
+                      child: Text(
+                        WalletLocalizations.of(context).order_total_balance +
+                            ':  ' +
+                            (_grapModel != null && _grapModel.balance != null
+                                ? '￥' + _grapModel.balance.toString()
+                                : '￥0.0'),
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                      decoration: BoxDecoration(
+                          color: Color(0x33000000),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(90),
+                              topRight: Radius.circular(90))),
+                      child: Text(
+                          WalletLocalizations.of(context).order_index +
+                              ':  ' +
+                              (_grapModel != null &&
+                                      _grapModel.grapRatio != null
+                                  ? _grapModel.grapRatio.toString() + '%'
+                                  : '0.0%'),
+                          style: TextStyle(fontSize: 14, color: Colors.white)),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Text(WalletLocalizations.of(context).order_amount,
+                        style: TextStyle(fontSize: 14, color: Colors.white)),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                        '￥' +
+                            (_grapModel != null && _grapModel.grapNum != null
+                                ? _grapModel.grapNum.toString()
+                                : '0.0'),
+                        style: TextStyle(fontSize: 24, color: Colors.white))
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        if (isSwitch) {
+                          Tools.showToast(_scaffoldKey,
+                              WalletLocalizations.of(context).order_graping);
+                        } else {
+                          startGrap();
+                        }
+                      },
+                      child: Image.asset(
+                        !isSwitch
+                            ? Tools.imagePath('order_switch_close')
+                            : Tools.imagePath('order_switch_open'),
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+            height: 50,
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: 175.0, left: 50, right: 50),
+            padding: EdgeInsets.only(left: 10, right: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(90),
+              //主要用来设置阴影设置
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 1,
+                  spreadRadius: 1,
+                  color: Color(0xffF34545),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  WalletLocalizations.of(context).order_scale + ':  ',
+                  style: TextStyle(color: Colors.black),
+                ),
+                Text(
+                  (_grapModel != null
+                      ? _grapModel.earningsRatio.toString() + '%'
+                      : ''),
+                  style: TextStyle(color: Color(0xffF34545)),
+                ),
+                Container(
+                  padding:
+                      EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                  decoration: BoxDecoration(
+                      color: Color(0xffF34545),
+                      borderRadius: BorderRadius.circular(90)),
+                  child: Text(WalletLocalizations.of(context).order_guide,
+                      style: TextStyle(color: Colors.white)),
+                )
+              ],
+            ))
+      ],
+    );
+  }
 
-        ));
+  void grapOrderInfo() {
+    Future future = NetConfig.post(context, NetConfig.grapOrderInfo, {},
+        timeOut: 10, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
+    future.then((data) {
+      if (NetConfig.checkData(data)) {
+        List modelList = data['orderlist'];
+        if (modelList != null && modelList.length > 0) {
+          _grapListModel = [];
+          for (var model in modelList) {
+            _grapListModel.add(GrapListModel(
+                id: model['id'],
+                uid: model['uid'],
+                grabOrder: model['grabOrder'],
+                grabStatus: model['grabStatus'],
+                grabAmount: model['grabAmount'],
+                created: model['created'],
+                updated: model['updated'],
+                remarks: model['remarks']));
+          }
+        } else {
+          _grapListModel = null;
+        }
+
+        _grapModel = GrapModel(
+          grapType: data['grapType'],
+          balance: data['balance'],
+          errorMessage: data['errorMessage'],
+          grapNum: data['grapNum'],
+          orderNum: data['orderNum'],
+          grapRatio: data['grapRatio'],
+          earningsRatio: data['earningsRatio'],
+          orderlist: _grapListModel,
+        );
+
+        isSwitch = data['grapType'];
+      }
+      setState(() {});
+    });
+  }
+
+  void startGrap() {
+    Tools.loadingAnimation(context);
+    Future future = NetConfig.post(context, NetConfig.startGrap, {},
+        timeOut: 10, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
+    future.then((data) {
+      if (NetConfig.checkData(data)) {
+        isSwitch = true;
+        Tools.showToast(
+            _scaffoldKey, WalletLocalizations.of(context).order_start_grap);
+      }
+      Navigator.of(context).pop();
+      setState(() {});
+    });
+  }
+
+  void sureGrap(GrapListModel model) {
+    Tools.loadingAnimation(context);
+    Future future = NetConfig.post(
+        context, NetConfig.sureGrap, {'grabOrder': model.grabOrder.toString()},
+        timeOut: 10, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
+    future.then((data) {
+      if (NetConfig.checkData(data)) {
+        grapOrderInfo();
+      }
+      Navigator.of(context).pop();
+      setState(() {});
+    });
+  }
+
+  Widget errorView() {
+    return Expanded(
+      child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  Tools.imagePath('order_error'),
+                  width: 200,
+                  height: 200,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: Text(
+                    _grapModel.errorMessage.toString(),
+                    style: TextStyle(fontSize: 15, color: Color(0xffB4B4B4)),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  padding:
+                      EdgeInsets.only(left: 45, right: 45, top: 10, bottom: 10),
+                  decoration: BoxDecoration(
+                      color: Color(0xffF34545),
+                      borderRadius: BorderRadius.circular(90)),
+                  child: Text(
+                      WalletLocalizations.of(context).order_recharge_now,
+                      style: TextStyle(color: Colors.white)),
+                )
+              ],
+            ));
+          }),
+    );
+  }
+
+  Widget contentView() {
+    return _grapListModel != null && _grapListModel.length > 0
+        ? Expanded(
+            child: ListView.builder(
+                itemCount: _grapListModel.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      index == 0
+                          ? Container(
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10, top: 10, bottom: 10),
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              margin:
+                                  EdgeInsets.only(left: 20, right: 20, top: 10),
+                              child: Row(
+                                children: <Widget>[
+                                  Image.asset(
+                                    Tools.imagePath('order_qiang'),
+                                    width: 25,
+                                    height: 25,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    WalletLocalizations.of(context)
+                                        .order_have_a_new_open_order,
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.black),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    _grapListModel != null
+                                        ? _grapListModel.length.toString()
+                                        : '0',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Color(0xffF34545)),
+                                  ),
+                                  Text(
+                                    WalletLocalizations.of(context).order_each,
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(),
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: 10, right: 10, top: 10, bottom: 10),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  WalletLocalizations.of(context).order_order +
+                                      ':  ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Color(0xff999999)),
+                                ),
+                                Text(_grapListModel[index].grabOrder,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(0xff999999))),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(top: 5, bottom: 5),
+                                height: 2,
+                                color: Color(0xffF6F6F6)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Image.asset(
+                                      Tools.imagePath('order_bank_card'),
+                                      width: 35,
+                                      height: 35,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      WalletLocalizations.of(context)
+                                          .order_bankcard,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      '￥' +
+                                          _grapListModel[index]
+                                              .grabAmount
+                                              .toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 24,
+                                          color: Color(0xffF34545)),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                      _grapListModel[index].created,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(0xff999999),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    sureGrap(_grapListModel[index]);
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 20),
+                                    padding: EdgeInsets.only(
+                                        left: 25, right: 25, top: 5, bottom: 5),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xffF34545),
+                                        borderRadius:
+                                            BorderRadius.circular(90)),
+                                    child: Text(
+                                        WalletLocalizations.of(context)
+                                            .order_sure_order,
+                                        style: TextStyle(color: Colors.white)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ));
+                }),
+          )
+        : Container();
   }
 }

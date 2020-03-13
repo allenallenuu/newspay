@@ -46,7 +46,6 @@ class WalletLocalizations {
       'homePageAgentSubordinate': '我的下级',
       'homePageAgentDetail': '查看详情',
       'homePageAgentChangeRatio': '修改他的比例',
-
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -67,6 +66,20 @@ class WalletLocalizations {
       'my_page_server_safe': '安全中心',
       'my_page_server_share': '分享',
       'my_page_server_wait': '敬请期待',
+      'order_total_balance': '总额',
+      'order_index': '指数',
+      'order_amount': '抢单额度',
+      'order_scale': '我的比例',
+      'order_guide': '抢单攻略',
+      'order_error_balance_no_enough': '您的余额不足，请先充值',
+      'order_recharge_now': '马上充值',
+      "order_have_a_new_open_order": '您有新的未确认订单',
+      'order_sure_order': '确认订单',
+      'order_each':'个',
+      'order_order':'订单',
+      'order_bankcard':'银行卡',
+      'order_start_grap':'开始抢单',
+      'order_graping':'正在抢单...',
     },
     'en': {
       'network_error': 'Please check the network',
@@ -110,7 +123,6 @@ class WalletLocalizations {
       'homePageAgentSubordinate': 'Subordinate',
       'homePageAgentDetail': 'Detail',
       'homePageAgentChangeRatio': 'Change Ratio',
-
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -122,7 +134,6 @@ class WalletLocalizations {
       'my_page_menu_recharge': 'Recharge',
       'my_page_menu_withdrawal': 'Withdrawal',
       'my_page_menu_record': 'Record',
-
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
@@ -130,6 +141,23 @@ class WalletLocalizations {
       'my_page_server_safe': 'Safety center',
       'my_page_server_share': 'Share',
       'my_page_server_wait': 'Soon',
+
+      'order_total_balance': 'Total',
+      'order_index': 'Index',
+      'order_amount': 'Grab orders',
+      'order_scale': 'My scale',
+      'order_guide': 'Grab a single strategy',
+      'order_error_balance_no_enough':
+          'Your balance is insufficient, please recharge first',
+      'order_recharge_now': 'Recharge now',
+      "order_have_a_new_open_order": 'You have a new unconfirmed order',
+      'order_sure_order': 'Confirm order',
+
+  'order_each':'Each',
+  'order_order':'Order',
+  'order_bankcard':'Bank card',
+      'order_start_grap':'Start grap',
+      'order_graping':'Graping...',
     }
   };
 
@@ -220,17 +248,21 @@ class WalletLocalizations {
 
   get startPageChangePasswordButton =>
       _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
+
   get homePageAgentDetail =>
       _localizedValues[locale.languageCode]['homePageAgentDetail'];
+
   get homePageAgentChangeRatio =>
       _localizedValues[locale.languageCode]['homePageAgentChangeRatio'];
 
   get startPageRegister =>
       _localizedValues[locale.languageCode]['startPageRegister'];
-  get homePage =>
-      _localizedValues[locale.languageCode]['homePage'];
+
+  get homePage => _localizedValues[locale.languageCode]['homePage'];
+
   get homePageAgentRatio =>
       _localizedValues[locale.languageCode]['homePageAgentRatio'];
+
   get homePageAgentSubordinate =>
       _localizedValues[locale.languageCode]['homePageAgentSubordinate'];
 
@@ -239,15 +271,12 @@ class WalletLocalizations {
 
   get sellcoinTotalAssets =>
       _localizedValues[locale.languageCode]['sellcoinTotalAssets'];
-  get homePageAgent =>
-      _localizedValues[locale.languageCode]['homePageAgent'];
 
+  get homePageAgent => _localizedValues[locale.languageCode]['homePageAgent'];
 
-  get singlePage =>
-      _localizedValues[locale.languageCode]['singlePage'];
-  get minePage =>
-      _localizedValues[locale.languageCode]['minePage'];
+  get singlePage => _localizedValues[locale.languageCode]['singlePage'];
 
+  get minePage => _localizedValues[locale.languageCode]['minePage'];
 
   get pull_to_refresh_releaseText =>
       _localizedValues[locale.languageCode]['pull_to_refresh_releaseText'];
@@ -283,18 +312,56 @@ class WalletLocalizations {
 
   get my_page_server_about =>
       _localizedValues[locale.languageCode]['my_page_server_about'];
+
   get my_page_server_agent =>
       _localizedValues[locale.languageCode]['my_page_server_agent'];
+
   get my_page_server_download =>
       _localizedValues[locale.languageCode]['my_page_server_download'];
+
   get my_page_server_income =>
       _localizedValues[locale.languageCode]['my_page_server_income'];
+
   get my_page_server_safe =>
       _localizedValues[locale.languageCode]['my_page_server_safe'];
+
   get my_page_server_share =>
       _localizedValues[locale.languageCode]['my_page_server_share'];
+
   get my_page_server_wait =>
       _localizedValues[locale.languageCode]['my_page_server_wait'];
+
+  get order_total_balance =>
+      _localizedValues[locale.languageCode]['order_total_balance'];
+  get order_index =>
+      _localizedValues[locale.languageCode]['order_index'];
+  get order_amount =>
+      _localizedValues[locale.languageCode]['order_amount'];
+  get order_scale =>
+      _localizedValues[locale.languageCode]['order_scale'];
+  get order_guide =>
+      _localizedValues[locale.languageCode]['order_guide'];
+  get order_error_balance_no_enough =>
+      _localizedValues[locale.languageCode]['order_error_balance_no_enough'];
+  get order_recharge_now =>
+      _localizedValues[locale.languageCode]['order_recharge_now'];
+  get order_have_a_new_open_order =>
+      _localizedValues[locale.languageCode]['order_have_a_new_open_order'];
+  get order_sure_order =>
+      _localizedValues[locale.languageCode]['order_sure_order'];
+
+  get order_each =>
+      _localizedValues[locale.languageCode]['order_each'];
+  get order_order =>
+      _localizedValues[locale.languageCode]['order_order'];
+  get order_bankcard =>
+      _localizedValues[locale.languageCode]['order_bankcard'];
+
+  get order_start_grap =>
+      _localizedValues[locale.languageCode]['order_start_grap'];
+
+  get order_graping =>
+      _localizedValues[locale.languageCode]['order_graping'];
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
