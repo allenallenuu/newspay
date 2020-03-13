@@ -16,7 +16,7 @@ import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/tools/key_config.dart';
 import 'package:qiangdan_app/tools/net_config.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:qiangdan_app/view/welcome/forget_password.dart';
 import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 
@@ -276,7 +276,7 @@ class _StartLoginPageState extends State<StartLoginPage>
         children: <Widget>[
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(ChangePassword.tag);
+              Navigator.of(context).pushNamed(ForgetPassword.tag);
             },
             child: Text(
               WalletLocalizations.of(context).startPageForgetPassword,
@@ -393,7 +393,9 @@ class _StartLoginPageState extends State<StartLoginPage>
         if (data['userId'] != null) {
           GlobalInfo.userInfo.userId = data['userid'].toString();
         }
-
+        if (data['cellphone'] != null) {
+          GlobalInfo.userInfo.cellphone = data['cellphone'].toString();
+        }
         Navigator.of(context).pushAndRemoveUntil(
           // remove unlock page
           MaterialPageRoute(builder: (context) => MainPage()),

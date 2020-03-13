@@ -8,17 +8,17 @@ import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 
-class ChangePassword extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   var typeSet;
 
-  ChangePassword({Key key, this.typeSet}) : super(key: key);
-  static String tag = "ChangePassword";
+  ForgetPassword({Key key, this.typeSet}) : super(key: key);
+  static String tag = "ForgetPassword";
 
   @override
-  _ChangePasswordState createState() => _ChangePasswordState();
+  _ForgetPasswordState createState() => _ForgetPasswordState();
 }
 
-class _ChangePasswordState extends State<ChangePassword> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _hasUserPhoneFocus = false;
   bool _hasPasswdFocus = false;
@@ -235,7 +235,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         child: CustomRaiseButton(
           context: context,
           hasRow: false,
-          title: WalletLocalizations.of(context).startPageChangePasswordButton,
+          title: WalletLocalizations.of(context).startPageForgetPasswordButton,
           titleColor: Colors.white,
           titleSize: 18.0,
           callback: () {
@@ -248,7 +248,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             if (phonesNums.length == 0 || phonesNums == null) {
               Tools.showToast(
                   _scaffoldKey,
-                  WalletLocalizations.of(context).startPageChangePasswordButton);
+                  WalletLocalizations.of(context).startPageForgetPasswordButton);
               return;
             }
             if (passwdNums.length == 0 || passwdNums == null) {
