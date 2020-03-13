@@ -28,10 +28,14 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
   String totalProfit = '0';
   String earningsRatio = '0';
   String customerShareCount = '0';
-
+  TextEditingController controllerRatio;
+  var isValidBtn = true;
+  var isLimitBtn = false;
   @override
   void initState() {
     // TODO: implement initState
+    controllerRatio = TextEditingController();
+
     this.getWalletInfoes(context);
     super.initState();
   }
@@ -337,8 +341,16 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
           ),
           child: FlatButton(
               onPressed: () {
-
-              },
+                if (this.isLimitBtn) {
+                  Tools.showToast(_scaffoldKey, '不要太急哦，稍等片刻。');
+                  return;
+                }
+                this.isLimitBtn = true;
+                if (isValidBtn) {
+                  updateView();
+                  _bottomSheet(context);
+                }
+                },
               child: Text(
                 WalletLocalizations.of(context)
                     .homePageAgentChangeRatio,
@@ -348,5 +360,137 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
         ),
       ],
     );
+  }
+  void _bottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState
+                  /*You can rename this!*/) {
+                return Padding(
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: Container(
+                    height: 200.0,
+                    padding:
+                    EdgeInsets.only(top: 10, bottom: 30, left: 16, right: 16),
+                    decoration: new BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10)),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+
+                        Container(
+                          height: 30,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            '修改比例',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18.0),
+                          ),
+                        ),
+                        Container(
+                          height: 30.0,
+                          margin: EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                width: MediaQuery.of(context).size.width / 2,
+                                child: TextField(
+                                  controller: controllerRatio,
+                                  maxLines: 1,
+                                  maxLength: 11,
+                                  style: new TextStyle(
+                                      color: Colors.black, fontSize: 18.0),
+                                  decoration: new InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: '请输入修改比例',
+                                      counterText: '',
+                                      hintStyle: new TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16.0,
+                                      )),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          height: 1,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          height: 45.0,
+                          child: RaisedButton(
+                            child: Text(
+                                WalletLocalizations.of(context).publicButtonOK),
+                            onPressed: () {
+                              var ratioNums = controllerRatio.text;
+                              //安全密码
+                              if (ratioNums.length == 0 ||
+                                  ratioNums == null) {
+                                Tools.showToast(
+                                    _scaffoldKey,
+                                    '请输入修改比例');
+                                return;
+                              }
+                              addDigTask();
+                              Navigator.pop(context);
+                            },
+                            //通过将onPressed设置为null来实现按钮的禁用状态
+                            color: Colors.blue,
+                            textColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10) //设置圆角
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              });
+        }).then((value) {
+      this.isLimitBtn = false;
+    });
+  }
+  void updateView() {
+    setState(() {
+      controllerRatio.text = '';
+    });
+  }
+  void addDigTask() {
+    Future response = NetConfig.post(context, NetConfig.changeEarningsRatio, {
+      'uid' : widget.uid,
+      'earningsRatio': controllerRatio.text.toString(),
+    }, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg.toString());
+      this.isLimitBtn = false;
+    }, showToast: false);
+    response.then((data) {
+      if (NetConfig.checkData(data)) {
+        print("changeEarnings======= $data");
+        this.getWalletInfoes(context);
+
+        this.isValidBtn = false;
+        this.isLimitBtn = false;
+        setState(() {});
+//        updateView();
+      } else {
+        print("changeEarnings------- $data");
+        this.isLimitBtn = false;
+
+        setState(() {});
+      }
+    });
   }
 }

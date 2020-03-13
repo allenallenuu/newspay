@@ -39,6 +39,14 @@ class WalletLocalizations {
       'startPageChangePasswordButton': '修改密码',
       'startPageRegister': '注册',
       'homePage': '首页',
+      'homePageManual': '入门手册',
+      'homePageManualFlow': '使用流程',
+      'homePageManualChannel': '收款渠道',
+      'homePageManualRecharge': '充值提现',
+      'homePageManualSpeedy': '便捷抢单',
+      'homePageManualFlows': '抢单流程',
+      'homePageManualCourse': '抢单教程',
+
       'homePageAgent': '代理模式',
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
@@ -46,6 +54,16 @@ class WalletLocalizations {
       'homePageAgentSubordinate': '我的下级',
       'homePageAgentDetail': '查看详情',
       'homePageAgentChangeRatio': '修改他的比例',
+
+      'homeEditCard': '银行卡修改',
+      'homeCardName': '持卡人',
+      'homeCardNameTip': '请输入持卡人信息',
+      'homeCardNums': '银行卡号',
+      'homeCardNumsTip': '请输入银行卡号',
+      'homeCardTypes': '卡类型',
+      'homeCardTypesTip': '请输入开户行',
+      'publicButtonOK': '确定',
+
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -123,6 +141,7 @@ class WalletLocalizations {
       'homePageAgentSubordinate': 'Subordinate',
       'homePageAgentDetail': 'Detail',
       'homePageAgentChangeRatio': 'Change Ratio',
+
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -134,6 +153,7 @@ class WalletLocalizations {
       'my_page_menu_recharge': 'Recharge',
       'my_page_menu_withdrawal': 'Withdrawal',
       'my_page_menu_record': 'Record',
+
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
@@ -141,21 +161,36 @@ class WalletLocalizations {
       'my_page_server_safe': 'Safety center',
       'my_page_server_share': 'Share',
       'my_page_server_wait': 'Soon',
+      'homePageManual': 'Manual',
+      'homePageManualFlow': 'Flow',
+      'homePageManualChannel': 'Channel',
+      'homePageManualRecharge': 'Recharge',
+      'homePageManualSpeedy': 'Speedy Manual',
+      'homePageManualFlows': 'Manual Flow',
+      'homePageManualCourse': 'Course',
 
+      'homeEditCard': 'bank card modification',
+      'homeCardName': 'cardholder',
+      'homeCardNameTip': 'please enter cardholder information',
+      'homeCardNums':' bank card number ',
+      'homeCardNumsTip': 'please enter the bank card number',
+      'homeCardTypes':' card type ',
+      'homeCardTypesTip': 'please enter account bank',
+      'publicButtonOK': 'OK',
       'order_total_balance': 'Total',
       'order_index': 'Index',
       'order_amount': 'Grab orders',
       'order_scale': 'My scale',
       'order_guide': 'Grab a single strategy',
       'order_error_balance_no_enough':
-          'Your balance is insufficient, please recharge first',
+      'Your balance is insufficient, please recharge first',
       'order_recharge_now': 'Recharge now',
       "order_have_a_new_open_order": 'You have a new unconfirmed order',
       'order_sure_order': 'Confirm order',
 
-  'order_each':'Each',
-  'order_order':'Order',
-  'order_bankcard':'Bank card',
+      'order_each':'Each',
+      'order_order':'Order',
+      'order_bankcard':'Bank card',
       'order_start_grap':'Start grap',
       'order_graping':'Graping...',
     }
@@ -331,6 +366,37 @@ class WalletLocalizations {
   get my_page_server_wait =>
       _localizedValues[locale.languageCode]['my_page_server_wait'];
 
+  get homePageManual =>
+      _localizedValues[locale.languageCode]['homePageManual'];
+  get homePageManualFlow =>
+      _localizedValues[locale.languageCode]['homePageManualFlow'];
+  get homePageManualChannel =>
+      _localizedValues[locale.languageCode]['homePageManualChannel'];
+  get homePageManualRecharge =>
+      _localizedValues[locale.languageCode]['homePageManualRecharge'];
+  get homePageManualSpeedy =>
+      _localizedValues[locale.languageCode]['homePageManualSpeedy'];
+  get homePageManualFlows =>
+      _localizedValues[locale.languageCode]['homePageManualFlows'];
+  get homePageManualCourse =>
+      _localizedValues[locale.languageCode]['homePageManualCourse'];
+
+  get homeEditCard =>
+      _localizedValues[locale.languageCode]['homeEditCard'];
+  get homeCardName =>
+      _localizedValues[locale.languageCode]['homeCardName'];
+  get homeCardNameTip =>
+      _localizedValues[locale.languageCode]['homeCardNameTip'];
+  get homeCardNums =>
+      _localizedValues[locale.languageCode]['homeCardNums'];
+  get homeCardNumsTip =>
+      _localizedValues[locale.languageCode]['homeCardNumsTip'];
+  get homeCardTypes =>
+      _localizedValues[locale.languageCode]['homeCardTypes'];
+  get homeCardTypesTip =>
+      _localizedValues[locale.languageCode]['homeCardTypesTip'];
+  get publicButtonOK =>
+      _localizedValues[locale.languageCode]['publicButtonOK'];
   get order_total_balance =>
       _localizedValues[locale.languageCode]['order_total_balance'];
   get order_index =>
