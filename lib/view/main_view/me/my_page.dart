@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 /// My profile page.
 /// [author] tt
@@ -7,8 +9,11 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:qiangdan_app/model/BalanceModel.dart';
+import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
+import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
+import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 
 class UserCenter extends StatefulWidget {
@@ -56,10 +61,31 @@ class _UserCenterState extends State<UserCenter> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Image.asset(
-                Tools.imagePath('my_page_avatar'),
-                fit: BoxFit.fitHeight,
-                height: 42,
+              (GlobalInfo.userInfo != null &&
+                  GlobalInfo.userInfo.faceUrl != null)
+                  ? ClipOval(
+                  child: kIsWeb
+                      ? WebTools.networkImageWeb(
+                    NetConfig.imageHost +
+                        GlobalInfo.userInfo.faceUrl,
+                    width: 55,
+                    height: 55,
+                  )
+                      : CachedNetworkImage(
+                    imageUrl: NetConfig.imageHost +
+                        GlobalInfo.userInfo.faceUrl,
+                    errorWidget: (context, url, error) =>
+                    new Icon(Icons.error),
+                    width: 55,
+                    height: 55,
+                    fit: BoxFit.fitHeight,
+                  ))
+                  : ClipOval(
+                child: Image.asset(
+                  Tools.imagePath('my_page_avatar'),
+                  fit: BoxFit.fitHeight,
+                  height: 42,
+                ),
               ),
               SizedBox(
                 width: 5,
@@ -87,7 +113,10 @@ class _UserCenterState extends State<UserCenter> {
                 width: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(UserInfoSet.tag);
+
+                },
                 child: Image.asset(
                   Tools.imagePath('my_page_set'),
                   width: 30,
@@ -333,7 +362,8 @@ class _UserCenterState extends State<UserCenter> {
                 menuItem('my_page_server_safe',
                     WalletLocalizations.of(context).my_page_server_safe,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '1');
+                      Navigator.of(context).pushNamed(UserInfoCenter.tag);
+
                 }),
                 menuItem('my_page_server_about',
                     WalletLocalizations.of(context).my_page_server_about,

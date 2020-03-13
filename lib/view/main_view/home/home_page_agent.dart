@@ -295,13 +295,14 @@ class _HomePageAgentState extends State<HomePageAgent> {
                               backgroundColor: Colors.transparent,
                             ),
                             new Container(
-                              padding: const EdgeInsets.only(left: 8.0),
+                              padding: const EdgeInsets.only(left: 2.0),
                               child: new Text(
                                 agentInfos.nickname == null
-                                    ? '匿名'
+                                    ? WalletLocalizations.of(context)
+                                    .publicDefaultName
                                     : agentInfos.nickname,
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                    fontSize: 16),
                               ),
                             ),
                             new Container(
@@ -311,7 +312,7 @@ class _HomePageAgentState extends State<HomePageAgent> {
                                     ? '138xxxx33'
                                     : agentInfos.cellphone,
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     color: AppCustomColor.tabbarBackgroudColor),
                               ),

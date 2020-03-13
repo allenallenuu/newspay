@@ -27,7 +27,7 @@ class _UserInfoSetState extends State<UserInfoSet> {
     // TODO: implement build
     return Scaffold(
       key: _bottomNavigationKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(246, 246, 246, 1),
       appBar: AppBar(
         elevation: 0,
         title: Text('设置'),
@@ -57,42 +57,46 @@ class _UserInfoSetState extends State<UserInfoSet> {
 
     List<Widget> titleList = <Widget>[
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Image.asset(
-            Tools.imagePath("my_page_set_info"),
-            width: 25,
-            height: 25,
-          ),
+          Text(WalletLocalizations.of(context).common_title_userName,style: TextStyle(fontSize: 16),),
+
           SizedBox(
             width: 10,
           ),
-          Text('1'),
+          Text(GlobalInfo.userInfo.nickname == null
+              ? 'unknow'
+              : GlobalInfo.userInfo.nickname,style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),),
         ],
       ),
 
 
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Image.asset(
-            Tools.imagePath("my_page_set_quit"),
-            width: 25,
-            height: 25,
-          ),
+          Text(WalletLocalizations.of(context).common_title_phone,style: TextStyle(fontSize: 16)),
           SizedBox(
             width: 10,
           ),
-          Text('1'),
+          Text(GlobalInfo.userInfo.cellphone == null
+              ? 'unknow'
+              : GlobalInfo.userInfo.cellphone,style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),),
         ],
       ),
+
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(WalletLocalizations.of(context).userInfoPageButton,style: TextStyle(fontSize: 16)),
+            ],
+          ),
     ];
 
-    List<Widget> trailingList = <Widget>[
-      Icon(Icons.keyboard_arrow_right),
-      Icon(Icons.keyboard_arrow_right),
-    ];
 
     // Page routes
     List<String> routes = <String>[
+      UserInfoPage.tag,
       UserInfoPage.tag,
       '退出当前账户',
       //留言反馈
@@ -101,27 +105,30 @@ class _UserInfoSetState extends State<UserInfoSet> {
     ];
 
     for (int i = 0; i < titleList.length; i++) {
-      _list.add(_menuItem(titleList[i], routes[i], trailingList[i]));
+      _list.add(_menuItem(titleList[i], routes[i]));
       _list.add(Divider(height: 0, indent: 15));
+      if(i == 1){
+        _list.add(SizedBox(height: 12));
+
+      }
     }
 
     return _list;
   }
 
   //
-  Widget _menuItem(Widget title, String route, Widget trailing) {
+  Widget _menuItem(Widget title, String route) {
     return Ink(
-      color: AppCustomColor.themeBackgroudColor,
+      color: Colors.white,
       child: ListTile(
 //         leading: Image.asset(Tools.imagePath(iconName), width: 20, height: 20),
         title: title,
-        trailing: trailing,
 
         onTap: () {
           if (route == '退出当前账户') {
             _deleteUser();
           } else {
-            Navigator.of(context).pushNamed(route);
+//            Navigator.of(context).pushNamed(route);
           }
         },
       ),
@@ -135,19 +142,19 @@ class _UserInfoSetState extends State<UserInfoSet> {
         // barrierDismissible: false,  // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('1'),
+            title: Text(WalletLocalizations.of(context).userInfoPageButton),
             content:
-                Text('1'),
+            Text(WalletLocalizations.of(context).userInfoPageDeleteMsg),
             actions: <Widget>[
               FlatButton(
                 child: Text(
-                    '1'),
+                    WalletLocalizations.of(context).createNewAddress_Cancel),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               FlatButton(
-                child: Text('1'),
+                child: Text(WalletLocalizations.of(context).common_btn_confirm),
                 onPressed: () {
                   GlobalInfo.clear();
 

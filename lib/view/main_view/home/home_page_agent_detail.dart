@@ -16,8 +16,9 @@ import 'package:qiangdan_app/view/welcome/start_login.dart';
 class HomePageAgentDetail extends StatefulWidget {
   static String tag = "HomePageAgentDetail";
   String uid;
-  HomePageAgentDetail({Key key,  this.uid})
-      : super(key: key);
+
+  HomePageAgentDetail({Key key, this.uid}) : super(key: key);
+
   @override
   _HomePageAgentDetailState createState() => _HomePageAgentDetailState();
 }
@@ -31,6 +32,7 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
   TextEditingController controllerRatio;
   var isValidBtn = true;
   var isLimitBtn = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -41,12 +43,10 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
   }
 
   getWalletInfoes(BuildContext context, {Function callback = null}) {
-    print("getInfoByUid -------" + NetConfig.getInfoByUid.toString());
     Future future =
-    NetConfig.post(context, NetConfig.getInfoByUid, {
-      'uid' : widget.uid
-    }, errorCallback: (msg) {
-      print("getInfoByUid ------- $msg");
+        NetConfig.post(context, NetConfig.getInfoByUid, {'uid': widget.uid},
+            errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg.toString());
     }, timeOut: 10);
     future.then((data) {
       print("getInfoByUid = $data");
@@ -56,14 +56,13 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
         totalProfit = data['totalProfit'].toString();
         earningsRatio = data['earningsRatio'].toString();
 
-            agentModel info = agentModel(
-              uid: data['uid'].toString(),
-              faceUrl: data['faceUrl'],
-              nickname: data['nickname'],
-              cellphone: data['cellphone'],
-            );
-            _agentModel.add(info);
-
+        agentModel info = agentModel(
+          uid: data['uid'].toString(),
+          faceUrl: data['faceUrl'],
+          nickname: data['nickname'],
+          cellphone: data['cellphone'],
+        );
+        _agentModel.add(info);
 
         setState(() {});
       } else {
@@ -79,7 +78,6 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
 
   @override
   Widget build(BuildContext context) {
-
     // TODO: implement build
     return Scaffold(
       key: _scaffoldKey,
@@ -93,18 +91,19 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
       body: _agentModel == null
           ? Center(child: CircularProgressIndicator())
           : Container(
-        child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(246, 246, 246, 1),
-                  ),
-                  child: buildItemes(context));
-            }),
-      ),
+              child: ListView.builder(
+                  itemCount: 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(246, 246, 246, 1),
+                        ),
+                        child: buildItemes(context));
+                  }),
+            ),
     );
   }
+
   Widget _agentTotalWidget() {
     return Card(
       margin: EdgeInsets.only(left: 15, right: 15, top: 8),
@@ -137,7 +136,7 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
                           AutoSizeText(
                             WalletLocalizations.of(context).sellcoinTotalAssets,
                             style:
-                            TextStyle(fontSize: 15, color: Colors.white70),
+                                TextStyle(fontSize: 15, color: Colors.white70),
                             minFontSize: 8,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -301,7 +300,8 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
                               padding: const EdgeInsets.only(left: 8.0),
                               child: new Text(
                                 agentInfos.nickname == null
-                                    ? '匿名'
+                                    ? WalletLocalizations.of(context)
+                                    .publicDefaultName
                                     : agentInfos.nickname,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
@@ -335,8 +335,7 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
           decoration: BoxDecoration(
             color: Colors.white,
             border: new Border.all(
-                width: 1,
-                color: AppCustomColor.tabbarBackgroudColor),
+                width: 1, color: AppCustomColor.tabbarBackgroudColor),
             borderRadius: BorderRadius.circular(22),
           ),
           child: FlatButton(
@@ -350,10 +349,9 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
                   updateView();
                   _bottomSheet(context);
                 }
-                },
+              },
               child: Text(
-                WalletLocalizations.of(context)
-                    .homePageAgentChangeRatio,
+                WalletLocalizations.of(context).homePageAgentChangeRatio,
                 style: TextStyle(
                     color: AppCustomColor.tabbarBackgroudColor, fontSize: 14),
               )),
@@ -361,6 +359,7 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
       ],
     );
   }
+
   void _bottomSheet(BuildContext context) {
     showModalBottomSheet(
         isScrollControlled: true,
@@ -370,110 +369,116 @@ class _HomePageAgentDetailState extends State<HomePageAgentDetail> {
           return StatefulBuilder(
               builder: (BuildContext context, StateSetter setState
                   /*You can rename this!*/) {
-                return Padding(
-                  padding: MediaQuery.of(context).viewInsets,
-                  child: Container(
-                    height: 200.0,
-                    padding:
+            return Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                height: 200.0,
+                padding:
                     EdgeInsets.only(top: 10, bottom: 30, left: 16, right: 16),
-                    decoration: new BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: 30,
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        WalletLocalizations.of(context).homePageAgentInputRatio,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18.0),
+                      ),
                     ),
-                    child: Column(
-                      children: <Widget>[
-
-                        Container(
-                          height: 30,
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            '修改比例',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18.0),
-                          ),
-                        ),
-                        Container(
-                          height: 30.0,
-                          margin: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: TextField(
-                                  controller: controllerRatio,
-                                  maxLines: 1,
-                                  maxLength: 11,
-                                  style: new TextStyle(
-                                      color: Colors.black, fontSize: 18.0),
-                                  decoration: new InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: '请输入修改比例',
-                                      counterText: '',
-                                      hintStyle: new TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16.0,
-                                      )),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          height: 1,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          height: 45.0,
-                          child: RaisedButton(
-                            child: Text(
-                                WalletLocalizations.of(context).publicButtonOK),
-                            onPressed: () {
-                              var ratioNums = controllerRatio.text;
-                              //安全密码
-                              if (ratioNums.length == 0 ||
-                                  ratioNums == null) {
-                                Tools.showToast(
-                                    _scaffoldKey,
-                                    '请输入修改比例');
-                                return;
-                              }
-                              addDigTask();
-                              Navigator.pop(context);
-                            },
-                            //通过将onPressed设置为null来实现按钮的禁用状态
-                            color: Colors.blue,
-                            textColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10) //设置圆角
+                    Container(
+                      height: 30.0,
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: TextField(
+                              controller: controllerRatio,
+                              maxLines: 1,
+                              maxLength: 11,
+                              style: new TextStyle(
+                                  color: Colors.black, fontSize: 18.0),
+                              decoration: new InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: WalletLocalizations.of(context)
+                                      .homePageAgentInputRatio,
+                                  counterText: '',
+                                  hintStyle: new TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 16.0,
+                                  )),
                             ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              });
+                    Divider(
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      height: 45.0,
+                      child: RaisedButton(
+                        child: Text(
+                            WalletLocalizations.of(context).publicButtonOK),
+                        onPressed: () {
+                          var ratioNums = controllerRatio.text;
+                          //安全密码
+                          if (ratioNums.length == 0 || ratioNums == null) {
+                            Tools.showToast(
+                                _scaffoldKey,
+                                WalletLocalizations.of(context)
+                                    .homePageAgentInputRatio);
+                            return;
+                          }
+                          addDigTask();
+                          Navigator.pop(context);
+                        },
+                        //通过将onPressed设置为null来实现按钮的禁用状态
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10) //设置圆角
+                            ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
         }).then((value) {
       this.isLimitBtn = false;
     });
   }
+
   void updateView() {
     setState(() {
       controllerRatio.text = '';
     });
   }
+
   void addDigTask() {
     Future response = NetConfig.post(context, NetConfig.changeEarningsRatio, {
-      'uid' : widget.uid,
+      'uid': widget.uid,
       'earningsRatio': controllerRatio.text.toString(),
     }, errorCallback: (msg) {
-      Tools.showToast(_scaffoldKey, msg.toString());
+      if (msg.toString() == null) {
+        Tools.showToast(_scaffoldKey, '接口错误，请稍后再试');
+      } else {
+        Tools.showToast(_scaffoldKey, msg.toString());
+      }
       this.isLimitBtn = false;
     }, showToast: false);
     response.then((data) {
