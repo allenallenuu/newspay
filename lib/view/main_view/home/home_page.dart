@@ -83,13 +83,14 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed(HomePageManual.tag);
 
         }else if(tag == 3){
-
+          Tools.showToast(
+              _scaffoldKey, '暂未开通，敬请期待');
         }else if(tag == 4){
-
+          Tools.showToast(
+              _scaffoldKey, '暂未开通，敬请期待');
         }else if(tag == 5){
-
-        }else if(tag == 6){
-
+          Tools.showToast(
+              _scaffoldKey, '暂未开通，敬请期待');
         }
       },
       child: Container(

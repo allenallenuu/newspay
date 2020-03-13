@@ -56,8 +56,8 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
   }
 //切换头文件
   Widget _showExchange() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
+    return Container(
+      height: 48,
       child: TabBar(
           controller: _tabController,
           labelColor: AppCustomColor.tabbarBackgroudColor,

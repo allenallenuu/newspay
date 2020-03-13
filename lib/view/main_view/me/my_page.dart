@@ -322,7 +322,7 @@ class _UserCenterState extends State<UserCenter> {
           }),
           menuItem('my_page_record',
               WalletLocalizations.of(context).my_page_menu_record, onTap: () {
-            Tools.showToast(_scaffoldKey, '4');
+//            Tools.showToast(_scaffoldKey, '4');
             Navigator.of(context).pushNamed(UserInfoRecord.tag);
 
               }),

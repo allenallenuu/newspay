@@ -40,7 +40,9 @@ class _WithdrawListWidgetState extends State<WithdrawListWidget> {
 
   void getDataInfo({Function callback = null}) {
     Future future =
-    NetConfig.post(context, NetConfig.withdrawList, {}, timeOut: 10);
+    NetConfig.post(context, NetConfig.withdrawList, {}, timeOut: 10,errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
     future.then((data) {
       if (NetConfig.checkData(data)) {
         print('withdrawList = $data');
@@ -147,7 +149,7 @@ class _WithdrawListWidgetState extends State<WithdrawListWidget> {
                               padding: EdgeInsets.only(left: 10),
                               width: MediaQuery.of(context).size.width / 1.5,
                               height: 30,
-                              child: Text('订单编号',style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
+                              child: Text('',style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
                             ),
                             Container(
                               width: 100,
@@ -156,8 +158,8 @@ class _WithdrawListWidgetState extends State<WithdrawListWidget> {
                               padding: EdgeInsets.only(right: 10),
                               child: Text(
                                 dataInfo.status == 0
-                                    ? '处理中'
-                                    : (dataInfo.status == 1 ? '提现失败' : (dataInfo.status == 2 ? '取消提现' : '提现成功')),
+                                    ? WalletLocalizations.of(context).my_page_menu_handleing
+                                    : (dataInfo.status == 1 ? WalletLocalizations.of(context).my_page_menu_failure : (dataInfo.status == 2 ? WalletLocalizations.of(context).my_page_menu_cancel : WalletLocalizations.of(context).my_page_menu_success)),
                                 style: TextStyle(
                                     color: dataInfo.status == 0
                                         ? Color.fromRGBO(253, 143, 45, 1)

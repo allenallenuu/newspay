@@ -87,6 +87,14 @@ class WalletLocalizations {
       'my_page_menu_qiangdan': '抢单',
       'my_page_menu_recharge': '充值',
       'my_page_menu_withdrawal': '提现',
+      'my_page_menu_balance': '金额变动',
+  'my_page_menu_orderNums': '订单编号:  ',
+
+  'my_page_menu_handleing': '处理中',
+      'my_page_menu_success': '成功',
+      'my_page_menu_failure': '失败',
+      'my_page_menu_cancel': '取消提现',
+
       'my_page_menu_record': '记录',
       'my_page_server_about': '关于我们',
       'my_page_server_agent': '我的代理',
@@ -116,6 +124,9 @@ class WalletLocalizations {
       'order_bankcard':'银行卡',
       'order_start_grap':'开始抢单',
       'order_graping':'正在抢单...',
+      'userInfoRecord':'记录',
+
+
     },
     'en': {
       'userInfoPageButton': 'Quit current identity',
@@ -181,7 +192,13 @@ class WalletLocalizations {
       'my_page_menu_recharge': 'Recharge',
       'my_page_menu_withdrawal': 'Withdrawal',
       'my_page_menu_record': 'Record',
+      'my_page_menu_balance': 'Balance',
+      'my_page_menu_orderNums': 'OrderNums:  ',
 
+      'my_page_menu_handleing': 'Dealing',
+      'my_page_menu_success': 'Success',
+      'my_page_menu_failure': 'Failure',
+      'my_page_menu_cancel': 'Cancel',
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
@@ -227,6 +244,8 @@ class WalletLocalizations {
       'order_bankcard':'Bank card',
       'order_start_grap':'Start grap',
       'order_graping':'Graping...',
+      'userInfoRecord':'Record',
+
     }
   };
 
@@ -388,7 +407,19 @@ class WalletLocalizations {
 
   get my_page_menu_withdrawal =>
       _localizedValues[locale.languageCode]['my_page_menu_withdrawal'];
+  get my_page_menu_balance =>
+      _localizedValues[locale.languageCode]['my_page_menu_balance'];
+  get my_page_menu_orderNums =>
+      _localizedValues[locale.languageCode]['my_page_menu_orderNums'];
 
+  get my_page_menu_handleing =>
+      _localizedValues[locale.languageCode]['my_page_menu_handleing'];
+  get my_page_menu_success =>
+      _localizedValues[locale.languageCode]['my_page_menu_success'];
+  get my_page_menu_failure =>
+      _localizedValues[locale.languageCode]['my_page_menu_failure'];
+  get my_page_menu_cancel =>
+      _localizedValues[locale.languageCode]['my_page_menu_cancel'];
   get my_page_menu_record =>
       _localizedValues[locale.languageCode]['my_page_menu_record'];
 
@@ -492,6 +523,8 @@ class WalletLocalizations {
 
   get order_graping =>
       _localizedValues[locale.languageCode]['order_graping'];
+  get userInfoRecord =>
+      _localizedValues[locale.languageCode]['userInfoRecord'];
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);

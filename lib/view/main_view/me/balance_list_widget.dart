@@ -40,7 +40,10 @@ class _BanlanceListWidgetState extends State<BanlanceListWidget> {
 
   void getDataInfo({Function callback = null}) {
     Future future =
-    NetConfig.post(context, NetConfig.balanceLogList, {}, timeOut: 10);
+    NetConfig.post(context, NetConfig.balanceLogList, {}, timeOut: 10,errorCallback: (msg) {
+
+      Tools.showToast(_scaffoldKey, msg);
+    });
     future.then((data) {
       if (NetConfig.checkData(data)) {
         print('balanceLogList = $data');
@@ -148,7 +151,7 @@ class _BanlanceListWidgetState extends State<BanlanceListWidget> {
                               padding: EdgeInsets.only(left: 10),
                               width: MediaQuery.of(context).size.width / 1.5,
                               height: 30,
-                              child: Text('订单编号:  ' + dataInfo.order.toString(),style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
+                              child: Text(WalletLocalizations.of(context).my_page_menu_orderNums + dataInfo.order.toString(),style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
                             ),
                             Container(
                               width: 100,

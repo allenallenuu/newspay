@@ -50,7 +50,7 @@ class _UserInfoRecordState extends State<UserInfoRecord> with SingleTickerProvid
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          '记录',
+          WalletLocalizations.of(context).userInfoRecord
         ),
       ),
       body: Column(
@@ -77,9 +77,9 @@ class _UserInfoRecordState extends State<UserInfoRecord> with SingleTickerProvid
 
   List<Widget> createTabBarHeader() {
     List<Widget> list = [];
-    list.add(Text('充值',style: TextStyle(fontSize: 16.0)));
-    list.add(Text('提现',style: TextStyle(fontSize: 16.0)));
-    list.add(Text('金额变动',style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_recharge,style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_withdrawal,style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_balance,style: TextStyle(fontSize: 16.0)));
     return list;
   }
   Widget _quotationList() {

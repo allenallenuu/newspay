@@ -39,7 +39,10 @@ class _RechargeListWidgetState extends State<RechargeListWidget> {
 
   void getDataInfo({Function callback = null}) {
     Future future =
-        NetConfig.post(context, NetConfig.rechargeList, {}, timeOut: 10);
+        NetConfig.post(context, NetConfig.rechargeList, {}, timeOut: 10,errorCallback: (msg) {
+
+      Tools.showToast(_scaffoldKey, msg);
+    });
     future.then((data) {
       if (NetConfig.checkData(data)) {
         print('rechargeList = $data');
@@ -145,7 +148,7 @@ class _RechargeListWidgetState extends State<RechargeListWidget> {
                               padding: EdgeInsets.only(left: 10),
                               width: MediaQuery.of(context).size.width / 1.5,
                               height: 30,
-                              child: Text('订单编号',style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
+                              child: Text('',style: TextStyle(fontSize: 14,color: Color.fromRGBO(153, 153, 153, 1)),),
                             ),
                             Container(
                               width: 100,
@@ -154,8 +157,8 @@ class _RechargeListWidgetState extends State<RechargeListWidget> {
                               padding: EdgeInsets.only(right: 10),
                               child: Text(
                                 dataInfo.status == 0
-                                    ? '处理中'
-                                    : (dataInfo.status == 1 ? '已到账' : '失败'),
+                                    ? WalletLocalizations.of(context).my_page_menu_handleing
+                                    : (dataInfo.status == 1 ? WalletLocalizations.of(context).my_page_menu_success : WalletLocalizations.of(context).my_page_menu_failure),
                                 style: TextStyle(
                                     color: dataInfo.status == 0
                                         ? Color.fromRGBO(253, 143, 45, 1)
