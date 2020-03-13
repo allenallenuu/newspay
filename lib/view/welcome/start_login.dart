@@ -348,7 +348,7 @@ class _StartLoginPageState extends State<StartLoginPage>
 
     response.then((data) {
       if (NetConfig.checkData(data)) {
-        print('loginByPwd = $data');
+//        print('loginByPwd = $data');
         GlobalInfo.userInfo.loginToken = data['token'];
         GlobalInfo.userInfo.userId = data['uid'].toString();
         Tools.saveStringKeyValue(

@@ -54,6 +54,8 @@ class WalletLocalizations {
       'homePageManualCourse': '抢单教程',
 
       'homePageAgent': '代理模式',
+      'homePageAgentOperation': '代理操作',
+
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
       'homePageAgentRatio': '我的比例',
@@ -180,6 +182,7 @@ class WalletLocalizations {
       'homePageAgentDetail': 'Detail',
       'homePageAgentChangeRatio': 'Change Ratio',
       'homePageAgentInputRatio': 'Please enter Ratio',
+      'homePageAgentOperation': 'Operation',
 
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
@@ -347,6 +350,8 @@ class WalletLocalizations {
 
   get homePageAgentDetail =>
       _localizedValues[locale.languageCode]['homePageAgentDetail'];
+  get homePageAgentOperation =>
+      _localizedValues[locale.languageCode]['homePageAgentOperation'];
 
   get homePageAgentChangeRatio =>
       _localizedValues[locale.languageCode]['homePageAgentChangeRatio'];
