@@ -23,6 +23,11 @@ class NetConfig {
   static String getOwnInfo = 'share/getOwnInfo';
   //我的下级代理信息
   static String getInfoByUid = 'share/getInfoByUid';
+
+  //修改比例
+  static String changeEarningsRatio = 'share/changeEarningsRatio';
+
+
   /// 图片上传
   static String uploadImage = 'common/uploadImage';
 
@@ -32,7 +37,8 @@ class NetConfig {
   /// user/updateUserFace   更新用户头像
   static String updateUserFace = 'user/updateUserFace';
 
-
+  /// bankList 获取充值方式
+  static String GetPaymentMethodList = 'user/bankList';
   //发送短信
   static String sendCode = 'common/getSmsCode';
 

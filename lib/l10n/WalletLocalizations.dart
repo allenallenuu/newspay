@@ -55,6 +55,15 @@ class WalletLocalizations {
       'homePageAgentDetail': '查看详情',
       'homePageAgentChangeRatio': '修改他的比例',
 
+      'homeEditCard': '银行卡修改',
+      'homeCardName': '持卡人',
+      'homeCardNameTip': '请输入持卡人信息',
+      'homeCardNums': '银行卡号',
+      'homeCardNumsTip': '请输入银行卡号',
+      'homeCardTypes': '卡类型',
+      'homeCardTypesTip': '请输入开户行',
+      'publicButtonOK': '确定',
+
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -145,6 +154,15 @@ class WalletLocalizations {
       'homePageManualSpeedy': 'Speedy Manual',
       'homePageManualFlows': 'Manual Flow',
       'homePageManualCourse': 'Course',
+
+      'homeEditCard': 'bank card modification',
+      'homeCardName': 'cardholder',
+      'homeCardNameTip': 'please enter cardholder information',
+      'homeCardNums':' bank card number ',
+      'homeCardNumsTip': 'please enter the bank card number',
+      'homeCardTypes':' card type ',
+      'homeCardTypesTip': 'please enter account bank',
+      'publicButtonOK': 'OK',
     }
   };
 
@@ -326,6 +344,22 @@ class WalletLocalizations {
   get homePageManualCourse =>
       _localizedValues[locale.languageCode]['homePageManualCourse'];
 
+  get homeEditCard =>
+      _localizedValues[locale.languageCode]['homeEditCard'];
+  get homeCardName =>
+      _localizedValues[locale.languageCode]['homeCardName'];
+  get homeCardNameTip =>
+      _localizedValues[locale.languageCode]['homeCardNameTip'];
+  get homeCardNums =>
+      _localizedValues[locale.languageCode]['homeCardNums'];
+  get homeCardNumsTip =>
+      _localizedValues[locale.languageCode]['homeCardNumsTip'];
+  get homeCardTypes =>
+      _localizedValues[locale.languageCode]['homeCardTypes'];
+  get homeCardTypesTip =>
+      _localizedValues[locale.languageCode]['homeCardTypesTip'];
+  get publicButtonOK =>
+      _localizedValues[locale.languageCode]['publicButtonOK'];
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
   }

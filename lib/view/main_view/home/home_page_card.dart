@@ -47,7 +47,6 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
         centerTitle: true,
         title: Text(
           WalletLocalizations.of(context).homePageManualChannel,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
         ),
       ),
       body: Column(
