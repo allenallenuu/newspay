@@ -84,6 +84,15 @@ class NetConfig {
   /// 获取 用户余额列表
   static String balanceList = 'user/getBalance';
 
+  //查询抢单页面数据：
+  static String grapOrderInfo = 'user/grap/grapData';
+
+  //开始抢单
+  static String startGrap = 'user/grap/startGrap';
+
+  //确认订单
+  static String sureGrap = 'user/grap/orderConfirm';
+
   static post(
     BuildContext context,
     String url,
