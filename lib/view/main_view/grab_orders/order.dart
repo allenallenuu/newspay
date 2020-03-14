@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wpay_app/l10n/WalletLocalizations.dart';
 import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/tools/Tools.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
 import 'package:wpay_app/tools/net_config.dart';
@@ -33,6 +34,11 @@ class _OrderCenterState extends State<OrderCenter> {
 
     grapOrderInfo();
 
+    GlobalEventBus()
+        .event
+        .on<StopGrapThreadModel>()
+        .listen((StopGrapThreadModel data) => cancelTimer());
+
     _timePeriodic = Timer.periodic(Duration(milliseconds: 5000), (timer) {
       grapOrderInfo();
     });
@@ -54,6 +60,7 @@ class _OrderCenterState extends State<OrderCenter> {
   @override
   void dispose() {
     super.dispose();
+    GlobalEventBus().event.destroy();
   }
 
   @override

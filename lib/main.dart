@@ -16,6 +16,7 @@ import 'package:wpay_app/view/main_view/home/home_page_manual.dart';
 import 'package:wpay_app/view/main_view/home/home_page_manual_detail.dart';
 import 'package:wpay_app/view/main_view/home/home_page_manual_monad.dart';
 import 'package:wpay_app/view/main_view/main_page.dart';
+import 'package:wpay_app/view/main_view/me/my_about.dart';
 import 'package:wpay_app/view/main_view/me/user_info_center.dart';
 import 'package:wpay_app/view/main_view/me/user_info_record.dart';
 import 'package:wpay_app/view/main_view/me/user_info_trading_data.dart';
@@ -117,7 +118,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UserInfoRecord.tag: (context) => UserInfoRecord(),
     UserInfoTradingData.tag: (context) => UserInfoTradingData(),
     HomePageAgency.tag:(context) =>  HomePageAgency(),
-    HomePageAvoiding.tag:(context) => HomePageAvoiding()
+    HomePageAvoiding.tag:(context) => HomePageAvoiding(),
+    MyAbout.tag:(context) => MyAbout(),
   };
 
   Brightness brightness = Brightness.light;

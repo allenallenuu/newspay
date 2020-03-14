@@ -14,6 +14,7 @@ import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
 import 'package:wpay_app/view/main_view/home/home_page_avoiding.dart';
 import 'package:wpay_app/view/main_view/home/home_page_card.dart';
 import 'package:wpay_app/view/main_view/home/home_page_manual.dart';
+import 'package:wpay_app/view/share/share_receive_page.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
 
@@ -28,8 +29,6 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List _bannerImageList = [
     "banner_one",
-    "banner_two",
-    "banner_three",
   ];
 
   List<String> imageList = [
@@ -79,21 +78,23 @@ class _HomePageState extends State<HomePage> {
   Widget buildImage(String imageName, int tag) {
     return InkWell(
       onTap: () {
-        if(tag == 0){
+        if (tag == 0) {
           Navigator.of(context).pushNamed(HomePageCard.tag);
-        }else if (tag == 1) {
+        } else if (tag == 1) {
           Navigator.of(context).pushNamed(HomePageAgent.tag);
-        }else if(tag == 2){
+        } else if (tag == 2) {
           Navigator.of(context).pushNamed(HomePageManual.tag);
-
-        }else if(tag == 3){
+        } else if (tag == 3) {
           Navigator.of(context).pushNamed(HomePageAvoiding.tag);
-        }else if(tag == 4){
+        } else if (tag == 4) {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {
-            return HomePageManualDetail(imageName: 'icon_operation',titleName:WalletLocalizations.of(context).homePageAgentOperation,);
+            return HomePageManualDetail(
+              imageName: 'icon_operation',
+              titleName: WalletLocalizations.of(context).homePageAgentOperation,
+            );
           }));
-        }else if(tag == 5){
+        } else if (tag == 5) {
           Navigator.of(context).pushNamed(HomePageAgency.tag);
         }
       },
@@ -120,8 +121,10 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (BuildContext context, int index) {
               return ClipRRect(
                   borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-                  child: Image.asset(Tools.imagePath(_bannerImageList[index]),
-                      fit: BoxFit.fitHeight));
+                  child: InkWell(onTap: (){ Navigator.of(context).pushNamed(ShareReceivePage.tag);},
+                    child: Image.asset(Tools.imagePath(_bannerImageList[index]),
+                        fit: BoxFit.fitHeight),
+                  ));
             },
             autoplay: true,
             autoplayDelay: 3000,
@@ -138,7 +141,7 @@ class _HomePageState extends State<HomePage> {
         Container(
             width: MediaQuery.of(context).size.width,
             height: 100,
-            margin: EdgeInsets.symmetric( horizontal: 10),
+            margin: EdgeInsets.symmetric(horizontal: 10),
             padding: EdgeInsets.only(top: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +158,7 @@ class _HomePageState extends State<HomePage> {
         Container(
             width: MediaQuery.of(context).size.width,
             height: 200,
-            margin: EdgeInsets.symmetric( horizontal: 10),
+            margin: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: <Widget>[
                 Row(
@@ -176,8 +179,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 )
               ],
-            )
-        ),
+            )),
 
 //        Container(
 //          child: ,

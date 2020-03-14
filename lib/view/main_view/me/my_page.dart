@@ -9,11 +9,15 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:wpay_app/model/BalanceModel.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/tools/WebTools.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agent.dart';
+import 'package:wpay_app/view/main_view/me/my_about.dart';
 import 'package:wpay_app/view/main_view/me/user_info_trading_data.dart';
 import 'package:wpay_app/view/share/share_receive_page.dart';
 import 'package:wpay_app/view/main_view/me/user_info_center.dart';
@@ -336,7 +340,7 @@ class _UserCenterState extends State<UserCenter> {
               WalletLocalizations
                   .of(context)
                   .my_page_menu_qiangdan, onTap: () {
-                Tools.showToast(_scaffoldKey, '1');
+                GlobalEventBus().event.fire(new GoGrapThreadModel());
               }),
           menuItem('my_page_recharge',
               WalletLocalizations
@@ -382,7 +386,7 @@ class _UserCenterState extends State<UserCenter> {
                         .of(context)
                         .my_page_server_agent,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, '2');
+                      Navigator.of(context).pushNamed(HomePageAgent.tag);
                     }),
                 menuItem('my_page_server_share',
                     WalletLocalizations
@@ -396,7 +400,7 @@ class _UserCenterState extends State<UserCenter> {
                         .of(context)
                         .my_page_server_wait,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, '4');
+                      Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
                     }),
               ],
             ),
@@ -416,7 +420,7 @@ class _UserCenterState extends State<UserCenter> {
                         .of(context)
                         .my_page_server_about,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, '2');
+                      Navigator.of(context).pushNamed(MyAbout.tag);
                     }),
                 menuItem('my_page_server_download',
                     WalletLocalizations
@@ -430,7 +434,7 @@ class _UserCenterState extends State<UserCenter> {
                         .of(context)
                         .my_page_server_wait,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, '4');
+                      Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
                     }),
               ],
             ),

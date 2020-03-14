@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
@@ -220,6 +222,9 @@ class NetConfig {
       }
       if (status == 403) {}
     } else if (response.statusCode == 403) {
+
+      GlobalEventBus().event.fire(new StopGrapThreadModel());
+
       GlobalInfo.clear();
       msg = '请重新登录';
       if (!kIsWeb) {
