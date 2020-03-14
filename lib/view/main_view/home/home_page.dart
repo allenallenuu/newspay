@@ -5,17 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_agency.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
-import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_avoiding.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_manual.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agency.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agent.dart';
+import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
+import 'package:wpay_app/view/main_view/home/home_page_avoiding.dart';
+import 'package:wpay_app/view/main_view/home/home_page_card.dart';
+import 'package:wpay_app/view/main_view/home/home_page_manual.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
 
 import 'home_page_manual_detail.dart';
 

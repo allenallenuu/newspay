@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qiangdan_app/model/OrderRechargeModel.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/model/OrderRechargeModel.dart';
+import 'package:wpay_app/tools/WebTools.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class OrderRecharge extends StatefulWidget {
   static String tag = 'OrderRecharge';

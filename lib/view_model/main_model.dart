@@ -1,7 +1,7 @@
 
 
-import 'package:qiangdan_app/view_model/state_lib.dart';
-import 'package:qiangdan_app/view_model/payment_method_model.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:wpay_app/view_model/payment_method_model.dart';
 
 import 'fp_user_model.dart';
 

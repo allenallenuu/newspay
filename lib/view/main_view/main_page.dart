@@ -3,15 +3,15 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/JpushMessageModel.dart';
-import 'package:qiangdan_app/tools/JpushTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page.dart';
-import 'package:qiangdan_app/view/main_view/me/my_page.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
-import 'package:qiangdan_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/JpushMessageModel.dart';
+import 'package:wpay_app/tools/JpushTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order.dart';
+import 'package:wpay_app/view/main_view/home/home_page.dart';
+import 'package:wpay_app/view/main_view/me/my_page.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 
 class MainPage extends StatefulWidget {
   static String tag = 'MainPage';

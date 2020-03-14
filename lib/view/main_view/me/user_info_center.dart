@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:wpay_app/view/welcome/change_password.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../l10n/WalletLocalizations.dart';

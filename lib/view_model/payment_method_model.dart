@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:qiangdan_app/model/payment_method_info.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/model/payment_method_info.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class PaymentMethodModel extends Model {
   List<PaymentMethodListModel> _paymentMethodInfoes;

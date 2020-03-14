@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/model/BalanceModel.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/model/BalanceModel.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class UserInfoTradingData extends StatefulWidget {
   static String tag = 'UserInfoTradingData';

@@ -4,35 +4,35 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:qiangdan_app/l10n/chinese_local.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_agency.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_agent_detail.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_manual.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_manual_detail.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page_manual_monad.dart';
-import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_record.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_trading_data.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
-import 'package:qiangdan_app/view/welcome/forget_account.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
-import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_edit.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
-import 'package:qiangdan_app/view/welcome/forget_password.dart';
-import 'package:qiangdan_app/view/welcome/register_account.dart';
-import 'package:qiangdan_app/view/welcome/splash.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_page.dart';
-import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_add.dart';
-import 'package:qiangdan_app/view/share/share_receive_page.dart';
-import 'package:qiangdan_app/view_model/main_model.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
+import 'package:wpay_app/l10n/chinese_local.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_withdraw.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agency.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agent.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agent_detail.dart';
+import 'package:wpay_app/view/main_view/home/home_page_card.dart';
+import 'package:wpay_app/view/main_view/home/home_page_manual.dart';
+import 'package:wpay_app/view/main_view/home/home_page_manual_detail.dart';
+import 'package:wpay_app/view/main_view/home/home_page_manual_monad.dart';
+import 'package:wpay_app/view/main_view/main_page.dart';
+import 'package:wpay_app/view/main_view/me/user_info_center.dart';
+import 'package:wpay_app/view/main_view/me/user_info_record.dart';
+import 'package:wpay_app/view/main_view/me/user_info_trading_data.dart';
+import 'package:wpay_app/view/welcome/change_password.dart';
+import 'package:wpay_app/view/welcome/forget_account.dart';
+import 'package:wpay_app/view/main_view/me/user_info_set.dart';
+import 'package:wpay_app/view/payment_method/payment_method_bankcard_edit.dart';
+import 'package:wpay_app/view/welcome/change_password.dart';
+import 'package:wpay_app/view/welcome/forget_password.dart';
+import 'package:wpay_app/view/welcome/register_account.dart';
+import 'package:wpay_app/view/welcome/splash.dart';
+import 'package:wpay_app/view/main_view/me/user_info_page.dart';
+import 'package:wpay_app/view/payment_method/payment_method_bankcard_add.dart';
+import 'package:wpay_app/view/share/share_receive_page.dart';
+import 'package:wpay_app/view_model/main_model.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
 
 import 'view/main_view/home/home_page_avoiding.dart';
 //import 'dart:js' as js;
@@ -215,7 +215,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
       child: MaterialApp(
-        title: 'qiangdan',
+        title: 'wpay',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             splashFactory: const NoSplashFactory(),

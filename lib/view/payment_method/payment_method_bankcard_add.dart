@@ -6,10 +6,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class PaymentMethodBankCardAdd extends StatefulWidget {
   static String tag = "PaymentMethodBankCardAdd";

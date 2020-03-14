@@ -8,18 +8,18 @@ import 'package:flutter/foundation.dart';
 /// [time] 2019-3-21
 
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/model/BalanceModel.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
-import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_trading_data.dart';
-import 'package:qiangdan_app/view/share/share_receive_page.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_record.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/model/BalanceModel.dart';
+import 'package:wpay_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_withdraw.dart';
+import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
+import 'package:wpay_app/view/main_view/me/user_info_trading_data.dart';
+import 'package:wpay_app/view/share/share_receive_page.dart';
+import 'package:wpay_app/view/main_view/me/user_info_center.dart';
+import 'package:wpay_app/view/main_view/me/user_info_record.dart';
+import 'package:wpay_app/view/main_view/me/user_info_set.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserCenter extends StatefulWidget {

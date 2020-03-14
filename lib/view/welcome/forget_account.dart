@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
 
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
-import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
 
 class ForgetAccount extends StatefulWidget {
   static String tag = 'ForgetAccount';

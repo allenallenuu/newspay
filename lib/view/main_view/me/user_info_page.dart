@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/me/update_nick_name.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/me/update_nick_name.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
-import 'package:qiangdan_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/WebTools.dart';
 
 class UserInfoPage extends StatefulWidget {
   static String tag = "UserInfoPage";

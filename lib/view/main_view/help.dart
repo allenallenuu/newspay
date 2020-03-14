@@ -3,8 +3,8 @@
 /// [time] 2019-3-25
 
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
 
 class Help extends StatefulWidget {
   static String tag = "Help";

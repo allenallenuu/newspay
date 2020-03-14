@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
 
 class NetConfig {

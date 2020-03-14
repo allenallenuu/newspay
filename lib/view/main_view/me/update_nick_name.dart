@@ -6,8 +6,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class UpdateNickName extends StatefulWidget {
   static String tag = 'UpdateNickName';
