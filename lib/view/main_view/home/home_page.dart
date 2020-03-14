@@ -15,6 +15,8 @@ import 'package:qiangdan_app/view/main_view/home/home_page_manual.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
 
+import 'home_page_manual_detail.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -83,13 +85,16 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed(HomePageManual.tag);
 
         }else if(tag == 3){
-
+          Tools.showToast(
+              _scaffoldKey, '暂未开通，敬请期待');
         }else if(tag == 4){
-
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return HomePageManualDetail(imageName: 'icon_operation',titleName:WalletLocalizations.of(context).homePageAgentOperation,);
+          }));
         }else if(tag == 5){
-
-        }else if(tag == 6){
-
+          Tools.showToast(
+              _scaffoldKey, '暂未开通，敬请期待');
         }
       },
       child: Container(

@@ -190,7 +190,7 @@ class _ForgetAccountState extends State<ForgetAccount> {
               onPressed: () {
                 var phoneNums = phoneCtrl.text;
                 if (phoneNums.length == 0 || phoneNums == null) {
-                  Tools.showToast(_scaffoldKey, '请输入正确的手机号');
+                  Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).startPagePhoneError2);
                   return;
                 }
                 _sendCode(phoneCtrl.toString());

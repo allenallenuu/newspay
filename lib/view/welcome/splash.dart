@@ -276,6 +276,9 @@ class _SplashState extends State<Splash> {
         if (data['userId'] != null) {
           GlobalInfo.userInfo.userId = data['userid'].toString();
         }
+        if (data['cellphone'] != null) {
+          GlobalInfo.userInfo.cellphone = data['cellphone'].toString();
+        }
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
 

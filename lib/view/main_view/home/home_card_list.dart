@@ -70,7 +70,7 @@ class _HomeCardListState extends State<HomeCardList> {
                   onTap: () {
                     this._onRefresh(type: 1);
                   },
-                  child: Text('没有数据，刷新')));
+                  child: Text(WalletLocalizations.of(context).common_tips_no_data_refresh)));
         }
 
         _paymentMethodInfoes = [];
@@ -163,7 +163,7 @@ class _HomeCardListState extends State<HomeCardList> {
                                           children: <Widget>[
                                             Container(
                                               child: AutoSizeText(
-                                                '银行卡',
+                                                WalletLocalizations.of(context).homeCard,
                                                 style: TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.black,

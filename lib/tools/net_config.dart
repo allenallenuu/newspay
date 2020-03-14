@@ -14,7 +14,7 @@ import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
 
 class NetConfig {
-  static String imageHost = 'http://api.qiangdan:8080';
+  static String imageHost = 'http://api.uumi.io:9040';
   static String apiHost = 'http://api.uumi.io:9040/walletClientTest/api/';
 
   /// 获取最新的版本信息
@@ -42,6 +42,15 @@ class NetConfig {
   //发送短信
   static String sendCode = 'common/getSmsCode';
 
+  //金额变动
+  static String balanceLogList = 'user/balanceLogList';
+
+  //提现记录
+  static String withdrawList = 'withdraw/withdrawList';
+
+  //充值记录
+  static String rechargeList = 'recharge/rechargeList';
+
   //登录
   static String loginByPhone = 'common/activeByPhone';
 
@@ -51,10 +60,10 @@ class NetConfig {
   /// 获取用户信息
   static String getUserInfo = 'user/getUserInfo';
 
-  //忘记登录密码
-  static String forgetPwd = 'common/forgetPwd';
+  //修改登录密码
+  static String updateUserPassword = 'user/updateUserPassword';
 
-  //修改密码
+  //忘记密码
   static String retrievePassword = 'common/retrievePassword';
 
   //忘记安全密码

@@ -1,5 +1,6 @@
 class UserInfo {
   String userId;
+  String cellphone;
   String loginToken;
   String faceUrl;
   String nickname;
@@ -16,6 +17,7 @@ class UserInfo {
 
   UserInfo(
       {this.userId,
+      this.cellphone,
       this.faceUrl,
       this.nickname,
       this.virtualCoinAmount,

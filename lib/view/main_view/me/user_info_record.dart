@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/home/home_add_card.dart';
-import 'package:qiangdan_app/view/main_view/home/home_card_list.dart';
+import 'package:qiangdan_app/view/main_view/me/recharge_list_widget.dart';
+import 'package:qiangdan_app/view/main_view/me/withdraw_list_widget.dart';
 
-class HomePageCard extends StatefulWidget {
-  static String tag = "HomePageCard";
-  _HomePageCardState createState() => _HomePageCardState();
+import 'balance_list_widget.dart';
+
+class UserInfoRecord extends StatefulWidget {
+  static String tag = "UserInfoRecord";
+  _UserInfoRecordState createState() => _UserInfoRecordState();
 
 }
 
-class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderStateMixin{
+class _UserInfoRecordState extends State<UserInfoRecord> with SingleTickerProviderStateMixin{
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TabController _tabController;
   List<Widget> views = [];
@@ -20,7 +22,7 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
     // TODO: implement initState
     super.initState();
     _tabController =
-        TabController(length: 2, vsync: this);
+        TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       if (this._tabController.offset == 0) {
 //        this._loadDataFromServer(this._tabController.index);
@@ -38,15 +40,17 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     views = [];
-    views.add(new HomeAddCard());
-    views.add(new HomeCardList());
+    views.add(new RechargeListWidget());
+    views.add(new WithdrawListWidget());
+    views.add(new BanlanceListWidget());
+
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          WalletLocalizations.of(context).homePageManualChannel,
+          WalletLocalizations.of(context).userInfoRecord
         ),
       ),
       body: Column(
@@ -58,6 +62,7 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
   Widget _showExchange() {
     return Container(
       height: 48,
+      padding: const EdgeInsets.only(top: 4),
       child: TabBar(
           controller: _tabController,
           labelColor: AppCustomColor.tabbarBackgroudColor,
@@ -72,8 +77,9 @@ class _HomePageCardState extends State<HomePageCard> with SingleTickerProviderSt
 
   List<Widget> createTabBarHeader() {
     List<Widget> list = [];
-      list.add(Text('添加银行卡',style: TextStyle(fontSize: 16.0),));
-      list.add(Text('银行卡列表',style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_recharge,style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_withdrawal,style: TextStyle(fontSize: 16.0)));
+    list.add(Text(WalletLocalizations.of(context).my_page_menu_balance,style: TextStyle(fontSize: 16.0)));
     return list;
   }
   Widget _quotationList() {

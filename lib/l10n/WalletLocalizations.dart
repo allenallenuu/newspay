@@ -10,6 +10,9 @@ class WalletLocalizations {
       'network_error': '请检查网络',
       'network_time_out_error': '超时，请检查网络',
       'common_tips_refresh': '刷新',
+      'common_tips_no_data_refresh': '没有数据，刷新',
+
+
       'appVersionTitle': '新版本',
       'appVersionContent1': '有新的版本了，更新吧',
       'appVersionBtn1': '以后再说',
@@ -36,7 +39,10 @@ class WalletLocalizations {
       'startPagePwdError': '请输入密码',
       'startPageUserInfoError': '用户信息获取失败',
       'welcomePageTwoButtonBack': '返回',
-      'startPageChangePasswordButton': '修改密码',
+      'startPageForgetPasswordButton': '修改密码',
+      'startPageOriginalPassInputs': '请输入原密码',
+      'startPageLoginPassword': '登录密码',
+
       'startPageRegister': '注册',
       'homePage': '首页',
       'homePageManual': '入门手册',
@@ -47,12 +53,19 @@ class WalletLocalizations {
       'homePageManualFlows': '抢单流程',
       'homePageManualCourse': '抢单教程',
       'homePageAgent': '代理模式',
+      'homePageAgentOperation': '代理操作',
+
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
       'homePageAgentRatio': '我的比例',
       'homePageAgentSubordinate': '我的下级',
       'homePageAgentDetail': '查看详情',
       'homePageAgentChangeRatio': '修改他的比例',
+      'homePageAgentInputRatio': '请输入修改比例',
+      'publicDefaultName': '匿名',
+      'myPageSingleCard': '抢单银行卡',
+
+
       'homeEditCard': '银行卡修改',
       'homeCardName': '持卡人',
       'homeCardNameTip': '请输入持卡人信息',
@@ -61,6 +74,8 @@ class WalletLocalizations {
       'homeCardTypes': '卡类型',
       'homeCardTypesTip': '请输入开户行',
       'publicButtonOK': '确定',
+      'homeCard': '银行卡',
+
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -73,6 +88,14 @@ class WalletLocalizations {
       'my_page_menu_qiangdan': '抢单',
       'my_page_menu_recharge': '充值',
       'my_page_menu_withdrawal': '提现',
+      'my_page_menu_balance': '金额变动',
+  'my_page_menu_orderNums': '订单编号:  ',
+
+  'my_page_menu_handleing': '处理中',
+      'my_page_menu_success': '成功',
+      'my_page_menu_failure': '失败',
+      'my_page_menu_cancel': '取消提现',
+
       'my_page_menu_record': '记录',
       'my_page_server_about': '关于我们',
       'my_page_server_agent': '我的代理',
@@ -81,6 +104,13 @@ class WalletLocalizations {
       'my_page_server_safe': '安全中心',
       'my_page_server_share': '分享',
       'my_page_server_wait': '敬请期待',
+      'userInfoPageButton': '退出当前身份',
+      'userInfoPageDeleteMsg': '',
+      "createNewAddress_Cancel": "取消",
+      'common_btn_confirm': '确定',
+      'common_title_userName': '用户名',
+      'common_title_phone': '手机号',
+
       'order_total_balance': '总额',
       'order_index': '指数',
       'order_amount': '抢单额度',
@@ -116,11 +146,25 @@ class WalletLocalizations {
       'withdraw_input_card': '请输入银行卡号',
       'share_code': '我的邀请码',
       'share_rate':'设置比例',
+      'order_each':'个',
+      'order_order':'订单',
+      'order_bankcard':'银行卡',
+      'order_start_grap':'开始抢单',
+      'order_graping':'正在抢单...',
+      'userInfoRecord':'记录',
+
+
     },
     'en': {
+      'userInfoPageButton': 'Quit current identity',
+      'userInfoPageDeleteMsg': '',
+      "createNewAddress_Cancel": "Cancel",
+      'common_btn_confirm': 'OK',
       'network_error': 'Please check the network',
       'network_time_out_error': 'Timeout, please check the network',
       'common_tips_refresh': 'Refresh',
+      'common_tips_no_data_refresh': 'No Data,Refresh',
+
       'appVersionTitle': 'New Version',
       'appVersionContent1': 'A new version is available, update it',
       'appVersionBtn1': 'Speak later',
@@ -147,7 +191,10 @@ class WalletLocalizations {
       'startPagePwdError': 'Please enter a password',
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
-      'startPageChangePasswordButton': 'Change',
+      'startPageForgetPasswordButton': 'Change',
+      'startPageOriginalPassInputs': 'Please enter original password',
+      'startPageLoginPassword': 'Login Password',
+
       'startPageRegister': 'Register',
       'homePage': 'Home',
       'homePageAgent': 'Agent',
@@ -159,6 +206,9 @@ class WalletLocalizations {
       'homePageAgentSubordinate': 'Subordinate',
       'homePageAgentDetail': 'Detail',
       'homePageAgentChangeRatio': 'Change Ratio',
+      'homePageAgentInputRatio': 'Please enter Ratio',
+      'homePageAgentOperation': 'Operation',
+
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -170,6 +220,13 @@ class WalletLocalizations {
       'my_page_menu_recharge': 'Recharge',
       'my_page_menu_withdrawal': 'Withdrawal',
       'my_page_menu_record': 'Record',
+      'my_page_menu_balance': 'Balance',
+      'my_page_menu_orderNums': 'OrderNums:  ',
+
+      'my_page_menu_handleing': 'Dealing',
+      'my_page_menu_success': 'Success',
+      'my_page_menu_failure': 'Failure',
+      'my_page_menu_cancel': 'Cancel',
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
@@ -184,6 +241,8 @@ class WalletLocalizations {
       'homePageManualSpeedy': 'Speedy Manual',
       'homePageManualFlows': 'Manual Flow',
       'homePageManualCourse': 'Course',
+      'homeCard': 'Card',
+
       'homeEditCard': 'bank card modification',
       'homeCardName': 'cardholder',
       'homeCardNameTip': 'please enter cardholder information',
@@ -192,6 +251,11 @@ class WalletLocalizations {
       'homeCardTypes': ' card type ',
       'homeCardTypesTip': 'please enter account bank',
       'publicButtonOK': 'OK',
+      'publicDefaultName': 'Anonymous',
+      'myPageSingleCard': 'Card',
+
+      'common_title_userName': 'Name',
+      'common_title_phone': 'Phone',
       'order_total_balance': 'Total',
       'order_index': 'Index',
       'order_amount': 'Grab orders',
@@ -229,6 +293,14 @@ class WalletLocalizations {
       'withdraw_input_card': 'Please enter your bank card number',
       'share_code': 'My invitation code',
       'share_rate':'Set rate',
+
+      'order_each':'Each',
+      'order_order':'Order',
+      'order_bankcard':'Bank card',
+      'order_start_grap':'Start grap',
+      'order_graping':'Graping...',
+      'userInfoRecord':'Record',
+
     }
   };
 
@@ -240,6 +312,8 @@ class WalletLocalizations {
 
   get common_tips_refresh =>
       _localizedValues[locale.languageCode]['common_tips_refresh'];
+  get common_tips_no_data_refresh =>
+      _localizedValues[locale.languageCode]['common_tips_no_data_refresh'];
 
   get appVersionTitle =>
       _localizedValues[locale.languageCode]['appVersionTitle'];
@@ -316,15 +390,25 @@ class WalletLocalizations {
 
   get welcomePageTwoButtonBack =>
       _localizedValues[locale.languageCode]['welcomePageTwoButtonBack'];
+  get startPageOriginalPassInputs =>
+      _localizedValues[locale.languageCode]['startPageOriginalPassInputs'];
+  get startPageLoginPassword =>
+      _localizedValues[locale.languageCode]['startPageLoginPassword'];
 
+  get startPageForgetPasswordButton =>
+      _localizedValues[locale.languageCode]['startPageForgetPasswordButton'];
   get startPageChangePasswordButton =>
       _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
 
   get homePageAgentDetail =>
       _localizedValues[locale.languageCode]['homePageAgentDetail'];
+  get homePageAgentOperation =>
+      _localizedValues[locale.languageCode]['homePageAgentOperation'];
 
   get homePageAgentChangeRatio =>
       _localizedValues[locale.languageCode]['homePageAgentChangeRatio'];
+  get homePageAgentInputRatio =>
+      _localizedValues[locale.languageCode]['homePageAgentInputRatio'];
 
   get startPageRegister =>
       _localizedValues[locale.languageCode]['startPageRegister'];
@@ -342,8 +426,11 @@ class WalletLocalizations {
 
   get sellcoinTotalAssets =>
       _localizedValues[locale.languageCode]['sellcoinTotalAssets'];
+  get homePageAgent =>
+      _localizedValues[locale.languageCode]['homePageAgent'];
+  get homeCard =>
+      _localizedValues[locale.languageCode]['homeCard'];
 
-  get homePageAgent => _localizedValues[locale.languageCode]['homePageAgent'];
 
   get singlePage => _localizedValues[locale.languageCode]['singlePage'];
 
@@ -377,7 +464,19 @@ class WalletLocalizations {
 
   get my_page_menu_withdrawal =>
       _localizedValues[locale.languageCode]['my_page_menu_withdrawal'];
+  get my_page_menu_balance =>
+      _localizedValues[locale.languageCode]['my_page_menu_balance'];
+  get my_page_menu_orderNums =>
+      _localizedValues[locale.languageCode]['my_page_menu_orderNums'];
 
+  get my_page_menu_handleing =>
+      _localizedValues[locale.languageCode]['my_page_menu_handleing'];
+  get my_page_menu_success =>
+      _localizedValues[locale.languageCode]['my_page_menu_success'];
+  get my_page_menu_failure =>
+      _localizedValues[locale.languageCode]['my_page_menu_failure'];
+  get my_page_menu_cancel =>
+      _localizedValues[locale.languageCode]['my_page_menu_cancel'];
   get my_page_menu_record =>
       _localizedValues[locale.languageCode]['my_page_menu_record'];
 
@@ -441,6 +540,25 @@ class WalletLocalizations {
 
   get publicButtonOK => _localizedValues[locale.languageCode]['publicButtonOK'];
 
+  get publicButtonOK =>
+      _localizedValues[locale.languageCode]['publicButtonOK'];
+  get publicDefaultName =>
+      _localizedValues[locale.languageCode]['publicDefaultName'];
+  get myPageSingleCard =>
+      _localizedValues[locale.languageCode]['myPageSingleCard'];
+
+  get userInfoPageButton =>
+      _localizedValues[locale.languageCode]['userInfoPageButton'];
+  get userInfoPageDeleteMsg =>
+      _localizedValues[locale.languageCode]['userInfoPageDeleteMsg'];
+  get createNewAddress_Cancel =>
+      _localizedValues[locale.languageCode]['createNewAddress_Cancel'];
+  get common_btn_confirm =>
+      _localizedValues[locale.languageCode]['common_btn_confirm'];
+  get common_title_userName =>
+      _localizedValues[locale.languageCode]['common_title_userName'];
+  get common_title_phone =>
+      _localizedValues[locale.languageCode]['common_title_phone'];
   get order_total_balance =>
       _localizedValues[locale.languageCode]['order_total_balance'];
 
@@ -533,6 +651,10 @@ class WalletLocalizations {
 
   get share_rate => _localizedValues[locale.languageCode]['share_rate'];
 
+  get order_graping =>
+      _localizedValues[locale.languageCode]['order_graping'];
+  get userInfoRecord =>
+      _localizedValues[locale.languageCode]['userInfoRecord'];
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);

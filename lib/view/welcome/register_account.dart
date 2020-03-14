@@ -17,7 +17,7 @@ import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/tools/key_config.dart';
 import 'package:qiangdan_app/tools/net_config.dart';
 import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/change_password.dart';
+import 'package:qiangdan_app/view/welcome/forget_password.dart';
 import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
 
 import 'forget_account.dart';
