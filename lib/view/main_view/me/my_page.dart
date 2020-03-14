@@ -361,6 +361,7 @@ class _UserCenterState extends State<UserCenter> {
                     }),
               ],
             ),
+            SizedBox(height: 20),
             Row(
               children: <Widget>[
                 menuItem('my_page_server_safe',
