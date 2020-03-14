@@ -153,6 +153,17 @@ class WalletLocalizations {
       'order_graping':'正在抢单...',
       'userInfoRecord':'记录',
 
+      'order_order_detail':'订单详情',
+      'order_order_grap':'应打码量',
+      'order_order_hasGrap':'已打码量',
+      'order_order_frozenBalance':'冻结金额',
+      'order_order_totalProfit':'代理收益',
+      'order_order_total':'订单总数',
+      'order_order_success':'订单成功数',
+      'order_order_fail':'订单异常数',
+      'order_order_successRate':'订单确认成功率',
+
+
 
     },
     'en': {
@@ -301,6 +312,15 @@ class WalletLocalizations {
       'order_graping':'Graping...',
       'userInfoRecord':'Record',
 
+      'order_order_detail':'Order Detail',
+      'order_order_grap':'Grap',
+      'order_order_hasGrap':'HasGrap',
+      'order_order_frozenBalance':'FrozenBalance',
+      'order_order_totalProfit':'TotalProfit',
+      'order_order_total':'Total',
+      'order_order_success':'Success',
+      'order_order_fail':'Fail',
+      'order_order_successRate':'SuccessRate',
     }
   };
 
@@ -651,6 +671,24 @@ class WalletLocalizations {
 
   get userInfoRecord =>
       _localizedValues[locale.languageCode]['userInfoRecord'];
+  get order_order_detail =>
+      _localizedValues[locale.languageCode]['order_order_detail'];
+  get order_order_grap =>
+      _localizedValues[locale.languageCode]['order_order_grap'];
+  get order_order_hasGrap =>
+      _localizedValues[locale.languageCode]['order_order_hasGrap'];
+  get order_order_frozenBalance =>
+      _localizedValues[locale.languageCode]['order_order_frozenBalance'];
+  get order_order_totalProfit =>
+      _localizedValues[locale.languageCode]['order_order_totalProfit'];
+  get order_order_total =>
+      _localizedValues[locale.languageCode]['order_order_total'];
+  get order_order_success =>
+      _localizedValues[locale.languageCode]['order_order_success'];
+  get order_order_fail =>
+      _localizedValues[locale.languageCode]['order_order_fail'];
+  get order_order_successRate =>
+      _localizedValues[locale.languageCode]['order_order_successRate'];
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);
