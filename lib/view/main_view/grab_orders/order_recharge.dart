@@ -89,7 +89,16 @@ class _OrderRechargeState extends State<OrderRecharge> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              InkWell(onTap: (){copyAddress(_model.payee + '  ' +  _model.bankNumber + '  ' + _model.bankName);},
+              InkWell(
+                onTap: () {
+                  Tools.copyAddress(_model.payee +
+                      '  ' +
+                      _model.bankNumber +
+                      '  ' +
+                      _model.bankName);
+                  Tools.showToast(_scaffoldKey,
+                      WalletLocalizations.of(context).order_recharge_tips_copy);
+                },
                 child: Text(
                   WalletLocalizations.of(context).order_recharge_copy,
                   style: TextStyle(fontSize: 14, color: Colors.white),
@@ -100,17 +109,6 @@ class _OrderRechargeState extends State<OrderRecharge> {
         ],
       ),
     );
-  }
-
-  copyAddress(String value) {
-    if (kIsWeb) {
-      WebTools.copyToClipboardHack(value);
-    } else {
-      Clipboard.setData(new ClipboardData(text: value));
-    }
-
-    Tools.showToast(
-        _scaffoldKey, WalletLocalizations.of(context).order_recharge_tips_copy);
   }
 
   Widget _cardInfoItem(String title, String content) {
