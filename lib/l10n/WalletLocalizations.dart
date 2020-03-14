@@ -540,8 +540,6 @@ class WalletLocalizations {
 
   get publicButtonOK => _localizedValues[locale.languageCode]['publicButtonOK'];
 
-  get publicButtonOK =>
-      _localizedValues[locale.languageCode]['publicButtonOK'];
   get publicDefaultName =>
       _localizedValues[locale.languageCode]['publicDefaultName'];
   get myPageSingleCard =>
@@ -651,8 +649,6 @@ class WalletLocalizations {
 
   get share_rate => _localizedValues[locale.languageCode]['share_rate'];
 
-  get order_graping =>
-      _localizedValues[locale.languageCode]['order_graping'];
   get userInfoRecord =>
       _localizedValues[locale.languageCode]['userInfoRecord'];
 

@@ -22,7 +22,6 @@ import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
 import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_edit.dart';
 import 'package:qiangdan_app/view/welcome/change_password.dart';
-import 'package:qiangdan_app/view/share/share_invitation.dart';
 import 'package:qiangdan_app/view/welcome/forget_password.dart';
 import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/welcome/splash.dart';
