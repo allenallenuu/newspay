@@ -357,7 +357,7 @@ class _UserCenterState extends State<UserCenter> {
                     onTap: () {
                   Navigator.of(context).pushNamed(ShareReceivePage.tag);
                 }),
-                menuItem('my_page_server_wait',
+                menuItem('my_page_server_customer',
                     WalletLocalizations.of(context).my_page_server_wait,
                     onTap: () {
                   Tools.showToast(_scaffoldKey, '4');
@@ -383,7 +383,7 @@ class _UserCenterState extends State<UserCenter> {
                     onTap: () {
                   Tools.showToast(_scaffoldKey, '3');
                 }),
-                menuItem('my_page_server_wait',
+                menuItem('my_page_server_help',
                     WalletLocalizations.of(context).my_page_server_wait,
                     onTap: () {
                   Tools.showToast(_scaffoldKey, '4');
