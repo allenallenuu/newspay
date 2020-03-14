@@ -146,6 +146,11 @@ class WalletLocalizations {
       'withdraw_input_card': '请输入银行卡号',
       'share_code': '我的邀请码',
       'share_rate':'设置比例',
+      'share_range':'范围',
+      'share_rate_unit':'比例',
+      'share_range_inout_error':'请输入范围内的值',
+      'share_agent_rate':'设置下级比例',
+      'share_copy':'复制链接',
       'order_each':'个',
       'order_order':'订单',
       'order_bankcard':'银行卡',
@@ -293,6 +298,11 @@ class WalletLocalizations {
       'withdraw_input_card': 'Please enter your bank card number',
       'share_code': 'My invitation code',
       'share_rate':'Set rate',
+      'share_range':'Range',
+      'share_rate_unit':'Rate',
+      'share_range_inout_error': 'Please enter a value within the range',
+      'share_agent_rate': 'set child proportion',
+      'share_copy':'Copy link',
 
       'order_each':'Each',
       'order_order':'Order',
@@ -648,6 +658,19 @@ class WalletLocalizations {
   get share_code => _localizedValues[locale.languageCode]['share_code'];
 
   get share_rate => _localizedValues[locale.languageCode]['share_rate'];
+
+  get share_range => _localizedValues[locale.languageCode]['share_range'];
+
+  get share_range_inout_error => _localizedValues[locale.languageCode]['share_range_inout_error'];
+
+  get share_agent_rate => _localizedValues[locale.languageCode]['share_agent_rate'];
+
+  get share_copy => _localizedValues[locale.languageCode]['share_copy'];
+
+
+  get share_rate_unit => _localizedValues[locale.languageCode]['share_rate_unit'];
+
+
 
   get userInfoRecord =>
       _localizedValues[locale.languageCode]['userInfoRecord'];

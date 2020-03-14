@@ -348,7 +348,7 @@ class _UserCenterState extends State<UserCenter> {
                 menuItem('my_page_server_share',
                     WalletLocalizations.of(context).my_page_server_share,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '3');
+                  Navigator.of(context).pushNamed(ShareReceivePage.tag);
                 }),
                 menuItem('my_page_server_wait',
                     WalletLocalizations.of(context).my_page_server_wait,

@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qiangdan_app/model/global_model.dart';
 import 'package:qiangdan_app/tools/key_config.dart';
@@ -70,6 +71,14 @@ class Tools {
   static copyToClipboard(final String text) {
     if (text == null) return;
     Clipboard.setData(new ClipboardData(text: text));
+  }
+
+  static copyAddress(String value) {
+    if (kIsWeb) {
+      WebTools.copyToClipboardHack(value);
+    } else {
+      Clipboard.setData(new ClipboardData(text: value));
+    }
   }
 
   static showToast(GlobalKey<ScaffoldState> _scaffoldKey, String msg,
