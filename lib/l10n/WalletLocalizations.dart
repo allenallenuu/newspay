@@ -46,7 +46,6 @@ class WalletLocalizations {
       'homePageManualSpeedy': '便捷抢单',
       'homePageManualFlows': '抢单流程',
       'homePageManualCourse': '抢单教程',
-
       'homePageAgent': '代理模式',
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
@@ -54,7 +53,6 @@ class WalletLocalizations {
       'homePageAgentSubordinate': '我的下级',
       'homePageAgentDetail': '查看详情',
       'homePageAgentChangeRatio': '修改他的比例',
-
       'homeEditCard': '银行卡修改',
       'homeCardName': '持卡人',
       'homeCardNameTip': '请输入持卡人信息',
@@ -63,7 +61,6 @@ class WalletLocalizations {
       'homeCardTypes': '卡类型',
       'homeCardTypesTip': '请输入开户行',
       'publicButtonOK': '确定',
-
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -93,11 +90,32 @@ class WalletLocalizations {
       'order_recharge_now': '马上充值',
       "order_have_a_new_open_order": '您有新的未确认订单',
       'order_sure_order': '确认订单',
-      'order_each':'个',
-      'order_order':'订单',
-      'order_bankcard':'银行卡',
-      'order_start_grap':'开始抢单',
-      'order_graping':'正在抢单...',
+      'order_each': '个',
+      'order_order': '订单',
+      'order_bankcard': '银行卡',
+      'order_start_grap': '开始抢单',
+      'order_graping': '正在抢单...',
+      'order_recharge_payee_name': '收款方户名',
+      'order_recharge_payee_account': '收款方账号',
+      'order_recharge_payee_bank': '开户行',
+      'order_recharge_copy': '一键复制',
+      'order_recharge_amount': '充值金额',
+      'order_recharge_my_bank': '银行',
+      'order_recharge_my_name': '户名',
+      'order_recharge_my_card': '卡号',
+      'order_recharge_submit': '提交',
+      'order_recharge_input_bank': '请输入银行卡',
+      'order_recharge_input_name': '请输入真是姓名',
+      'order_recharge_input_card': '请输入银行卡后四位',
+      'order_recharge_input_amount': '请输入充值金额',
+      'order_recharge_tips_copy': '复制成功',
+      'order_recharge_guide_tip':
+          '1、充值金额越多，抢单金额越大，抢单成功率更高；\n 2、成功收款后请及时确认订单，认准对应收款账号和金额； \n 3、若长时间无订单或收款无效，请及时更换收款账号，规避风控； \n 4、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
+      'withdraw_balance': '钱包总额',
+      'withdraw_amount': '提现金额',
+      'withdraw_input_card': '请输入银行卡号',
+      'share_code': '我的邀请码',
+      'share_rate':'设置比例',
     },
     'en': {
       'network_error': 'Please check the network',
@@ -141,7 +159,6 @@ class WalletLocalizations {
       'homePageAgentSubordinate': 'Subordinate',
       'homePageAgentDetail': 'Detail',
       'homePageAgentChangeRatio': 'Change Ratio',
-
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -153,7 +170,6 @@ class WalletLocalizations {
       'my_page_menu_recharge': 'Recharge',
       'my_page_menu_withdrawal': 'Withdrawal',
       'my_page_menu_record': 'Record',
-
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
@@ -168,13 +184,12 @@ class WalletLocalizations {
       'homePageManualSpeedy': 'Speedy Manual',
       'homePageManualFlows': 'Manual Flow',
       'homePageManualCourse': 'Course',
-
       'homeEditCard': 'bank card modification',
       'homeCardName': 'cardholder',
       'homeCardNameTip': 'please enter cardholder information',
-      'homeCardNums':' bank card number ',
+      'homeCardNums': ' bank card number ',
       'homeCardNumsTip': 'please enter the bank card number',
-      'homeCardTypes':' card type ',
+      'homeCardTypes': ' card type ',
       'homeCardTypesTip': 'please enter account bank',
       'publicButtonOK': 'OK',
       'order_total_balance': 'Total',
@@ -183,16 +198,37 @@ class WalletLocalizations {
       'order_scale': 'My scale',
       'order_guide': 'Grab a single strategy',
       'order_error_balance_no_enough':
-      'Your balance is insufficient, please recharge first',
+          'Your balance is insufficient, please recharge first',
       'order_recharge_now': 'Recharge now',
       "order_have_a_new_open_order": 'You have a new unconfirmed order',
       'order_sure_order': 'Confirm order',
-
-      'order_each':'Each',
-      'order_order':'Order',
-      'order_bankcard':'Bank card',
-      'order_start_grap':'Start grap',
-      'order_graping':'Graping...',
+      'order_each': 'Each',
+      'order_order': 'Order',
+      'order_bankcard': 'Bank card',
+      'order_start_grap': 'Start grap',
+      'order_graping': 'Graping...',
+      'order_recharge_payee_name': 'Payee_name',
+      'order_recharge_payee_account': 'Payee_account',
+      'order_recharge_payee_bank': 'Payee_bank',
+      'order_recharge_copy': 'Copy',
+      'order_recharge_amount': 'Amount',
+      'order_recharge_my_bank': 'Bank',
+      'order_recharge_my_name': 'Account',
+      'order_recharge_my_card': 'Card',
+      'order_recharge_submit': 'Submit',
+      'order_recharge_input_bank': 'Please enter the bank card',
+      'order_recharge_input_name': 'Please enter a real name',
+      'order_recharge_input_card':
+          'Please enter the last four digits of the bank card',
+      'order_recharge_input_amount': 'Please enter the recharge',
+      'order_recharge_tips_copy': 'Copy success',
+      'order_recharge_guide_tip':
+          '1. The more the recharge amount is, the more the amount of order grabbing is, the higher the success rate of order grabbing is;\n2. After the successful collection, please confirm the order in time and identify the corresponding collection account number and amount;\n 3. If there is no order for a long time or the collection is invalid, please change the collection account number in time to avoid risk control; 4. Please do not believe the words of any unofficial personnel and improve the awareness of fraud prevention. If there is any problem, please contact us in time.',
+      'withdraw_balance': 'Wallet total',
+      'withdraw_amount': 'Withdrawal Amount',
+      'withdraw_input_card': 'Please enter your bank card number',
+      'share_code': 'My invitation code',
+      'share_rate':'Set rate',
     }
   };
 
@@ -366,68 +402,137 @@ class WalletLocalizations {
   get my_page_server_wait =>
       _localizedValues[locale.languageCode]['my_page_server_wait'];
 
-  get homePageManual =>
-      _localizedValues[locale.languageCode]['homePageManual'];
+  get homePageManual => _localizedValues[locale.languageCode]['homePageManual'];
+
   get homePageManualFlow =>
       _localizedValues[locale.languageCode]['homePageManualFlow'];
+
   get homePageManualChannel =>
       _localizedValues[locale.languageCode]['homePageManualChannel'];
+
   get homePageManualRecharge =>
       _localizedValues[locale.languageCode]['homePageManualRecharge'];
+
   get homePageManualSpeedy =>
       _localizedValues[locale.languageCode]['homePageManualSpeedy'];
+
   get homePageManualFlows =>
       _localizedValues[locale.languageCode]['homePageManualFlows'];
+
   get homePageManualCourse =>
       _localizedValues[locale.languageCode]['homePageManualCourse'];
 
-  get homeEditCard =>
-      _localizedValues[locale.languageCode]['homeEditCard'];
-  get homeCardName =>
-      _localizedValues[locale.languageCode]['homeCardName'];
+  get homeEditCard => _localizedValues[locale.languageCode]['homeEditCard'];
+
+  get homeCardName => _localizedValues[locale.languageCode]['homeCardName'];
+
   get homeCardNameTip =>
       _localizedValues[locale.languageCode]['homeCardNameTip'];
-  get homeCardNums =>
-      _localizedValues[locale.languageCode]['homeCardNums'];
+
+  get homeCardNums => _localizedValues[locale.languageCode]['homeCardNums'];
+
   get homeCardNumsTip =>
       _localizedValues[locale.languageCode]['homeCardNumsTip'];
-  get homeCardTypes =>
-      _localizedValues[locale.languageCode]['homeCardTypes'];
+
+  get homeCardTypes => _localizedValues[locale.languageCode]['homeCardTypes'];
+
   get homeCardTypesTip =>
       _localizedValues[locale.languageCode]['homeCardTypesTip'];
-  get publicButtonOK =>
-      _localizedValues[locale.languageCode]['publicButtonOK'];
+
+  get publicButtonOK => _localizedValues[locale.languageCode]['publicButtonOK'];
+
   get order_total_balance =>
       _localizedValues[locale.languageCode]['order_total_balance'];
-  get order_index =>
-      _localizedValues[locale.languageCode]['order_index'];
-  get order_amount =>
-      _localizedValues[locale.languageCode]['order_amount'];
-  get order_scale =>
-      _localizedValues[locale.languageCode]['order_scale'];
-  get order_guide =>
-      _localizedValues[locale.languageCode]['order_guide'];
+
+  get order_index => _localizedValues[locale.languageCode]['order_index'];
+
+  get order_amount => _localizedValues[locale.languageCode]['order_amount'];
+
+  get order_scale => _localizedValues[locale.languageCode]['order_scale'];
+
+  get order_guide => _localizedValues[locale.languageCode]['order_guide'];
+
   get order_error_balance_no_enough =>
       _localizedValues[locale.languageCode]['order_error_balance_no_enough'];
+
   get order_recharge_now =>
       _localizedValues[locale.languageCode]['order_recharge_now'];
+
   get order_have_a_new_open_order =>
       _localizedValues[locale.languageCode]['order_have_a_new_open_order'];
+
   get order_sure_order =>
       _localizedValues[locale.languageCode]['order_sure_order'];
 
-  get order_each =>
-      _localizedValues[locale.languageCode]['order_each'];
-  get order_order =>
-      _localizedValues[locale.languageCode]['order_order'];
-  get order_bankcard =>
-      _localizedValues[locale.languageCode]['order_bankcard'];
+  get order_each => _localizedValues[locale.languageCode]['order_each'];
+
+  get order_order => _localizedValues[locale.languageCode]['order_order'];
+
+  get order_bankcard => _localizedValues[locale.languageCode]['order_bankcard'];
 
   get order_start_grap =>
       _localizedValues[locale.languageCode]['order_start_grap'];
 
-  get order_graping =>
-      _localizedValues[locale.languageCode]['order_graping'];
+  get order_graping => _localizedValues[locale.languageCode]['order_graping'];
+
+  get order_recharge_input_card =>
+      _localizedValues[locale.languageCode]['order_recharge_input_card'];
+
+  get order_recharge_input_amount =>
+      _localizedValues[locale.languageCode]['order_recharge_input_amount'];
+
+  get order_recharge_tips_copy =>
+      _localizedValues[locale.languageCode]['order_recharge_tips_copy'];
+
+  get order_recharge_input_name =>
+      _localizedValues[locale.languageCode]['order_recharge_input_name'];
+
+  get order_recharge_input_bank =>
+      _localizedValues[locale.languageCode]['order_recharge_input_bank'];
+
+  get order_recharge_submit =>
+      _localizedValues[locale.languageCode]['order_recharge_submit'];
+
+  get order_recharge_my_bank =>
+      _localizedValues[locale.languageCode]['order_recharge_my_bank'];
+
+  get order_recharge_my_name =>
+      _localizedValues[locale.languageCode]['order_recharge_my_name'];
+
+  get order_recharge_my_card =>
+      _localizedValues[locale.languageCode]['order_recharge_my_card'];
+
+  get order_recharge_amount =>
+      _localizedValues[locale.languageCode]['order_recharge_amount'];
+
+  get order_recharge_copy =>
+      _localizedValues[locale.languageCode]['order_recharge_copy'];
+
+  get order_recharge_payee_bank =>
+      _localizedValues[locale.languageCode]['order_recharge_payee_bank'];
+
+  get order_recharge_payee_account =>
+      _localizedValues[locale.languageCode]['order_recharge_payee_account'];
+
+  get order_recharge_payee_name =>
+      _localizedValues[locale.languageCode]['order_recharge_payee_name'];
+
+  get withdraw_balance =>
+      _localizedValues[locale.languageCode]['withdraw_balance'];
+
+  get order_recharge_guide_tip =>
+      _localizedValues[locale.languageCode]['order_recharge_guide_tip'];
+
+  get withdraw_amount =>
+      _localizedValues[locale.languageCode]['withdraw_amount'];
+
+  get withdraw_input_card =>
+      _localizedValues[locale.languageCode]['withdraw_input_card'];
+
+  get share_code => _localizedValues[locale.languageCode]['share_code'];
+
+  get share_rate => _localizedValues[locale.languageCode]['share_rate'];
+
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);

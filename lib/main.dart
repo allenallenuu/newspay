@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:qiangdan_app/l10n/chinese_local.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent_detail.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
@@ -16,7 +18,6 @@ import 'package:qiangdan_app/view/main_view/main_page.dart';
 import 'package:qiangdan_app/view/welcome/forget_account.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
 import 'package:qiangdan_app/view/payment_method/payment_method_bankcard_edit.dart';
-import 'package:qiangdan_app/view/share/share_invitation.dart';
 import 'package:qiangdan_app/view/welcome/change_password.dart';
 import 'package:qiangdan_app/view/welcome/register_account.dart';
 import 'package:qiangdan_app/view/welcome/splash.dart';
@@ -90,7 +91,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UserInfoPage.tag: (context) => UserInfoPage(),
     MainPage.tag: (context) => MainPage(),
     StartLoginPage.tag: (context) => StartLoginPage(needBack: true),
-    ShareInvitation.tag: (context) => ShareInvitation(),
     ShareReceivePage.tag: (context) => ShareReceivePage(),
     ForgetAccount.tag: (context) => ForgetAccount(),
     UserInfoSet.tag: (context) => UserInfoSet(),
@@ -102,8 +102,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     HomePageManualDetail.tag: (context) => HomePageManualDetail(),
     HomePageManualMonad.tag: (context) => HomePageManualMonad(),
     HomePageCard.tag: (context) => HomePageCard(),
-
-
+    OrderRecharge.tag: (context) => OrderRecharge(),
+    OrderWithdraw.tag: (context) => OrderWithdraw(),
   };
 
   Brightness brightness = Brightness.light;
@@ -141,7 +141,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 //      }
 //    }
 //  }
-
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {

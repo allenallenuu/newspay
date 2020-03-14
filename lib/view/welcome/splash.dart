@@ -259,8 +259,8 @@ class _SplashState extends State<Splash> {
           GlobalInfo.userInfo.webShareAddress = data['webUrl'];
         }
 
-        if (data['downloadUrl'] != null) {
-          GlobalInfo.userInfo.appDownloadAddress = data['downloadUrl'];
+        if (data['appDownUrl '] != null) {
+          GlobalInfo.userInfo.appDownloadAddress = data['appDownUrl '];
         }
 
         if (data['uid'] != null) {

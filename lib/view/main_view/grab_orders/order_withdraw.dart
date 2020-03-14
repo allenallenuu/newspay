@@ -1,22 +1,19 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:qiangdan_app/model/OrderRechargeModel.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
+import 'package:qiangdan_app/model/BalanceModel.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 
-class OrderRecharge extends StatefulWidget {
-  static String tag = 'OrderRecharge';
+class OrderWithdraw extends StatefulWidget {
+  static String tag = 'OrderWithdraw';
 
   @override
-  _OrderRechargeState createState() => _OrderRechargeState();
+  _OrderWithdrawState createState() => _OrderWithdrawState();
 }
 
-class _OrderRechargeState extends State<OrderRecharge> {
+class _OrderWithdrawState extends State<OrderWithdraw> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  OrderRechargeModel _model;
+  BalanceModel _balanceModel;
   TextEditingController controllerAmount,
       controllerBank,
       controllerName,
@@ -29,7 +26,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
     controllerBank = TextEditingController();
     controllerName = TextEditingController();
     controllerCard = TextEditingController();
-    getBankInfo();
+    getWithdraw();
   }
 
   @override
@@ -48,16 +45,16 @@ class _OrderRechargeState extends State<OrderRecharge> {
         key: _scaffoldKey,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(WalletLocalizations.of(context).my_page_menu_recharge),
+          title: Text(WalletLocalizations.of(context).my_page_menu_withdrawal),
         ),
-        body: _model == null
+        body: _balanceModel == null
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    _cardInfo(),
+                    _withdrawInfo(),
                     _amountInput(),
                     myCardView(),
                     submitView()
@@ -66,64 +63,39 @@ class _OrderRechargeState extends State<OrderRecharge> {
               ));
   }
 
-  Widget _cardInfo() {
+  Widget _withdrawInfo() {
     return Container(
+      height: 150,
       margin: EdgeInsets.only(left: 20, right: 20, top: 10),
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
       decoration: BoxDecoration(
           color: Color(0xffF34545), borderRadius: BorderRadius.circular(8)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _cardInfoItem(
-              WalletLocalizations.of(context).order_recharge_payee_name,
-              _model == null ? '' : _model.payee),
-          _cardInfoItem(
-              WalletLocalizations.of(context).order_recharge_payee_account,
-              _model == null ? '' : _model.bankNumber),
-          _cardInfoItem(
-              WalletLocalizations.of(context).order_recharge_payee_bank,
-              _model == null ? '' : _model.bankName),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              InkWell(onTap: (){copyAddress(_model.payee + '  ' +  _model.bankNumber + '  ' + _model.bankName);},
-                child: Text(
-                  WalletLocalizations.of(context).order_recharge_copy,
-                  style: TextStyle(fontSize: 14, color: Colors.white),
-                ),
-              )
-            ],
-          )
+              WalletLocalizations.of(context).withdraw_balance,
+              _balanceModel == null ? '' : _balanceModel.balance.toString()),
         ],
       ),
     );
   }
 
-  copyAddress(String value) {
-    if (kIsWeb) {
-      WebTools.copyToClipboardHack(value);
-    } else {
-      Clipboard.setData(new ClipboardData(text: value));
-    }
-
-    Tools.showToast(
-        _scaffoldKey, WalletLocalizations.of(context).order_recharge_tips_copy);
-  }
-
   Widget _cardInfoItem(String title, String content) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           title,
           style: TextStyle(fontSize: 14, color: Colors.white),
         ),
+        SizedBox(height: 5,),
         Text(content,
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 24,
                 color: Colors.white,
                 fontWeight: FontWeight.bold)),
       ],
@@ -139,7 +111,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            WalletLocalizations.of(context).order_recharge_amount,
+            WalletLocalizations.of(context).withdraw_amount,
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
           ),
@@ -204,7 +176,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
           Divider(),
           inputItemView(
               WalletLocalizations.of(context).order_recharge_my_card,
-              WalletLocalizations.of(context).order_recharge_input_card,
+              WalletLocalizations.of(context).withdraw_input_card,
               controllerCard),
         ],
       ),
@@ -237,19 +209,22 @@ class _OrderRechargeState extends State<OrderRecharge> {
     );
   }
 
-  void getBankInfo() {
-    Future future = NetConfig.post(context, NetConfig.golbalCard, {},
-        timeOut: 10, errorCallback: (msg) {
-      Tools.showToast(_scaffoldKey, msg);
-    });
+  void getWithdraw() {
+    Future future =
+        NetConfig.post(context, NetConfig.balanceList, {}, timeOut: 10,errorCallback: (msg) {
+
+          Tools.showToast(_scaffoldKey, msg);
+        });
     future.then((data) {
       if (NetConfig.checkData(data)) {
-        List _list = data;
-        _model = OrderRechargeModel(
-            payee: _list[0]['payee'],
-            bankNumber: _list[0]['bankNumber'],
-            bankBranch: _list[0]['bankBranch'],
-            bankName: _list[0]['bankName']);
+        _balanceModel = BalanceModel(
+          balance: double.parse(data['balance'].toString()),
+          totalBalance: double.parse(data['totalBalance'].toString()),
+          frozenBalance: double.parse(data['frozenBalance'].toString()),
+          totalProfit: double.parse(data['totalProfit'].toString()),
+          id: data['id'],
+          uid: data['uid'],
+        );
       }
       setState(() {});
     });
@@ -279,16 +254,12 @@ class _OrderRechargeState extends State<OrderRecharge> {
     Tools.loadingAnimation(context);
     Future future = NetConfig.post(
         context,
-        NetConfig.recharge,
+        NetConfig.withDraw,
         {
-          'payee': _model.payee,
-          'bankName': _model.bankName,
-          'bankBranch': _model.bankBranch,
-          'bankNumber': _model.bankNumber,
-          'num': controllerAmount.text,
-          'transferAccountName': controllerName.text,
-          'userBankNumber': controllerCard.text,
-          'userBankName': controllerBank.text
+          'withdrawCoin': controllerAmount.text,
+          'payee': controllerName.text,
+          'bankNumber': controllerCard.text,
+          'bankName': controllerBank.text
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);

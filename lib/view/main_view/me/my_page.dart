@@ -8,7 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qiangdan_app/model/BalanceModel.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
+import 'package:qiangdan_app/view/share/share_receive_page.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 
 class UserCenter extends StatefulWidget {
@@ -115,8 +117,10 @@ class _UserCenterState extends State<UserCenter> {
   BalanceModel _balanceModel = null;
 
   void getBalanceInfo({Function callback = null}) {
-    Future future =
-        NetConfig.post(context, NetConfig.balanceList, {}, timeOut: 10);
+    Future future = NetConfig.post(context, NetConfig.balanceList, {},
+        timeOut: 10, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
     future.then((data) {
       if (NetConfig.checkData(data)) {
         _balanceModel = BalanceModel(
@@ -288,7 +292,10 @@ class _UserCenterState extends State<UserCenter> {
           menuItem('my_page_withdrawal',
               WalletLocalizations.of(context).my_page_menu_withdrawal,
               onTap: () {
-            Tools.showToast(_scaffoldKey, '3');
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return OrderWithdraw();
+            }));
           }),
           menuItem('my_page_record',
               WalletLocalizations.of(context).my_page_menu_record, onTap: () {
@@ -319,7 +326,11 @@ class _UserCenterState extends State<UserCenter> {
                 menuItem('my_page_server_share',
                     WalletLocalizations.of(context).my_page_server_share,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '3');
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return ShareReceivePage();
+                  }));
+                  ;
                 }),
                 menuItem('my_page_server_wait',
                     WalletLocalizations.of(context).my_page_server_wait,
