@@ -8,6 +8,7 @@ import 'package:qiangdan_app/l10n/chinese_local.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_agency.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent_detail.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
@@ -32,6 +33,8 @@ import 'package:qiangdan_app/view/share/share_receive_page.dart';
 import 'package:qiangdan_app/view_model/main_model.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:qiangdan_app/view/welcome/start_login.dart';
+
+import 'view/main_view/home/home_page_avoiding.dart';
 //import 'dart:js' as js;
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -113,10 +116,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UserInfoCenter.tag: (context) => UserInfoCenter(),
     UserInfoRecord.tag: (context) => UserInfoRecord(),
     UserInfoTradingData.tag: (context) => UserInfoTradingData(),
-
-
-
-
+    HomePageAgency.tag:(context) =>  HomePageAgency(),
+    HomePageAvoiding.tag:(context) => HomePageAvoiding()
   };
 
   Brightness brightness = Brightness.light;
@@ -154,7 +155,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 //      }
 //    }
 //  }
-
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -248,9 +248,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           if (this.locale == null) {
             this.locale = deviceLocale;
           }
-          if (kIsWeb) {
-            this.locale = Locale('zh', 'CH');
-          }
+//          if (kIsWeb) {
+          this.locale = Locale('zh', 'CH');
+//          }
           return this.locale;
         },
 

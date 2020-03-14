@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:qiangdan_app/model/BalanceModel.dart';
 import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_trading_data.dart';
@@ -316,18 +317,16 @@ class _UserCenterState extends State<UserCenter> {
           }),
           menuItem('my_page_recharge',
               WalletLocalizations.of(context).my_page_menu_recharge, onTap: () {
-            Tools.showToast(_scaffoldKey, '2');
+                Navigator.of(context).pushNamed(OrderRecharge.tag);
           }),
           menuItem('my_page_withdrawal',
               WalletLocalizations.of(context).my_page_menu_withdrawal,
               onTap: () {
-            Tools.showToast(_scaffoldKey, '3');
+                Navigator.of(context).pushNamed(OrderWithdraw.tag);
           }),
           menuItem('my_page_record',
               WalletLocalizations.of(context).my_page_menu_record, onTap: () {
-//            Tools.showToast(_scaffoldKey, '4');
                 Navigator.of(context).pushNamed(UserInfoRecord.tag);
-
               }),
         ],
       ),

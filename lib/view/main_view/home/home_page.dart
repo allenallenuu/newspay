@@ -8,8 +8,10 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
 import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_agency.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_agent.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
+import 'package:qiangdan_app/view/main_view/home/home_page_avoiding.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_card.dart';
 import 'package:qiangdan_app/view/main_view/home/home_page_manual.dart';
 import 'package:qiangdan_app/view_model/state_lib.dart';
@@ -85,16 +87,14 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed(HomePageManual.tag);
 
         }else if(tag == 3){
-          Tools.showToast(
-              _scaffoldKey, '暂未开通，敬请期待');
+          Navigator.of(context).pushNamed(HomePageAvoiding.tag);
         }else if(tag == 4){
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {
             return HomePageManualDetail(imageName: 'icon_operation',titleName:WalletLocalizations.of(context).homePageAgentOperation,);
           }));
         }else if(tag == 5){
-          Tools.showToast(
-              _scaffoldKey, '暂未开通，敬请期待');
+          Navigator.of(context).pushNamed(HomePageAgency.tag);
         }
       },
       child: Container(

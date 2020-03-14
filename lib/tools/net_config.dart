@@ -14,8 +14,8 @@ import 'package:qiangdan_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
 
 class NetConfig {
-  static String imageHost = 'http://api.uumi.io:9040';
-  static String apiHost = 'http://api.uumi.io:9040/walletClientTest/api/';
+  static String imageHost = 'http://api.wpaypay.com:9040';
+  static String apiHost = 'http://api.wpaypay.com:9040/walletClientTest/api/';
 
   /// 获取最新的版本信息
   static String getNewestVersion = 'common/getNewestVersion';
