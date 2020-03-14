@@ -24,13 +24,12 @@ class _HomeNoticeView extends State<HomeNoticeView> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 80,
       margin: EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
           image: AssetImage(Tools.imagePath('home_notice')),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fitWidth,
         ),
       ),
       child: Row(
