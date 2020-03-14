@@ -102,6 +102,18 @@ class NetConfig {
   //确认订单
   static String sureGrap = 'user/grap/orderConfirm';
 
+  //获取公号银行信息
+  static String golbalCard= 'recharge/rechargeMethod';
+
+  //充值接口
+  static String recharge = 'recharge/recharge';
+
+  //提现
+  static String withDraw = 'withdraw/addUserWithdraw';
+
+  //获取代理比例范围
+  static String shareRatioRanage = 'share/getEarningsRatioRange';
+
   static post(
     BuildContext context,
     String url,

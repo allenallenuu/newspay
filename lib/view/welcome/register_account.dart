@@ -326,15 +326,17 @@ class _RegisterPageState extends State<RegisterPage> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _getPhoneInput(
-                    !shareSuccess,
-                    _hasInviteCodeFocus,
-                    'login_inviteCode_select',
-                    'login_inviteCode_unselect',
-                    inviteCodeCtrl,
-                    _nodeInviteCode,
-                    WalletLocalizations.of(context).startPageInviteCode,
-                    false),
+                shareSuccess
+                    ? _getPhoneInput(
+                        !shareSuccess,
+                        _hasInviteCodeFocus,
+                        'login_inviteCode_select',
+                        'login_inviteCode_unselect',
+                        inviteCodeCtrl,
+                        _nodeInviteCode,
+                        WalletLocalizations.of(context).startPageInviteCode,
+                        false)
+                    : Container(),
                 SizedBox(height: 24),
                 _getPhoneInput(
                     true,

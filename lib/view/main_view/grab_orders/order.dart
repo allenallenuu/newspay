@@ -12,6 +12,7 @@ import 'package:qiangdan_app/model/grap_model.dart';
 import 'package:qiangdan_app/tools/Tools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/tools/net_config.dart';
+import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _OrderCenterState extends State<OrderCenter> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Color(0xffF6F6F6),
+      backgroundColor: AppCustomColor.themeBackgroudGrayColor,
       body: _grapModel == null
           ? Center(child: CircularProgressIndicator())
           : Column(
@@ -230,19 +231,43 @@ class _OrderCenterState extends State<OrderCenter> {
                       : ''),
                   style: TextStyle(color: Color(0xffF34545)),
                 ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                  decoration: BoxDecoration(
-                      color: Color(0xffF34545),
-                      borderRadius: BorderRadius.circular(90)),
-                  child: Text(WalletLocalizations.of(context).order_guide,
-                      style: TextStyle(color: Colors.white)),
-                )
+                InkWell(
+                  onTap: () {_showGuide();},
+                  child: Container(
+                    padding:
+                        EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+                    decoration: BoxDecoration(
+                        color: Color(0xffF34545),
+                        borderRadius: BorderRadius.circular(90)),
+                    child: Text(WalletLocalizations.of(context).order_guide,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
               ],
             ))
       ],
     );
+  }
+
+  /// Delete current user
+  void _showGuide() {
+    showDialog(
+        context: context,
+        // barrierDismissible: false,  // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content:
+                Text(WalletLocalizations.of(context).order_recharge_guide_tip),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(WalletLocalizations.of(context).publicButtonOK),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 
   void grapOrderInfo() {
@@ -341,17 +366,25 @@ class _OrderCenterState extends State<OrderCenter> {
                     style: TextStyle(fontSize: 15, color: Color(0xffB4B4B4)),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  padding:
-                      EdgeInsets.only(left: 45, right: 45, top: 10, bottom: 10),
-                  decoration: BoxDecoration(
-                      color: Color(0xffF34545),
-                      borderRadius: BorderRadius.circular(90)),
-                  child: Text(
-                      WalletLocalizations.of(context).order_recharge_now,
-                      style: TextStyle(color: Colors.white)),
-                )
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return OrderRecharge();
+                    }));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(
+                        left: 45, right: 45, top: 10, bottom: 10),
+                    decoration: BoxDecoration(
+                        color: Color(0xffF34545),
+                        borderRadius: BorderRadius.circular(90)),
+                    child: Text(
+                        WalletLocalizations.of(context).order_recharge_now,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
               ],
             ));
           }),
