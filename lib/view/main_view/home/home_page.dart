@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           Tools.imagePath(imageName),
           width: MediaQuery.of(context).size.width / 2.2,
           height: 93,
-          fit: BoxFit.cover,
+          fit: BoxFit.fitHeight,
         ),
       ),
     );
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               return ClipRRect(
                   borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
                   child: Image.asset(Tools.imagePath(_bannerImageList[index]),
-                      fit: BoxFit.cover));
+                      fit: BoxFit.fitHeight));
             },
             autoplay: true,
             autoplayDelay: 3000,
