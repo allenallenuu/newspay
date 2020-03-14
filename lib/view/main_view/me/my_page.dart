@@ -13,6 +13,7 @@ import 'package:qiangdan_app/tools/WebTools.dart';
 import 'package:qiangdan_app/tools/app_data_setting.dart';
 import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
+import 'package:qiangdan_app/view/main_view/me/user_info_trading_data.dart';
 import 'package:qiangdan_app/view/share/share_receive_page.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
 import 'package:qiangdan_app/view/main_view/me/user_info_record.dart';
@@ -116,7 +117,10 @@ class _UserCenterState extends State<UserCenter> {
                 width: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(UserInfoSet.tag);
+
+                },
                 child: Image.asset(
                   Tools.imagePath('my_page_set'),
                   width: 30,
@@ -321,8 +325,10 @@ class _UserCenterState extends State<UserCenter> {
           }),
           menuItem('my_page_record',
               WalletLocalizations.of(context).my_page_menu_record, onTap: () {
-            Tools.showToast(_scaffoldKey, '4');
-          }),
+//            Tools.showToast(_scaffoldKey, '4');
+                Navigator.of(context).pushNamed(UserInfoRecord.tag);
+
+              }),
         ],
       ),
     );
@@ -338,8 +344,10 @@ class _UserCenterState extends State<UserCenter> {
                 menuItem('my_page_server_income',
                     WalletLocalizations.of(context).my_page_server_income,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '1');
-                }),
+//                  Tools.showToast(_scaffoldKey, '1');
+                      Navigator.of(context).pushNamed(UserInfoTradingData.tag);
+
+                    }),
                 menuItem('my_page_server_agent',
                     WalletLocalizations.of(context).my_page_server_agent,
                     onTap: () {
@@ -357,13 +365,15 @@ class _UserCenterState extends State<UserCenter> {
                 }),
               ],
             ),
+            SizedBox(height: 20),
             Row(
               children: <Widget>[
                 menuItem('my_page_server_safe',
                     WalletLocalizations.of(context).my_page_server_safe,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '1');
-                }),
+//                  Tools.showToast(_scaffoldKey, '1');
+                      Navigator.of(context).pushNamed(UserInfoCenter.tag);
+                    }),
                 menuItem('my_page_server_about',
                     WalletLocalizations.of(context).my_page_server_about,
                     onTap: () {

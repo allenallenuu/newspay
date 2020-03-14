@@ -93,6 +93,9 @@ class NetConfig {
   /// 获取 用户余额列表
   static String balanceList = 'user/getBalance';
 
+  /// 今日收益
+  static String profitData = 'user/grap/profit';
+
   //查询抢单页面数据：
   static String grapOrderInfo = 'user/grap/grapData';
 
