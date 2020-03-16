@@ -98,60 +98,33 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed(HomePageAgency.tag);
         }
       },
-      child: kIsWeb
-          ? Container(
-              child: Image.asset(
-                Tools.imagePath(imageName),
-                height: 93,
-                fit: BoxFit.fitHeight,
-              ),
-            )
-          : Container(
-              width: (MediaQuery.of(context).size.width - 30) / 2,
-              child: Image.asset(
-                Tools.imagePath(imageName),
-                width: (MediaQuery.of(context).size.width - 30) / 2,
-                height: ((MediaQuery.of(context).size.width - 30) / 2) / 1.98,
-                fit: BoxFit.fill,
-              ),
-            ),
+      child: Container(
+        width: (MediaQuery.of(context).size.width - 30) / 2,
+        child: Image.asset(
+          Tools.imagePath(imageName),
+          width: (MediaQuery.of(context).size.width - 30) / 2,
+          height: ((MediaQuery.of(context).size.width - 30) / 2) / 1.98,
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 
   Widget buildImageParent(Widget one, Widget two) {
-    return kIsWeb
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                  height: 100,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  padding: EdgeInsets.only(top: 10),
-                  child: Row(
-                    children: <Widget>[
-                      one,
-                      SizedBox(
-                        width: 10,
-                      ),
-                      two,
-                    ],
-                  )),
-            ],
-          )
-        : Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                one,
-                SizedBox(
-                  width: 10,
-                ),
-                two
-              ],
-            ));
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            one,
+            SizedBox(
+              width: 10,
+            ),
+            two
+          ],
+        ));
   }
 
   Widget buildItemes(BuildContext context) {
@@ -159,7 +132,7 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width,
-          height: 156.0,
+          height: MediaQuery.of(context).size.width / 2.3,
           child: Swiper(
             itemCount: _bannerImageList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -169,8 +142,10 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.of(context).pushNamed(ShareReceivePage.tag);
                     },
-                    child: Image.asset(Tools.imagePath(_bannerImageList[index]),
-                        fit: kIsWeb ? BoxFit.fitHeight : BoxFit.fitWidth),
+                    child: Image.asset(
+                      Tools.imagePath(_bannerImageList[index]),
+                      fit: BoxFit.fill,
+                    ),
                   ));
             },
             autoplay: true,
