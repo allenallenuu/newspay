@@ -358,9 +358,9 @@ class _UserCenterState extends State<UserCenter> {
                   Navigator.of(context).pushNamed(ShareReceivePage.tag);
                 }),
                 menuItem('my_page_server_customer',
-                    WalletLocalizations.of(context).my_page_server_wait,
+                    WalletLocalizations.of(context).my_page_server_service,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '4');
+                  Tools.showToast(_scaffoldKey, '敬请期待');
                 }),
               ],
             ),
@@ -384,9 +384,9 @@ class _UserCenterState extends State<UserCenter> {
                   Tools.showToast(_scaffoldKey, '3');
                 }),
                 menuItem('my_page_server_help',
-                    WalletLocalizations.of(context).my_page_server_wait,
+                    WalletLocalizations.of(context).my_page_server_help,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '4');
+                      Tools.showToast(_scaffoldKey, '敬请期待');
                 }),
               ],
             ),
