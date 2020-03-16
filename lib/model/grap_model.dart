@@ -63,6 +63,4 @@ class StopGrapThreadModel{
   StopGrapThreadModel();
 }
 
-class GoGrapThreadModel{
-  GoGrapThreadModel();
-}
+

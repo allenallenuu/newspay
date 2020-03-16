@@ -26,6 +26,7 @@ import 'package:wpay_app/view/share/share_receive_page.dart';
 import 'package:wpay_app/view/main_view/me/user_info_center.dart';
 import 'package:wpay_app/view/main_view/me/user_info_record.dart';
 import 'package:wpay_app/view/main_view/me/user_info_set.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -48,6 +49,8 @@ class _UserCenterState extends State<UserCenter> {
   void dispose() {
     super.dispose();
     _refreshController.dispose();
+    NotificationCenter.instance.removeNotification('jumpToPage');
+
   }
 
   @override
@@ -87,10 +90,11 @@ class _UserCenterState extends State<UserCenter> {
                     imageUrl: NetConfig.imageHost +
                         GlobalInfo.userInfo.faceUrl,
                     errorWidget: (context, url, error) =>
-                    new Icon(Icons.error),
-                    width: 55,
-                    height: 55,
-                    fit: BoxFit.fitHeight,
+                    new Image.asset(
+                      Tools.imagePath('my_page_avatar'),
+                      fit: BoxFit.fitHeight,
+                      height: 42,
+                    ),
                   ))
                   : ClipOval(
                 child: Image.asset(
@@ -113,7 +117,9 @@ class _UserCenterState extends State<UserCenter> {
           Row(
             children: <Widget>[
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  _downloadApp();
+                },
                 child: Image.asset(
                   Tools.imagePath('my_page_app'),
                   width: 30,
@@ -343,7 +349,7 @@ class _UserCenterState extends State<UserCenter> {
               WalletLocalizations
                   .of(context)
                   .my_page_menu_qiangdan, onTap: () {
-                GlobalEventBus().event.fire(new GoGrapThreadModel());
+                NotificationCenter.instance.postNotification('jumpToPage', 1);
               }),
           menuItem('my_page_recharge',
               WalletLocalizations
@@ -402,7 +408,7 @@ class _UserCenterState extends State<UserCenter> {
 
                     WalletLocalizations
                         .of(context)
-                        .my_page_server_wait,
+                        .my_page_server_service,
                     onTap: () {
                       Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
                     }),
@@ -436,7 +442,7 @@ class _UserCenterState extends State<UserCenter> {
                 menuItem('my_page_server_help',
                     WalletLocalizations
                         .of(context)
-                        .my_page_server_wait,
+                        .my_page_server_help,
                     onTap: () {
                       Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
                     }),

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 
 class HomeNoticeView extends StatefulWidget {
@@ -20,6 +23,13 @@ class _HomeNoticeView extends State<HomeNoticeView> {
     super.initState();
   }
 
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    NotificationCenter.instance.removeNotification('jumpToPage');
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,6 +75,7 @@ class _HomeNoticeView extends State<HomeNoticeView> {
                 pagination: null,
                 onTap: (int index) {
                   print("index-----" + _noticeStringList[index]);
+                  NotificationCenter.instance.postNotification('jumpToPage', 1);
                 },
               ),
             ),
