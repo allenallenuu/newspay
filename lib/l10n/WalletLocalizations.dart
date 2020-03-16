@@ -104,6 +104,9 @@ class WalletLocalizations {
       'my_page_server_agent': '我的代理',
       'my_page_server_download': '下载app',
       'my_page_server_income': '今日收益',
+      'my_page_server_service': '在线客服',
+      'my_page_server_help': '帮助中心',
+
       'my_page_server_safe': '安全中心',
       'my_page_server_share': '分享',
       'my_page_server_wait': '敬请期待',
@@ -252,6 +255,8 @@ class WalletLocalizations {
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
       'my_page_server_income': 'Income',
+      'my_page_server_service': 'Customer',
+      'my_page_server_help': 'Help',
       'my_page_server_safe': 'Safety center',
       'my_page_server_share': 'Share',
       'my_page_server_wait': 'Soon',
@@ -532,6 +537,10 @@ class WalletLocalizations {
 
   get my_page_server_income =>
       _localizedValues[locale.languageCode]['my_page_server_income'];
+  get my_page_server_service =>
+      _localizedValues[locale.languageCode]['my_page_server_service'];
+  get my_page_server_help =>
+      _localizedValues[locale.languageCode]['my_page_server_help'];
 
   get my_page_server_safe =>
       _localizedValues[locale.languageCode]['my_page_server_safe'];

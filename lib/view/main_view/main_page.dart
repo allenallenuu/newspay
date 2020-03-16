@@ -11,6 +11,7 @@ import 'package:wpay_app/tools/app_data_setting.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order.dart';
 import 'package:wpay_app/view/main_view/home/home_page.dart';
 import 'package:wpay_app/view/main_view/me/my_page.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:wpay_app/tools/GlobalEventBus.dart';
 
@@ -28,7 +29,9 @@ class _MainPageState extends State<MainPage>
   List<Widget> pages = List();
 
   int _currentIndex = 0;
-
+  var _controller = PageController(
+    initialPage: 0,
+  );
   @override
   void initState() {
     super.initState();
@@ -40,15 +43,13 @@ class _MainPageState extends State<MainPage>
         .on<JpushMessageModel>()
         .listen((JpushMessageModel data) => showTip(data));
 
-    GlobalEventBus()
-        .event
-        .on<GoGrapThreadModel>()
-        .listen((GoGrapThreadModel data) => () {
-              setState(() {
-                _currentIndex = 1;
-              });
-            });
-
+    //添加监听者
+    NotificationCenter.instance.addObserver('jumpToPage', (object){
+      setState(() {
+        _currentIndex = 1;
+      });
+      _controller.jumpToPage(_currentIndex);
+    });
     pages..add(HomePage())..add(OrderCenter())..add(UserCenter());
   }
 
@@ -63,6 +64,7 @@ class _MainPageState extends State<MainPage>
   @override
   void dispose() {
     super.dispose();
+    _controller.dispose();
     GlobalEventBus().event.destroy();
   }
 
@@ -157,13 +159,18 @@ class _MainPageState extends State<MainPage>
           )),
     ];
     return Scaffold(
-      body: pages[_currentIndex],
+      body: PageView(
+        controller: _controller,
+        children: pages,
+        physics: NeverScrollableScrollPhysics(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: navList,
         currentIndex: _currentIndex,
         backgroundColor: AppCustomColor.navBgColor,
         fixedColor: AppCustomColor.themeFrontColor,
         onTap: (int index) {
+          _controller.jumpToPage(index);
           setState(() {
             _currentIndex = index;
           });
