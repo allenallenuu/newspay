@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
 
 import '../../../l10n/WalletLocalizations.dart';
 import '../../../model/global_model.dart';
@@ -163,7 +164,7 @@ class _UserInfoSetState extends State<UserInfoSet> {
                   prefs.then((share) {
                     share.clear();
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => MainPage()),
+                      MaterialPageRoute(builder: (context) => StartLoginPage()),
                           (route) => route == null,
                     );
                   });

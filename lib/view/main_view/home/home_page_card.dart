@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/home/home_add_card.dart';
-import 'package:qiangdan_app/view/main_view/home/home_card_list.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/home/home_add_card.dart';
+import 'package:wpay_app/view/main_view/home/home_card_list.dart';
 
 class HomePageCard extends StatefulWidget {
   static String tag = "HomePageCard";

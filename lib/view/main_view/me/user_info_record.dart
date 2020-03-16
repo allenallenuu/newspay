@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/me/recharge_list_widget.dart';
-import 'package:qiangdan_app/view/main_view/me/withdraw_list_widget.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/me/recharge_list_widget.dart';
+import 'package:wpay_app/view/main_view/me/withdraw_list_widget.dart';
 
 import 'balance_list_widget.dart';
 

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/welcome/forget_account.dart';
-import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/welcome/forget_account.dart';
+import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class ChangePassword extends StatefulWidget {
   var typeSet;

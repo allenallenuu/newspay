@@ -9,14 +9,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/WebTools.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/tools/key_config.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/tools/wave_loading/wave.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/tools/key_config.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/tools/wave_loading/wave.dart';
 
-import 'package:qiangdan_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
 
 class Tools {
   /** 返回当前时间戳 */

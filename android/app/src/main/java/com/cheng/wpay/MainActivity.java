@@ -1,4 +1,4 @@
-package com.cheng.qiangdan;
+package com.cheng.wpay;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -58,3 +58,11 @@ class GrapListModel {
     @required this.remarks,
 });
 }
+
+class StopGrapThreadModel{
+  StopGrapThreadModel();
+}
+
+class GoGrapThreadModel{
+  GoGrapThreadModel();
+}

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/tools/GlobalEventBus.dart';
-import 'package:qiangdan_app/tools/JpushMessageModel.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/tools/JpushMessageModel.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/net_config.dart';
 
 class JpushToolsInstance {
   factory JpushToolsInstance() => _jpushToolsInstance();

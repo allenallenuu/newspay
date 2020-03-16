@@ -3,15 +3,16 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/tools/JpushMessageModel.dart';
-import 'package:qiangdan_app/tools/JpushTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order.dart';
-import 'package:qiangdan_app/view/main_view/home/home_page.dart';
-import 'package:qiangdan_app/view/main_view/me/my_page.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
-import 'package:qiangdan_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/JpushMessageModel.dart';
+import 'package:wpay_app/tools/JpushTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order.dart';
+import 'package:wpay_app/view/main_view/home/home_page.dart';
+import 'package:wpay_app/view/main_view/me/my_page.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 
 class MainPage extends StatefulWidget {
   static String tag = 'MainPage';
@@ -39,18 +40,22 @@ class _MainPageState extends State<MainPage>
         .on<JpushMessageModel>()
         .listen((JpushMessageModel data) => showTip(data));
 
-    pages
-      ..add(HomePage())
-      ..add(OrderCenter())
-      ..add(UserCenter());
+    GlobalEventBus()
+        .event
+        .on<GoGrapThreadModel>()
+        .listen((GoGrapThreadModel data) => () {
+              setState(() {
+                _currentIndex = 1;
+              });
+            });
+
+    pages..add(HomePage())..add(OrderCenter())..add(UserCenter());
   }
 
   void showTip(JpushMessageModel type) {
     if (type != null) {
-      if (this.mounted){
-        setState(() {
-
-        });
+      if (this.mounted) {
+        setState(() {});
       }
     }
   }
@@ -58,15 +63,16 @@ class _MainPageState extends State<MainPage>
   @override
   void dispose() {
     super.dispose();
+    GlobalEventBus().event.destroy();
   }
 
   @override
   Widget build(BuildContext context) {
     this.brightness = Theme.of(context).brightness;
     AppCustomColor.themeFrontColor =
-    this.brightness == Brightness.dark ? Colors.white : Colors.black;
+        this.brightness == Brightness.dark ? Colors.white : Colors.black;
     AppCustomColor.themeBackgroudColor =
-    this.brightness == Brightness.dark ? Colors.black : Colors.white;
+        this.brightness == Brightness.dark ? Colors.black : Colors.white;
 
     var navList = [
       BottomNavigationBarItem(
@@ -83,7 +89,6 @@ class _MainPageState extends State<MainPage>
           title: Text(
             WalletLocalizations.of(context).homePage,
           )),
-
       BottomNavigationBarItem(
           icon: Stack(
             children: <Widget>[
@@ -92,17 +97,21 @@ class _MainPageState extends State<MainPage>
                 width: 24,
                 height: 24,
               ),
-              JpushToolsInstance().sellType ?
-              Container(
-                width: 24,
-                height: 24,
-                alignment: Alignment.topRight,
-                child: Badge(
-                  badgeColor: Colors.red,
-                  shape: BadgeShape.circle,
-                  toAnimate: false,
-                ),
-              ):Container(width: 24,height: 24,),
+              JpushToolsInstance().sellType
+                  ? Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.topRight,
+                      child: Badge(
+                        badgeColor: Colors.red,
+                        shape: BadgeShape.circle,
+                        toAnimate: false,
+                      ),
+                    )
+                  : Container(
+                      width: 24,
+                      height: 24,
+                    ),
             ],
           ),
           activeIcon: Stack(
@@ -112,17 +121,21 @@ class _MainPageState extends State<MainPage>
                 width: 24,
                 height: 24,
               ),
-              JpushToolsInstance().sellType?
-              Container(
-                width: 24,
-                height: 24,
-                alignment: Alignment.topRight,
-                child: Badge(
-                  badgeColor: Colors.red,
-                  shape: BadgeShape.circle,
-                  toAnimate: false,
-                ),
-              ):Container(width: 24,height: 24,),
+              JpushToolsInstance().sellType
+                  ? Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.topRight,
+                      child: Badge(
+                        badgeColor: Colors.red,
+                        shape: BadgeShape.circle,
+                        toAnimate: false,
+                      ),
+                    )
+                  : Container(
+                      width: 24,
+                      height: 24,
+                    ),
             ],
           ),
           title: Text(

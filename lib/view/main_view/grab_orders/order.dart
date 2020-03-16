@@ -7,12 +7,13 @@ import 'package:flutter/cupertino.dart';
 /// [time] 2019-3-21
 
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/model/grap_model.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -32,6 +33,11 @@ class _OrderCenterState extends State<OrderCenter> {
     super.initState();
 
     grapOrderInfo();
+
+    GlobalEventBus()
+        .event
+        .on<StopGrapThreadModel>()
+        .listen((StopGrapThreadModel data) => cancelTimer());
 
     _timePeriodic = Timer.periodic(Duration(milliseconds: 5000), (timer) {
       grapOrderInfo();
@@ -54,6 +60,7 @@ class _OrderCenterState extends State<OrderCenter> {
   @override
   void dispose() {
     super.dispose();
+    GlobalEventBus().event.destroy();
   }
 
   @override

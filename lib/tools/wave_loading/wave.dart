@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:qiangdan_app/tools/wave_loading/delay_tween.dart';
+import 'package:wpay_app/tools/wave_loading/delay_tween.dart';
 
 enum SpinKitWaveTypeLoading { start, end, center }
 

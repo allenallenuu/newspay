@@ -8,18 +8,26 @@ import 'package:flutter/foundation.dart';
 /// [time] 2019-3-21
 
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/model/BalanceModel.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_recharge.dart';
-import 'package:qiangdan_app/view/main_view/grab_orders/order_withdraw.dart';
-import 'package:qiangdan_app/view/main_view/home/home_notice_view.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_trading_data.dart';
-import 'package:qiangdan_app/view/share/share_receive_page.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_center.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_record.dart';
-import 'package:qiangdan_app/view/main_view/me/user_info_set.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/model/BalanceModel.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
+import 'package:wpay_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_withdraw.dart';
+import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
+import 'package:wpay_app/view/main_view/home/home_page_agent.dart';
+import 'package:wpay_app/view/main_view/me/my_about.dart';
+import 'package:wpay_app/view/main_view/me/user_info_trading_data.dart';
+import 'package:wpay_app/view/share/share_receive_page.dart';
+import 'package:wpay_app/view/main_view/me/user_info_center.dart';
+import 'package:wpay_app/view/main_view/me/user_info_record.dart';
+import 'package:wpay_app/view/main_view/me/user_info_set.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserCenter extends StatefulWidget {
   @override
@@ -71,8 +79,7 @@ class _UserCenterState extends State<UserCenter> {
                   ? ClipOval(
                   child: kIsWeb
                       ? WebTools.networkImageWeb(
-                    NetConfig.imageHost +
-                        GlobalInfo.userInfo.faceUrl,
+                    NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
                     width: 55,
                     height: 55,
                   )
@@ -120,7 +127,6 @@ class _UserCenterState extends State<UserCenter> {
               InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(UserInfoSet.tag);
-
                 },
                 child: Image.asset(
                   Tools.imagePath('my_page_set'),
@@ -150,7 +156,7 @@ class _UserCenterState extends State<UserCenter> {
 
   void getBalanceInfo({Function callback = null}) {
     Future future =
-        NetConfig.post(context, NetConfig.balanceList, {}, timeOut: 10);
+    NetConfig.post(context, NetConfig.balanceList, {}, timeOut: 10);
     future.then((data) {
       if (NetConfig.checkData(data)) {
         _balanceModel = BalanceModel(
@@ -176,13 +182,20 @@ class _UserCenterState extends State<UserCenter> {
           enablePullUp: false,
           header: ClassicHeader(
               releaseText:
-                  WalletLocalizations.of(context).pull_to_refresh_releaseText,
-              refreshingText: WalletLocalizations.of(context)
+              WalletLocalizations
+                  .of(context)
+                  .pull_to_refresh_releaseText,
+              refreshingText: WalletLocalizations
+                  .of(context)
                   .pull_to_refresh_refreshingText,
               completeText:
-                  WalletLocalizations.of(context).pull_to_refresh_completeText,
+              WalletLocalizations
+                  .of(context)
+                  .pull_to_refresh_completeText,
               idleText:
-                  WalletLocalizations.of(context).pull_to_refresh_idleText),
+              WalletLocalizations
+                  .of(context)
+                  .pull_to_refresh_idleText),
           controller: _refreshController,
           onRefresh: _onRefresh,
           child: SingleChildScrollView(
@@ -191,14 +204,20 @@ class _UserCenterState extends State<UserCenter> {
                 infoView(),
                 Container(
                   color: Color(0xffF6F6F6),
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   height: 10,
                 ),
-                HomeNoticeView(),
                 menuView(),
+                HomeNoticeView(),
                 Container(
                   color: Color(0xffF6F6F6),
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   height: 10,
                 ),
                 serverMenu(),
@@ -211,7 +230,10 @@ class _UserCenterState extends State<UserCenter> {
   Widget infoView() {
     return Container(
         padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 7),
         decoration: BoxDecoration(
           color: Color(0xfff34545),
@@ -230,7 +252,9 @@ class _UserCenterState extends State<UserCenter> {
             Row(
               children: <Widget>[
                 Text(
-                  WalletLocalizations.of(context).my_page_balance,
+                  WalletLocalizations
+                      .of(context)
+                      .my_page_balance,
                   style: TextStyle(fontSize: 12, color: Color(0xffF3F3F3)),
                 ),
               ],
@@ -261,13 +285,15 @@ class _UserCenterState extends State<UserCenter> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        WalletLocalizations.of(context).my_page_total_profit,
+                        WalletLocalizations
+                            .of(context)
+                            .my_page_total_profit,
                         style:
-                            TextStyle(fontSize: 12, color: Color(0xffF3F3F3)),
+                        TextStyle(fontSize: 12, color: Color(0xffF3F3F3)),
                       ),
                       AutoSizeText(
                         _balanceModel != null &&
-                                _balanceModel.totalProfit != null
+                            _balanceModel.totalProfit != null
                             ? _balanceModel.totalProfit.toString()
                             : '0.0',
                         style: TextStyle(fontSize: 24, color: Colors.white),
@@ -283,13 +309,15 @@ class _UserCenterState extends State<UserCenter> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        WalletLocalizations.of(context).my_page_frozen,
+                        WalletLocalizations
+                            .of(context)
+                            .my_page_frozen,
                         style:
-                            TextStyle(fontSize: 12, color: Color(0xffF3F3F3)),
+                        TextStyle(fontSize: 12, color: Color(0xffF3F3F3)),
                       ),
                       AutoSizeText(
                         _balanceModel != null &&
-                                _balanceModel.frozenBalance != null
+                            _balanceModel.frozenBalance != null
                             ? _balanceModel.frozenBalance.toString()
                             : '0.0',
                         style: TextStyle(fontSize: 24, color: Colors.white),
@@ -312,20 +340,28 @@ class _UserCenterState extends State<UserCenter> {
       child: Row(
         children: <Widget>[
           menuItem('my_page_qiangdan',
-              WalletLocalizations.of(context).my_page_menu_qiangdan, onTap: () {
-            Tools.showToast(_scaffoldKey, '1');
-          }),
+              WalletLocalizations
+                  .of(context)
+                  .my_page_menu_qiangdan, onTap: () {
+                GlobalEventBus().event.fire(new GoGrapThreadModel());
+              }),
           menuItem('my_page_recharge',
-              WalletLocalizations.of(context).my_page_menu_recharge, onTap: () {
+              WalletLocalizations
+                  .of(context)
+                  .my_page_menu_recharge, onTap: () {
                 Navigator.of(context).pushNamed(OrderRecharge.tag);
-          }),
+              }),
           menuItem('my_page_withdrawal',
-              WalletLocalizations.of(context).my_page_menu_withdrawal,
+              WalletLocalizations
+                  .of(context)
+                  .my_page_menu_withdrawal,
               onTap: () {
                 Navigator.of(context).pushNamed(OrderWithdraw.tag);
-          }),
+              }),
           menuItem('my_page_record',
-              WalletLocalizations.of(context).my_page_menu_record, onTap: () {
+              WalletLocalizations
+                  .of(context)
+                  .my_page_menu_record, onTap: () {
                 Navigator.of(context).pushNamed(UserInfoRecord.tag);
               }),
         ],
@@ -341,78 +377,105 @@ class _UserCenterState extends State<UserCenter> {
             Row(
               children: <Widget>[
                 menuItem('my_page_server_income',
-                    WalletLocalizations.of(context).my_page_server_income,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_income,
                     onTap: () {
 //                  Tools.showToast(_scaffoldKey, '1');
                       Navigator.of(context).pushNamed(UserInfoTradingData.tag);
-
                     }),
                 menuItem('my_page_server_agent',
-                    WalletLocalizations.of(context).my_page_server_agent,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_agent,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '2');
-                }),
+                      Navigator.of(context).pushNamed(HomePageAgent.tag);
+                    }),
                 menuItem('my_page_server_share',
-                    WalletLocalizations.of(context).my_page_server_share,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_share,
                     onTap: () {
-                  Navigator.of(context).pushNamed(ShareReceivePage.tag);
-                }),
+                      Navigator.of(context).pushNamed(ShareReceivePage.tag);
+                    }),
                 menuItem('my_page_server_customer',
-                    WalletLocalizations.of(context).my_page_server_service,
+
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_wait,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '敬请期待');
-                }),
+                      Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
+                    }),
               ],
             ),
             SizedBox(height: 20),
             Row(
               children: <Widget>[
                 menuItem('my_page_server_safe',
-                    WalletLocalizations.of(context).my_page_server_safe,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_safe,
                     onTap: () {
 //                  Tools.showToast(_scaffoldKey, '1');
                       Navigator.of(context).pushNamed(UserInfoCenter.tag);
                     }),
                 menuItem('my_page_server_about',
-                    WalletLocalizations.of(context).my_page_server_about,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_about,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '2');
-                }),
+                      Navigator.of(context).pushNamed(MyAbout.tag);
+                    }),
                 menuItem('my_page_server_download',
-                    WalletLocalizations.of(context).my_page_server_download,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_download,
                     onTap: () {
-                  Tools.showToast(_scaffoldKey, '3');
-                }),
+                      _downloadApp();
+                    }),
                 menuItem('my_page_server_help',
-                    WalletLocalizations.of(context).my_page_server_help,
+                    WalletLocalizations
+                        .of(context)
+                        .my_page_server_wait,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, '敬请期待');
-                }),
+                      Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
+                    }),
               ],
             ),
           ],
         ));
   }
 
+  void _downloadApp() async {
+    var url = GlobalInfo.userInfo.appDownloadAddress;
+
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      Tools.showToast(_scaffoldKey, 'Could not launch $url');
+    }
+  }
+
   Widget menuItem(String image, String txt, {Function onTap = null}) {
     return Expanded(
         child: InkWell(
-      onTap: onTap == null ? () {} : onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            Tools.imagePath(image),
-            width: 30,
-            height: 30,
-            fit: BoxFit.fill,
+          onTap: onTap == null ? () {} : onTap,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                Tools.imagePath(image),
+                width: 30,
+                height: 30,
+                fit: BoxFit.fill,
+              ),
+              Text(
+                txt,
+                style: TextStyle(fontSize: 12, color: Color(0xff333333)),
+              ),
+            ],
           ),
-          Text(
-            txt,
-            style: TextStyle(fontSize: 12, color: Color(0xff333333)),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 }

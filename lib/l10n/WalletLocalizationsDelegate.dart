@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
 
 class WalletLocalizationsDelegate extends LocalizationsDelegate<WalletLocalizations>{
 

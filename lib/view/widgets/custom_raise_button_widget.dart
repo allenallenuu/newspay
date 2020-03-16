@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
+import 'package:wpay_app/tools/Tools.dart';
 
 class CustomRaiseButton extends StatelessWidget {
   const CustomRaiseButton({

@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/tools/WebTools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/tools/WebTools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
 
 //收款页面
 class ShareReceivePage extends StatefulWidget {

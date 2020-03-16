@@ -8,19 +8,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qiangdan_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view/welcome/start_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/main.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/model/user_info.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/key_config.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view_model/main_model.dart';
-import 'package:qiangdan_app/view_model/state_lib.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/main.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/model/user_info.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/key_config.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/main_view/main_page.dart';
+import 'package:wpay_app/view_model/main_model.dart';
+import 'package:wpay_app/view_model/state_lib.dart';
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -33,7 +33,7 @@ class _SplashState extends State<Splash> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   double refreshOpacity = 0.0;
-  Image image1, imageIcon;
+  Image imageIcon;
   Timer _timer;
 
   @override
@@ -80,17 +80,14 @@ class _SplashState extends State<Splash> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffFE2C55),
         key: _scaffoldKey,
         body: SafeArea(
-            child: image1 == null || imageIcon == null
+            child:  imageIcon == null
                 ? Center(child: CircularProgressIndicator())
                 : Stack(
                     children: <Widget>[
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: image1,
-                      ),
+
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,9 +119,11 @@ class _SplashState extends State<Splash> {
                         ],
                       ),
                       Container(
-                        alignment: Alignment.topCenter,
-                        margin: EdgeInsets.only(top: 150),
-                        child: imageIcon,
+                        margin: EdgeInsets.symmetric(horizontal: 50),
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          Tools.imagePath('splash_bg_icon_black'),
+                        ),
                       ),
                     ],
                   )));
@@ -353,20 +352,12 @@ class _SplashState extends State<Splash> {
 
     MyApp.setLocale(context, locale);
 
-    image1 = Image.asset(
-      Tools.imagePath('splash_bg_black'),
-      fit: BoxFit.fill,
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-    );
+
     imageIcon = Image.asset(
       Tools.imagePath('splash_bg_icon_black'),
     );
 
-    precacheImage(
-      image1.image,
-      context,
-    );
+
     precacheImage(
       imageIcon.image,
       context,
@@ -383,20 +374,12 @@ class _SplashState extends State<Splash> {
 
       MyApp.setLocale(context, locale);
 
-      image1 = Image.asset(
-        Tools.imagePath('splash_bg_black'),
-        fit: BoxFit.fill,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-      );
+
       imageIcon = Image.asset(
         Tools.imagePath('splash_bg_icon_black'),
       );
 
-      precacheImage(
-        image1.image,
-        context,
-      );
+
       precacheImage(
         imageIcon.image,
         context,

@@ -8,17 +8,17 @@ import 'package:flutter/foundation.dart';
 /// [time] 2019-3-5
 
 import 'package:flutter/material.dart';
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/model/global_model.dart';
-import 'package:qiangdan_app/model/user_info.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/tools/key_config.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/main_view/main_page.dart';
-import 'package:qiangdan_app/view/welcome/forget_password.dart';
-import 'package:qiangdan_app/view/welcome/register_account.dart';
-import 'package:qiangdan_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/model/global_model.dart';
+import 'package:wpay_app/model/user_info.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/tools/key_config.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/main_view/main_page.dart';
+import 'package:wpay_app/view/welcome/forget_password.dart';
+import 'package:wpay_app/view/welcome/register_account.dart';
+import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
 
 
 class StartLoginPage extends StatefulWidget {
@@ -135,7 +135,7 @@ class _StartLoginPageState extends State<StartLoginPage>
           margin: EdgeInsets.only(top: 70),
           height: 120,
           child: Image.asset(
-            Tools.imagePath('login_account_unselect'),
+            Tools.imagePath('logo'),
             fit: BoxFit.cover,
             height: 120,
             width: 120,

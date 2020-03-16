@@ -1,7 +1,7 @@
 
 
-import 'package:qiangdan_app/model/user_info.dart';
-import 'package:qiangdan_app/tools/key_config.dart';
+import 'package:wpay_app/model/user_info.dart';
+import 'package:wpay_app/tools/key_config.dart';
 /**
  * Global data
  */

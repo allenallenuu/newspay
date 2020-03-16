@@ -2,14 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:qiangdan_app/l10n/WalletLocalizations.dart';
-import 'package:qiangdan_app/model/payment_method_info.dart';
-import 'package:qiangdan_app/tools/Tools.dart';
-import 'package:qiangdan_app/tools/app_data_setting.dart';
-import 'package:qiangdan_app/tools/net_config.dart';
-import 'package:qiangdan_app/view/main_view/home/home_edit_card.dart';
-import 'package:qiangdan_app/view_model/main_model.dart';
-import 'package:qiangdan_app/view_model/withdraw_list_model.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/model/payment_method_info.dart';
+import 'package:wpay_app/tools/Tools.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/main_view/home/home_edit_card.dart';
+import 'package:wpay_app/view_model/main_model.dart';
+import 'package:wpay_app/view_model/withdraw_list_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class WithdrawListWidget extends StatefulWidget {
