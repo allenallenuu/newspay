@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wpay_app/model/grap_model.dart';
 import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -224,6 +225,7 @@ class NetConfig {
     } else if (response.statusCode == 403) {
 
       GlobalEventBus().event.fire(new StopGrapThreadModel());
+      NotificationCenter.instance.removeNotification('jumpToPage');
 
       GlobalInfo.clear();
       msg = '请重新登录';

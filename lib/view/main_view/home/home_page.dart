@@ -98,16 +98,60 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed(HomePageAgency.tag);
         }
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width / 2.2,
-        child: Image.asset(
-          Tools.imagePath(imageName),
-          width: MediaQuery.of(context).size.width / 2.2,
-          height: 93,
-          fit: BoxFit.fitHeight,
-        ),
-      ),
+      child: kIsWeb
+          ? Container(
+              child: Image.asset(
+                Tools.imagePath(imageName),
+                height: 93,
+                fit: BoxFit.fitHeight,
+              ),
+            )
+          : Container(
+              width: (MediaQuery.of(context).size.width - 30) / 2,
+              child: Image.asset(
+                Tools.imagePath(imageName),
+                width: (MediaQuery.of(context).size.width - 30) / 2,
+                height: ((MediaQuery.of(context).size.width - 30) / 2) / 1.98,
+                fit: BoxFit.fill,
+              ),
+            ),
     );
+  }
+
+  Widget buildImageParent(Widget one, Widget two) {
+    return kIsWeb
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  height: 100,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: <Widget>[
+                      one,
+                      SizedBox(
+                        width: 10,
+                      ),
+                      two,
+                    ],
+                  )),
+            ],
+          )
+        : Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                one,
+                SizedBox(
+                  width: 10,
+                ),
+                two
+              ],
+            ));
   }
 
   Widget buildItemes(BuildContext context) {
@@ -115,15 +159,18 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width,
-          height: 135.0,
+          height: 156.0,
           child: Swiper(
             itemCount: _bannerImageList.length,
             itemBuilder: (BuildContext context, int index) {
               return ClipRRect(
                   borderRadius: new BorderRadius.all(new Radius.circular(10.0)),
-                  child: InkWell(onTap: (){ Navigator.of(context).pushNamed(ShareReceivePage.tag);},
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ShareReceivePage.tag);
+                    },
                     child: Image.asset(Tools.imagePath(_bannerImageList[index]),
-                        fit: BoxFit.fitHeight),
+                        fit: kIsWeb ? BoxFit.fitHeight : BoxFit.fitWidth),
                   ));
             },
             autoplay: true,
@@ -138,52 +185,39 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         //银行卡和代理模式
+        SizedBox(
+          height: 10,
+        ),
         Container(
             width: MediaQuery.of(context).size.width,
-            height: 100,
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            padding: EdgeInsets.only(top: 10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: <Widget>[
-                buildImage(imageList[0], 0),
-                buildImage(imageList[1], 1),
+                buildImageParent(
+                  buildImage(imageList[0], 0),
+                  buildImage(imageList[1], 1),
+                ),
               ],
             )),
+
         //通知
         HomeNoticeView(),
 
         //入门手册
         Container(
             width: MediaQuery.of(context).size.width,
-            height: 200,
-            margin: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    buildImage(imageList1[0], 2),
-                    buildImage(imageList1[1], 3),
-                  ],
+                buildImageParent(
+                  buildImage(imageList1[0], 2),
+                  buildImage(imageList1[1], 3),
                 ),
                 SizedBox(height: 10),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    buildImage(imageList1[2], 4),
-                    buildImage(imageList1[3], 5),
-                  ],
-                )
+                buildImageParent(
+                  buildImage(imageList1[2], 4),
+                  buildImage(imageList1[3], 5),
+                ),
               ],
             )),
-
-//        Container(
-//          child: ,
-//        )
       ],
     );
   }

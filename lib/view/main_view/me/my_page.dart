@@ -49,7 +49,6 @@ class _UserCenterState extends State<UserCenter> {
   void dispose() {
     super.dispose();
     _refreshController.dispose();
-    NotificationCenter.instance.removeNotification('jumpToPage');
 
   }
 

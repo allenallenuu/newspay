@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wpay_app/model/grap_model.dart';
+import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 
 import '../../../l10n/WalletLocalizations.dart';
 import '../../../model/global_model.dart';
@@ -163,6 +166,8 @@ class _UserInfoSetState extends State<UserInfoSet> {
                   SharedPreferences.getInstance();
                   prefs.then((share) {
                     share.clear();
+                    GlobalEventBus().event.fire(new StopGrapThreadModel());
+                    NotificationCenter.instance.removeNotification('jumpToPage');
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => StartLoginPage()),
                           (route) => route == null,

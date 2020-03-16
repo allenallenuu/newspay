@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:wpay_app/tools/GlobalEventBus.dart';
@@ -27,19 +28,19 @@ class _HomeNoticeView extends State<HomeNoticeView> {
   @override
   void dispose() {
     // TODO: implement dispose
-    NotificationCenter.instance.removeNotification('jumpToPage');
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.all(15),
+      height: 113,
+      margin: EdgeInsets.only(left: 15,right: 15,top: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
           image: AssetImage(Tools.imagePath('home_notice')),
-          fit: BoxFit.fitWidth,
+          fit: kIsWeb?BoxFit.fitHeight:BoxFit.fitWidth,
         ),
       ),
       child: Row(
@@ -49,7 +50,7 @@ class _HomeNoticeView extends State<HomeNoticeView> {
           Expanded(
             child: Container(
               height: 30,
-              margin: EdgeInsets.only(left: 60),
+             alignment: Alignment.center,
               child: Swiper(
                 itemCount: _noticeStringList.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -78,15 +79,6 @@ class _HomeNoticeView extends State<HomeNoticeView> {
                   NotificationCenter.instance.postNotification('jumpToPage', 1);
                 },
               ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 8),
-            child: Image.asset(
-              Tools.imagePath('home_notice_right'),
-              fit: BoxFit.cover,
-              width: 56,
-              height: 56,
             ),
           ),
         ],
