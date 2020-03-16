@@ -75,7 +75,7 @@ class _HomeNoticeView extends State<HomeNoticeView> {
                 itemHeight: 28,
                 pagination: null,
                 onTap: (int index) {
-                  print("index-----" + _noticeStringList[index]);
+//                  print("index-----" + _noticeStringList[index]);
                   NotificationCenter.instance.postNotification('jumpToPage', 1);
                 },
               ),
