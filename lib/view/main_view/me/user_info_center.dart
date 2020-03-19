@@ -58,28 +58,28 @@ class _UserInfoCenterState extends State<UserInfoCenter> {
               ),
             ),
             Divider(height: 0, indent: 15),
-            Ink(
-              color: AppCustomColor.themeBackgroudColor,
-              child: ListTile(
-                title: Text(WalletLocalizations.of(context).myPageSingleCard),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      '',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    SizedBox(width: 15),
-                    Icon(Icons.keyboard_arrow_right),
-                  ],
-                ),
-                onTap: () {
-                  print('抢单银行卡');
-//                  Navigator.of(context).pushNamed(RealNameAuthentication.tag);
-                },
-              ),
-            ),
-            Divider(height: 0, indent: 15),
+//            Ink(
+//              color: AppCustomColor.themeBackgroudColor,
+//              child: ListTile(
+//                title: Text(WalletLocalizations.of(context).myPageSingleCard),
+//                trailing: Row(
+//                  mainAxisSize: MainAxisSize.min,
+//                  children: <Widget>[
+//                    Text(
+//                      '',
+//                      style: TextStyle(color: Colors.grey),
+//                    ),
+//                    SizedBox(width: 15),
+//                    Icon(Icons.keyboard_arrow_right),
+//                  ],
+//                ),
+//                onTap: () {
+//                  print('抢单银行卡');
+////                  Navigator.of(context).pushNamed(RealNameAuthentication.tag);
+//                },
+//              ),
+//            ),
+//            Divider(height: 0, indent: 15),
           ],
         ),
       ),
