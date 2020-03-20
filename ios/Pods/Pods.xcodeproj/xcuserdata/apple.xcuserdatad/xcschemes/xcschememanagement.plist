@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>flutter_webview_plugin.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>fluttertoast.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -50,16 +55,6 @@
 			<false/>
 		</dict>
 		<key>jpush_flutter.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>libOpenInstallSDK.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>openinstall_flutter_plugin.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
