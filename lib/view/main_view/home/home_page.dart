@@ -8,6 +8,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:wpay_app/l10n/WalletLocalizations.dart';
 import 'package:wpay_app/tools/WebTools.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:wpay_app/view/main_view/home/home_page_agency.dart';
 import 'package:wpay_app/view/main_view/home/home_page_agent.dart';
 import 'package:wpay_app/view/main_view/home/home_notice_view.dart';
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: () {
         if (tag == 0) {
-          Navigator.of(context).pushNamed(HomePageCard.tag);
+          Navigator.of(context).pushNamed(OrderRecharge.tag);
         } else if (tag == 1) {
           Navigator.of(context).pushNamed(HomePageAgent.tag);
         } else if (tag == 2) {

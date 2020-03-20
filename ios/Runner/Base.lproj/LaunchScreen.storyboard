@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -16,19 +16,21 @@
                         <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="splash_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="s68-GX-XZS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ZgS-4t-jm4"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="aVX-Eg-Tg0"/>
-                            <constraint firstAttribute="trailing" secondItem="YRO-k0-Ey4" secondAttribute="trailing" id="lk1-ed-BiC"/>
-                            <constraint firstAttribute="bottom" secondItem="YRO-k0-Ey4" secondAttribute="bottom" id="ziB-cJ-2As"/>
+                            <constraint firstItem="s68-GX-XZS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3PT-Rd-tQl"/>
+                            <constraint firstItem="s68-GX-XZS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Fb6-e8-5v0"/>
+                            <constraint firstItem="s68-GX-XZS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="QiR-X3-0Nm"/>
+                            <constraint firstAttribute="bottom" secondItem="s68-GX-XZS" secondAttribute="bottom" id="Xxg-YG-gME"/>
+                            <constraint firstAttribute="trailing" secondItem="s68-GX-XZS" secondAttribute="trailing" id="bUs-FQ-DZR"/>
+                            <constraint firstItem="s68-GX-XZS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tdC-Ax-uGn"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash_bg.png" width="752" height="1334"/>
+        <image name="LaunchScreenBg.png" width="375" height="667"/>
     </resources>
 </document>
