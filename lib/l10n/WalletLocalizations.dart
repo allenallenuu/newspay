@@ -55,7 +55,7 @@ class WalletLocalizations {
       'homePageAgent': '代理模式',
       'homePageAgentOperation': '代理操作',
       'homePageAgentAvoiding': '规避雷区',
-      'homePageAgentAgency': '代理奖惩',
+      'homePageAgentAgency': '代理奖励',
 
 
       'sellcoinTotalAssets': '代理总收益',
