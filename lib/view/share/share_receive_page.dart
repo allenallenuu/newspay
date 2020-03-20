@@ -372,7 +372,9 @@ class _ShareReceivePageState extends State<ShareReceivePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Container(
+                InkWell( onTap: () {
+                  _setRatioRange();
+                },child:  Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -385,7 +387,8 @@ class _ShareReceivePageState extends State<ShareReceivePage> {
                     WalletLocalizations.of(context).share_rate,
                     style: TextStyle(color: Colors.white),
                   ),
-                ),
+                ),),
+
                 InkWell(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
