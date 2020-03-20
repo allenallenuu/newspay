@@ -1,25 +1,26 @@
 import 'package:flutter/cupertino.dart';
 
 class GrapModel {
+  double grabNumMin;
+  double grabNumMax;
   bool grapType;
   double balance;
   String errorMessage;
-  double grapNum;
-  int orderNum;
   double earningsRatio;
-  double grapRatio;
-  List<GrapListModel> orderlist;
+  int orderNum;
+  double grapRatioMaxStr;
+  double grapRatioMinStr;
 
-  GrapModel({
-    @required this.grapType,
-    @required this.balance,
-    @required this.errorMessage,
-    @required this.grapNum,
-    @required this.orderNum,
-    @required this.grapRatio,
-    @required this.orderlist,
-    @required this.earningsRatio
-  });
+  GrapModel(
+      {@required this.grabNumMin,
+      @required this.grabNumMax,
+      @required this.grapType,
+      @required this.balance,
+      @required this.errorMessage,
+      @required this.earningsRatio,
+      @required this.orderNum,
+      @required this.grapRatioMaxStr,
+      @required this.grapRatioMinStr});
 }
 
 class GrapListModel {
@@ -56,11 +57,9 @@ class GrapListModel {
     @required this.created,
     @required this.updated,
     @required this.remarks,
-});
+  });
 }
 
-class StopGrapThreadModel{
+class StopGrapThreadModel {
   StopGrapThreadModel();
 }
-
-

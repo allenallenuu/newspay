@@ -357,7 +357,6 @@ class _SplashState extends State<Splash> {
       Tools.imagePath('splash_bg_icon_black'),
     );
 
-
     precacheImage(
       imageIcon.image,
       context,
