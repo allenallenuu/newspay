@@ -122,6 +122,7 @@ class _HomeAddCardState extends State<HomeAddCard> {
 
         result.then((data) {
           if (NetConfig.checkData(data)) {
+            Tools.showToast(_scaffoldKey,WalletLocalizations.of(context).order_add_success);
             canToucn = true;
             Navigator.pop(context);
             Navigator.pop(context,true);

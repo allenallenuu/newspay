@@ -44,7 +44,7 @@ class WalletLocalizations {
       'homePage': '首页',
       'homePageManual': '入门手册',
       'homePageManualFlow': '使用流程',
-      'homePageManualChannel': '收款渠道',
+      'homePageManualChannel': '抢单渠道',
       'homePageManualRecharge': '充值提现',
       'homePageManualSpeedy': '便捷抢单',
       'homePageManualFlows': '抢单流程',
@@ -165,6 +165,9 @@ class WalletLocalizations {
       'order_order_success': '订单成功数',
       'order_order_fail': '订单异常数',
       'order_order_successRate': '订单确认成功率',
+    'order_add_success': '银行卡添加成功',
+
+
     },
     'en': {
       'userInfoPageButton': 'Quit current identity',
@@ -329,6 +332,8 @@ class WalletLocalizations {
       'order_order_success': 'Success',
       'order_order_fail': 'Fail',
       'order_order_successRate': 'SuccessRate',
+      'order_add_success': 'Success',
+
     }
   };
 
@@ -767,6 +772,9 @@ class WalletLocalizations {
 
   get order_order_successRate =>
       _localizedValues[locale.languageCode]['order_order_successRate'];
+  get order_add_success =>
+      _localizedValues[locale.languageCode]['order_add_success'];
+
 
   static WalletLocalizations of(BuildContext context) {
     return Localizations.of(context, WalletLocalizations);

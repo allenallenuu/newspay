@@ -56,7 +56,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
                   children: <Widget>[
                     _withdrawInfo(),
                     _amountInput(),
-                    myCardView(),
+//                    myCardView(),
                     submitView()
                   ],
                 ),
@@ -257,9 +257,9 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
         NetConfig.withDraw,
         {
           'withdrawCoin': controllerAmount.text,
-          'payee': controllerName.text,
-          'bankNumber': controllerCard.text,
-          'bankName': controllerBank.text
+//          'payee': controllerName.text,
+//          'bankNumber': controllerCard.text,
+//          'bankName': controllerBank.text
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);
