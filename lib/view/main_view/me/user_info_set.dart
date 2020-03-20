@@ -172,6 +172,9 @@ class _UserInfoSetState extends State<UserInfoSet> {
                       MaterialPageRoute(builder: (context) => StartLoginPage()),
                           (route) => route == null,
                     );
+
+
+                    GlobalEventBus().event.destroy();
                   });
                 },
               )

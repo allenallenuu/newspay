@@ -107,6 +107,9 @@ class NetConfig {
   //开始抢单
   static String startGrap = 'user/grap/startGrap';
 
+  //停止抢单
+  static String stopGrap = 'user/grap/stopGrap';
+
   //确认订单
   static String sureGrap = 'user/grap/orderConfirm';
 

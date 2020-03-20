@@ -65,7 +65,6 @@ class _MainPageState extends State<MainPage>
   void dispose() {
     super.dispose();
     _controller.dispose();
-    GlobalEventBus().event.destroy();
   }
 
   @override

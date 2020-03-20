@@ -59,7 +59,6 @@ class _OrderCenterState extends State<OrderCenter> {
   @override
   void dispose() {
     super.dispose();
-    GlobalEventBus().event.destroy();
   }
 
   @override
@@ -91,6 +90,10 @@ class _OrderCenterState extends State<OrderCenter> {
                 SizedBox(
                   height: 5,
                 ),
+                tipView(),
+                SizedBox(
+                  height: 5,
+                ),
                 _grapModel == null
                     ? Container()
                     : _grapModel.errorMessage.trim().length == 0
@@ -105,116 +108,138 @@ class _OrderCenterState extends State<OrderCenter> {
     return Stack(
       children: <Widget>[
         Container(
-          height: 200.0,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(Tools.imagePath('order_top_bg')),
+            height: 200.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(Tools.imagePath('order_top_bg')),
+              ),
             ),
-          ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              children: <Widget>[
+                Row(
                   children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
-                      decoration: BoxDecoration(
-                          color: Color(0x33000000),
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(90),
-                              topRight: Radius.circular(90))),
-                      child: Text(
-                        WalletLocalizations.of(context).order_total_balance +
-                            ':  ' +
-                            (_grapModel != null && _grapModel.balance != null
-                                ? '￥' + _grapModel.balance.toString()
-                                : '￥0.0'),
-                        style: TextStyle(fontSize: 14, color: Colors.white),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                            decoration: BoxDecoration(
+                                color: Color(0x33000000),
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(90),
+                                    topRight: Radius.circular(90))),
+                            child: Text(
+                              WalletLocalizations.of(context)
+                                      .order_total_balance +
+                                  ':  ' +
+                                  (_grapModel != null &&
+                                          _grapModel.balance != null
+                                      ? '￥' + _grapModel.balance.toString()
+                                      : '￥0.0'),
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                            decoration: BoxDecoration(
+                                color: Color(0x33000000),
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(90),
+                                    topRight: Radius.circular(90))),
+                            child: Text(
+                                WalletLocalizations.of(context).order_index +
+                                    ':  ' +
+                                    (_grapModel != null &&
+                                            _grapModel.grapRatioMinStr !=
+                                                null &&
+                                            _grapModel.grapRatioMaxStr != null
+                                        ? _grapModel.grapRatioMinStr
+                                                .toString() +
+                                            ' ~ ' +
+                                            _grapModel.grapRatioMaxStr
+                                                .toString() +
+                                            '%'
+                                        : '0.0 ~ 0.0%'),
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                          top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
-                      decoration: BoxDecoration(
-                          color: Color(0x33000000),
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(90),
-                              topRight: Radius.circular(90))),
-                      child: Text(
-                          WalletLocalizations.of(context).order_index +
-                              ':  ' +
-                              (_grapModel != null &&
-                                      _grapModel.grapRatioMinStr != null &&
-                                      _grapModel.grapRatioMaxStr != null
-                                  ? _grapModel.grapRatioMinStr.toString() +
-                                      ' ~ ' +
-                                      _grapModel.grapRatioMaxStr.toString() +
-                                      '%'
-                                  : '0.0 ~ 0.0%'),
-                          style: TextStyle(fontSize: 14, color: Colors.white)),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(WalletLocalizations.of(context).order_amount,
-                        style: TextStyle(fontSize: 14, color: Colors.white)),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                        '￥' +
-                            (_grapModel != null &&
-                                    _grapModel.grabNumMin != null &&
-                                    _grapModel.grabNumMax != null
-                                ? _grapModel.grabNumMin.toString() +
-                                    ' ~ ' +
-                                    _grapModel.grabNumMax.toString()
-                                : '0.0 ~ 0.0'),
-                        style: TextStyle(fontSize: 24, color: Colors.white))
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        if (isSwitch) {
-                          Tools.showToast(_scaffoldKey,
-                              WalletLocalizations.of(context).order_graping);
-                        } else {
-                          startGrap();
-                        }
-                      },
-                      child: Image.asset(
-                        !isSwitch
-                            ? Tools.imagePath('order_switch_close')
-                            : Tools.imagePath('order_switch_open'),
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.fitWidth,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Text(WalletLocalizations.of(context).order_amount,
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
-                    )
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            padding: new EdgeInsets.only(right: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  WalletLocalizations.of(context).order_grap_ai,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.white),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    if (isSwitch) {
+                                      stopGrap();
+                                    } else {
+                                      startGrap();
+                                    }
+                                  },
+                                  child: Image.asset(
+                                    !isSwitch
+                                        ? Tools.imagePath('order_switch_close')
+                                        : Tools.imagePath('order_switch_open'),
+                                    width: 60,
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ),
+                Text(
+                    '￥' +
+                        (_grapModel != null &&
+                                _grapModel.grabNumMin != null &&
+                                _grapModel.grabNumMax != null
+                            ? _grapModel.grabNumMin.toString() +
+                                ' ~ ' +
+                                _grapModel.grabNumMax.toString()
+                            : '0.0 ~ 0.0'),
+                    style: TextStyle(fontSize: 24, color: Colors.white))
+              ],
+            )),
         Container(
             height: 50,
             alignment: Alignment.center,
@@ -272,17 +297,31 @@ class _OrderCenterState extends State<OrderCenter> {
         // barrierDismissible: false,  // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            content:
-                Text(WalletLocalizations.of(context).order_recharge_guide_tip),
-            actions: <Widget>[
-              FlatButton(
-                child: Text(WalletLocalizations.of(context).publicButtonOK),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+              content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(WalletLocalizations.of(context).order_recharge_guide_tip),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                padding:
+                    EdgeInsets.only(left: 30, right: 30, top: 5, bottom: 5),
+                decoration: BoxDecoration(
+                    color: Color(0xffF34545),
+                    borderRadius: BorderRadius.circular(90)),
+                child: InkWell(
+                  child: Container(
+                    child: Text(
+                      WalletLocalizations.of(context).publicButtonOK,
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
               ),
             ],
-          );
+          ));
         });
   }
 
@@ -300,7 +339,7 @@ class _OrderCenterState extends State<OrderCenter> {
             balance: double.parse(data['balance'].toString()),
             errorMessage: data['errorMessage'],
             earningsRatio: double.parse(data['earningsRatio'].toString()),
-            orderNum:data['orderNum'],
+            orderNum: data['orderNum'],
             grapRatioMaxStr: double.parse(data['grapRatioMaxStr'].toString()),
             grapRatioMinStr: double.parse(data['grapRatioMinStr'].toString()));
 
@@ -319,6 +358,23 @@ class _OrderCenterState extends State<OrderCenter> {
     future.then((data) {
       if (NetConfig.checkData(data)) {
         isSwitch = true;
+        Tools.showToast(
+            _scaffoldKey, WalletLocalizations.of(context).order_start_grap);
+      }
+      Navigator.of(context).pop();
+      setState(() {});
+    });
+  }
+
+  void stopGrap() {
+    Tools.loadingAnimation(context);
+    Future future = NetConfig.post(context, NetConfig.stopGrap, {}, timeOut: 10,
+        errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
+    future.then((data) {
+      if (NetConfig.checkData(data)) {
+        isSwitch = false;
         Tools.showToast(
             _scaffoldKey, WalletLocalizations.of(context).order_start_grap);
       }
@@ -389,45 +445,50 @@ class _OrderCenterState extends State<OrderCenter> {
     );
   }
 
+  Widget tipView() {
+    return Text(
+        isSwitch
+            ? WalletLocalizations.of(context).order_graping
+            : WalletLocalizations.of(context).order_stop_grap,
+        style: TextStyle(fontSize: 18, color: Colors.grey));
+  }
+
   Widget contentView() {
     return _grapModel.orderNum > 0
-        ? Expanded(
-            child: Container(
-              padding:
-                  EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: Row(
-                children: <Widget>[
-                  Image.asset(
-                    Tools.imagePath('order_qiang'),
-                    width: 25,
-                    height: 25,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    WalletLocalizations.of(context).order_have_a_new_open_order,
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    _grapModel.orderNum.toString(),
-                    style: TextStyle(fontSize: 15, color: Color(0xffF34545)),
-                  ),
-                  Text(
-                    WalletLocalizations.of(context).order_each,
-                    style: TextStyle(fontSize: 15, color: Colors.black),
-                  ),
-                ],
-              ),
+        ? Container(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+            child: Row(
+              children: <Widget>[
+                Image.asset(
+                  Tools.imagePath('order_qiang'),
+                  width: 25,
+                  height: 25,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  WalletLocalizations.of(context).order_have_a_new_open_order,
+                  style: TextStyle(fontSize: 15, color: Colors.black),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  _grapModel.orderNum.toString(),
+                  style: TextStyle(fontSize: 15, color: Color(0xffF34545)),
+                ),
+                Text(
+                  WalletLocalizations.of(context).order_each,
+                  style: TextStyle(fontSize: 15, color: Colors.black),
+                ),
+              ],
             ),
           )
         : Container();

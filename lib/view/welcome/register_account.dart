@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 /// [time] 2019-3-5
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wpay_app/l10n/WalletLocalizations.dart';
 import 'package:wpay_app/model/global_model.dart';
 import 'package:wpay_app/model/user_info.dart';
@@ -397,9 +398,29 @@ class _RegisterPageState extends State<RegisterPage> {
     result.then((data) {
       print('registerAccount = $data');
       if (data != null) {
+        if (kIsWeb) {
+          if (GlobalInfo.userInfo.webPlation != null &&
+              GlobalInfo.userInfo.webPlation == 'false') {
+            _upgradeAppDownload();
+          } else {
+            Navigator.of(context).pop();
+          }
+        } else {
+          Navigator.of(context).pop();
+        }
         print('注册成功');
-        Navigator.of(context).pop();
       }
     });
+  }
+
+  void _upgradeAppDownload() async {
+    // APK install file download url for Android.
+    var url = GlobalInfo.userInfo.appDownloadAddress;
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      Tools.showToast(_scaffoldKey, 'Could not launch $url');
+    }
   }
 }

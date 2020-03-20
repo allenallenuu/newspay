@@ -148,10 +148,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 //            uri.queryParameters['shareRato'] != null) {
 //          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
 //          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
+//          GlobalInfo.userInfo.webPlation = uri.queryParameters['type'];
 //          isSharePlatForm = true;
 //        } else {
 //          GlobalInfo.userInfo.webShareCode = null;
 //          GlobalInfo.userInfo.webShareRatio = null;
+//          GlobalInfo.userInfo.webPlation = null;
 //          isSharePlatForm = false;
 //        }
 //      }

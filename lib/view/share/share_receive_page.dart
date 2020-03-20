@@ -423,7 +423,7 @@ class _ShareReceivePageState extends State<ShareReceivePage> {
         '?shareCode=' +
         _model.invitationCode +
         '&shareRato=' +
-        currentRate;
+        currentRate + '&type=' + kIsWeb.toString();
     setState(() {
       Navigator.of(context).pop();
     });

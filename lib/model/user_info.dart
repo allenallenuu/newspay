@@ -12,6 +12,7 @@ class UserInfo {
   String webShareAddress;
   String webShareCode = null;
   String webShareRatio = null;
+  String webPlation = null;
 
   FPUserInfo fpUserInfo;
 
