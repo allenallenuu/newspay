@@ -27,6 +27,7 @@ class _OrderCenterState extends State<OrderCenter> {
   bool isSwitch = false;
 
   GrapModel _grapModel;
+  List<GrapListModel> _grapListModel;
   Timer _timePeriodic;
 
   @override
@@ -49,7 +50,6 @@ class _OrderCenterState extends State<OrderCenter> {
     if (_timePeriodic != null) {
       _timePeriodic.cancel();
       _timePeriodic = null;
-
     }
   }
 
@@ -91,19 +91,176 @@ class _OrderCenterState extends State<OrderCenter> {
                     )),
                 topView(),
                 SizedBox(
-                  height: 5,
-                ),
-                SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 _grapModel == null
                     ? Container()
-                    : _grapModel.errorMessage.trim().length == 0
-                        ? contentView()
-                        : errorView(),
-
-                _grapModel.errorMessage.trim().length == 0 ?
-                tipView() : Container()
+                    : _grapModel.errorMessage.trim().length > 0 && _grapModel.orderlist.length == 0
+                        ? errorView()
+                        : contentView(),
+                SizedBox(
+                  height: 5,
+                ),
+                _grapModel.orderlist.length > 0
+                    ? Expanded(
+                        child: MediaQuery.removePadding(
+                          removeTop: true,
+                          context: context,
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 5),
+                            child: ListView.builder(
+                                itemCount: _grapListModel.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                      child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                            top: 10,
+                                            bottom: 10),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        margin: EdgeInsets.only(
+                                            left: 20, right: 20, top: 10),
+                                        child: Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
+                                                  WalletLocalizations.of(
+                                                              context)
+                                                          .order_order +
+                                                      ':  ',
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Color(0xff999999)),
+                                                ),
+                                                Text(
+                                                    _grapListModel[index]
+                                                        .grabOrder,
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color:
+                                                            Color(0xff999999))),
+                                              ],
+                                            ),
+                                            Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, bottom: 5),
+                                                height: 2,
+                                                color: Color(0xffF6F6F6)),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: <Widget>[
+                                                    Image.asset(
+                                                      Tools.imagePath(
+                                                          'order_bank_card'),
+                                                      width: 35,
+                                                      height: 35,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Text(
+                                                      WalletLocalizations.of(
+                                                              context)
+                                                          .order_bankcard,
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      '￥' +
+                                                          _grapListModel[index]
+                                                              .grabAmount
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 24,
+                                                          color: Color(
+                                                              0xffF34545)),
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      _grapListModel[index]
+                                                          .created,
+                                                      style: TextStyle(
+                                                        fontSize: 15,
+                                                        color:
+                                                            Color(0xff999999),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    sureGrap(
+                                                        _grapListModel[index]);
+                                                  },
+                                                  child: Container(
+                                                    margin: EdgeInsets.only(
+                                                        top: 20),
+                                                    padding: EdgeInsets.only(
+                                                        left: 25,
+                                                        right: 25,
+                                                        top: 5,
+                                                        bottom: 5),
+                                                    decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0xffF34545),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(90)),
+                                                    child: Text(
+                                                        WalletLocalizations.of(
+                                                                context)
+                                                            .order_sure_order,
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ));
+                                }),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                _grapModel.orderlist.length == 0 &&_grapModel.errorMessage.trim().length == 0 ? tipView() : Container()
               ],
             ),
     );
@@ -337,6 +494,22 @@ class _OrderCenterState extends State<OrderCenter> {
     });
     future.then((data) {
       if (NetConfig.checkData(data)) {
+        List modelList = data['orderlist'];
+        _grapListModel = [];
+        if (modelList != null && modelList.length > 0) {
+          for (var model in modelList) {
+            _grapListModel.add(GrapListModel(
+                id: model['id'],
+                uid: model['uid'],
+                grabOrder: model['grabOrder'],
+                grabStatus: model['grabStatus'],
+                grabAmount: model['grabAmount'],
+                created: model['created'],
+                updated: model['updated'],
+                remarks: model['remarks']));
+          }
+        }
+
         _grapModel = GrapModel(
             grabNumMin: double.parse(data['grabNumMin'].toString()),
             grabNumMax: double.parse(data['grabNumMax'].toString()),
@@ -346,7 +519,8 @@ class _OrderCenterState extends State<OrderCenter> {
             earningsRatio: double.parse(data['earningsRatio'].toString()),
             orderNum: data['orderNum'],
             grapRatioMaxStr: double.parse(data['grapRatioMaxStr'].toString()),
-            grapRatioMinStr: double.parse(data['grapRatioMinStr'].toString()));
+            grapRatioMinStr: double.parse(data['grapRatioMinStr'].toString()),
+            orderlist: _grapListModel);
 
         isSwitch = data['grapType'];
       }
@@ -452,8 +626,7 @@ class _OrderCenterState extends State<OrderCenter> {
 
   Widget tipView() {
     return Expanded(
-      child:
-      ListView.builder(
+      child: ListView.builder(
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
             return Container(
@@ -513,7 +686,7 @@ class _OrderCenterState extends State<OrderCenter> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                margin: EdgeInsets.only(left: 20, right: 20),
                 child: InkWell(
                     onTap: () {
                       Navigator.of(context).pushNamed(OrderMatch.tag);

@@ -10,6 +10,7 @@ class GrapModel {
   int orderNum;
   double grapRatioMaxStr;
   double grapRatioMinStr;
+  List<GrapListModel> orderlist;
 
   GrapModel(
       {@required this.grabNumMin,
@@ -19,6 +20,7 @@ class GrapModel {
       @required this.errorMessage,
       @required this.earningsRatio,
       @required this.orderNum,
+        @required this.orderlist,
       @required this.grapRatioMaxStr,
       @required this.grapRatioMinStr});
 }
