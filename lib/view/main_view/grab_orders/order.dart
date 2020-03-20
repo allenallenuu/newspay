@@ -13,6 +13,7 @@ import 'package:wpay_app/tools/GlobalEventBus.dart';
 import 'package:wpay_app/tools/Tools.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
 import 'package:wpay_app/tools/net_config.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_match.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:wpay_app/view/main_view/me/user_info_record.dart';
 
@@ -472,7 +473,7 @@ class _OrderCenterState extends State<OrderCenter> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (BuildContext context) {
-                            return OrderRecharge();
+                            return OrderMatch();
                           }));
                         },
                         child: Container(
@@ -484,7 +485,7 @@ class _OrderCenterState extends State<OrderCenter> {
                               borderRadius: BorderRadius.circular(90)),
                           child: Text(
                               WalletLocalizations.of(context)
-                                  .order_recharge_now,
+                                  .order_match_success,
                               style: TextStyle(color: Colors.white)),
                         ),
                       )
