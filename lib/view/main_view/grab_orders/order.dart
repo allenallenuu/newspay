@@ -49,6 +49,7 @@ class _OrderCenterState extends State<OrderCenter> {
     if (_timePeriodic != null) {
       _timePeriodic.cancel();
       _timePeriodic = null;
+
     }
   }
 
