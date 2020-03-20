@@ -169,7 +169,7 @@ class WalletLocalizations {
 
       'order_order_detail':'订单详情',
       'order_order_grap':'应打码量',
-      'order_order_hasGrap':'已打码量',
+      'order_order_hasGrap':'订单总额',
       'order_order_frozenBalance':'冻结金额',
       'order_order_totalProfit':'代理收益',
       'order_order_total':'订单总数',

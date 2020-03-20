@@ -30,7 +30,7 @@ class _UserInfoTradingDataState extends State<UserInfoTradingData> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(WalletLocalizations.of(context)
-              .my_page_server_income),
+              .order_order_detail),
         ),
         body: _balanceModel == null
             ? Center(
@@ -102,12 +102,8 @@ class _UserInfoTradingDataState extends State<UserInfoTradingData> {
             child: Text(WalletLocalizations.of(context)
                 .order_order_detail,style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),),
           ),
-          _tradingInfoItem(WalletLocalizations.of(context)
-              .order_order_grap, _balanceModel.grapNum.toString(),true),
-          SizedBox(height: 10,),
-          _tradingInfoItem(WalletLocalizations.of(context)
-              .order_order_hasGrap, _balanceModel.hasGrapNum.toString(),true),
-          SizedBox(height: 10,),
+
+
           _tradingInfoItem(WalletLocalizations.of(context)
               .order_order_frozenBalance, _balanceModel.frozenBalance.toString(),true),
           SizedBox(height: 10,),
@@ -118,15 +114,8 @@ class _UserInfoTradingDataState extends State<UserInfoTradingData> {
               .order_order_total, _balanceModel.totalNum.toString(),false),
           SizedBox(height: 10,),
           _tradingInfoItem(WalletLocalizations.of(context)
-              .order_order_success, _balanceModel.successNum.toString(),false),
+              .order_order_hasGrap, _balanceModel.hasGrapNum.toString(),true),
           SizedBox(height: 10,),
-          _tradingInfoItem(WalletLocalizations.of(context)
-              .order_order_fail, _balanceModel.failNum.toString(),false),
-          SizedBox(height: 10,),
-          _tradingInfoItem(WalletLocalizations.of(context)
-              .order_order_successRate, _balanceModel.successRate.toString(),false),
-          SizedBox(height: 10,),
-
 
         ],
       ),
