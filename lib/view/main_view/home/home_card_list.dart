@@ -109,7 +109,7 @@ class _HomeCardListState extends State<HomeCardList> {
                     BoxDecoration(color: Color.fromRGBO(246, 246, 246, 1)),
                 child: InkWell(
                   onTap: () {
-                    this.onClickItem(index);
+//                    this.onClickItem(index);
                   },
                   child: Card(
                     shape: RoundedRectangleBorder(

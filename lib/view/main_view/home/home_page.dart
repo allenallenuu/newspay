@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: () {
         if (tag == 0) {
-          Navigator.of(context).pushNamed(OrderRecharge.tag);
+          Navigator.of(context).pushNamed(HomePageCard.tag);
         } else if (tag == 1) {
           Navigator.of(context).pushNamed(HomePageAgent.tag);
         } else if (tag == 2) {
