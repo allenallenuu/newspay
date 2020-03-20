@@ -100,6 +100,9 @@ class _OrderCenterState extends State<OrderCenter> {
                     : _grapModel.errorMessage.trim().length == 0
                         ? contentView()
                         : errorView(),
+
+                _grapModel.errorMessage.trim().length == 0 ?
+                tipView() : Container()
               ],
             ),
     );
@@ -448,7 +451,8 @@ class _OrderCenterState extends State<OrderCenter> {
 
   Widget tipView() {
     return Expanded(
-      child: ListView.builder(
+      child:
+      ListView.builder(
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
             return Container(
@@ -511,7 +515,7 @@ class _OrderCenterState extends State<OrderCenter> {
                 margin: EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: InkWell(
                     onTap: () {
-                      Navigator.of(context).pushNamed(UserInfoRecord.tag);
+                      Navigator.of(context).pushNamed(OrderMatch.tag);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -554,7 +558,6 @@ class _OrderCenterState extends State<OrderCenter> {
                       ],
                     )))
             : Container(),
-        tipView()
       ],
     );
   }
