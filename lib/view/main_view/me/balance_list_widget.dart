@@ -205,7 +205,7 @@ class _BanlanceListWidgetState extends State<BanlanceListWidget> {
                                 height: 60,
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.only(right: 10),
-                                child: Text( (dataInfo.type == 1 ?  '+ ￥' : '- ￥') + dataInfo.amount.toString(),style: TextStyle(color: dataInfo.type == 1 ? Color.fromRGBO(253, 143, 45, 1) : Colors.black,fontSize: 18),),
+                                child: Text( (dataInfo.type == 1 ?  '￥' : '￥') + dataInfo.amount.toString(),style: TextStyle(color: dataInfo.type == 1 ? Color.fromRGBO(253, 143, 45, 1) : Colors.black,fontSize: 18),),
                               ),
                             )
                           ],
