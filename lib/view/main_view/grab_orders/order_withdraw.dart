@@ -75,8 +75,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _cardInfoItem(
-              WalletLocalizations.of(context).withdraw_balance,
+          _cardInfoItem(WalletLocalizations.of(context).withdraw_balance,
               _balanceModel == null ? '' : _balanceModel.balance.toString()),
         ],
       ),
@@ -92,7 +91,9 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
           title,
           style: TextStyle(fontSize: 14, color: Colors.white),
         ),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         Text(content,
             style: TextStyle(
                 fontSize: 24,
@@ -210,11 +211,10 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
   }
 
   void getWithdraw() {
-    Future future =
-        NetConfig.post(context, NetConfig.balanceList, {}, timeOut: 10,errorCallback: (msg) {
-
-          Tools.showToast(_scaffoldKey, msg);
-        });
+    Future future = NetConfig.post(context, NetConfig.balanceList, {},
+        timeOut: 10, errorCallback: (msg) {
+      Tools.showToast(_scaffoldKey, msg);
+    });
     future.then((data) {
       if (NetConfig.checkData(data)) {
         _balanceModel = BalanceModel(
@@ -265,7 +265,10 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
       Tools.showToast(_scaffoldKey, msg);
     });
     future.then((data) {
-      if (NetConfig.checkData(data)) {}
+      if (NetConfig.checkData(data)) {
+        Tools.showToast(_scaffoldKey,
+            WalletLocalizations.of(context).order_withdraw_success);
+      }
       Navigator.of(context).pop();
       setState(() {});
     });

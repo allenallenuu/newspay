@@ -11,8 +11,6 @@ class WalletLocalizations {
       'network_time_out_error': '超时，请检查网络',
       'common_tips_refresh': '刷新',
       'common_tips_no_data_refresh': '没有数据，刷新',
-
-
       'appVersionTitle': '新版本',
       'appVersionContent1': '有新的版本了，更新吧',
       'appVersionBtn1': '以后再说',
@@ -42,7 +40,6 @@ class WalletLocalizations {
       'startPageForgetPasswordButton': '修改密码',
       'startPageOriginalPassInputs': '请输入原密码',
       'startPageLoginPassword': '登录密码',
-
       'startPageRegister': '注册',
       'homePage': '首页',
       'homePageManual': '入门手册',
@@ -56,8 +53,6 @@ class WalletLocalizations {
       'homePageAgentOperation': '代理操作',
       'homePageAgentAvoiding': '规避雷区',
       'homePageAgentAgency': '代理奖励',
-
-
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
       'homePageAgentRatio': '我的比例',
@@ -67,8 +62,6 @@ class WalletLocalizations {
       'homePageAgentInputRatio': '请输入修改比例',
       'publicDefaultName': '匿名',
       'myPageSingleCard': '抢单银行卡',
-
-
       'homeEditCard': '银行卡修改',
       'homeCardName': '持卡人',
       'homeCardNameTip': '请输入持卡人信息',
@@ -78,7 +71,6 @@ class WalletLocalizations {
       'homeCardTypesTip': '请输入开户行',
       'publicButtonOK': '确定',
       'homeCard': '银行卡',
-
       'singlePage': '抢单',
       'minePage': '我的',
       'pull_to_refresh_releaseText': '释放时刷新',
@@ -92,13 +84,11 @@ class WalletLocalizations {
       'my_page_menu_recharge': '充值',
       'my_page_menu_withdrawal': '提现',
       'my_page_menu_balance': '金额变动',
-  'my_page_menu_orderNums': '订单编号:  ',
-
-  'my_page_menu_handleing': '处理中',
+      'my_page_menu_orderNums': '订单编号:  ',
+      'my_page_menu_handleing': '处理中',
       'my_page_menu_success': '成功',
       'my_page_menu_failure': '失败',
       'my_page_menu_cancel': '取消提现',
-
       'my_page_menu_record': '记录',
       'my_page_server_about': '关于我们',
       'my_page_server_agent': '我的代理',
@@ -106,7 +96,6 @@ class WalletLocalizations {
       'my_page_server_income': '订单详情',
       'my_page_server_service': '在线客服',
       'my_page_server_help': '帮助中心',
-
       'my_page_server_safe': '安全中心',
       'my_page_server_share': '分享',
       'my_page_server_wait': '敬请期待',
@@ -116,8 +105,7 @@ class WalletLocalizations {
       'common_btn_confirm': '确定',
       'common_title_userName': '用户名',
       'common_title_phone': '手机号',
-
-      'order_grap_ai':'AI匹配',
+      'order_grap_ai': 'AI匹配',
       'order_total_balance': '总额',
       'order_index': '指数',
       'order_amount': '抢单额度',
@@ -140,44 +128,43 @@ class WalletLocalizations {
       'order_recharge_my_card': '卡号',
       'order_recharge_submit': '提交',
       'order_recharge_input_bank': '请输入银行卡',
+      'order_recharge_success': '充值成功，请等待审核',
+      'order_withdraw_success': '提现成功，请等待审核',
       'order_recharge_input_name': '请输入真实姓名',
       'order_recharge_input_card': '请输入银行卡后四位',
       'order_recharge_input_amount': '请输入充值金额',
       'order_recharge_tips_copy': '复制成功',
-      'order_recharge_guide_tip':'1、充值金额越多，抢单金额越大，抢单成功率更高；\n\n 2、开启AI匹配后，自动进入抢单排队中；抢单完成后可核对具体订单及收益; \n\n 3、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
-  'withdraw_balance': '钱包总额',
+      'order_recharge_guide_tip':
+          '1、充值金额越多，抢单金额越大，抢单成功率更高；\n\n 2、开启AI匹配后，自动进入抢单排队中；抢单完成后可核对具体订单及收益; \n\n 3、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
+      'withdraw_balance': '钱包总额',
       'withdraw_amount': '提现金额',
       'withdraw_input_card': '请输入银行卡号',
       'share_code': '我的邀请码',
-      'share_rate':'设置比例',
-      'share_range':'范围',
-      'share_rate_unit':'比例',
-      'share_range_inout_error':'请输入范围内的值',
-      'share_agent_rate':'设置下级比例',
-      'share_copy':'复制链接',
-      'order_each':'个',
-      'order_order':'订单',
-      'order_bankcard':'银行卡',
-      'order_start_grap':'开始抢单',
-      'order_grap_check':'查看',
-      'order_graping':'正在抢单...',
-      'order_match_success':'AI匹配订单',
-      'order_stop_grap':'未开始抢单...',
-      'userInfoRecord':'记录',
-      'order_match':'匹配订单',
-
-      'order_order_detail':'订单详情',
-      'order_order_grap':'应打码量',
-      'order_order_hasGrap':'订单总额',
-      'order_order_frozenBalance':'冻结金额',
-      'order_order_totalProfit':'代理收益',
-      'order_order_total':'订单总数',
-      'order_order_success':'订单成功数',
-      'order_order_fail':'订单异常数',
-      'order_order_successRate':'订单确认成功率',
-
-
-
+      'share_rate': '设置比例',
+      'share_range': '范围',
+      'share_rate_unit': '比例',
+      'share_range_inout_error': '请输入范围内的值',
+      'share_agent_rate': '设置下级比例',
+      'share_copy': '复制链接',
+      'order_each': '个',
+      'order_order': '订单',
+      'order_bankcard': '银行卡',
+      'order_start_grap': '开始抢单',
+      'order_grap_check': '查看',
+      'order_graping': '正在抢单...',
+      'order_match_success': 'AI匹配订单',
+      'order_stop_grap': '未开始抢单...',
+      'userInfoRecord': '记录',
+      'order_match': '匹配订单',
+      'order_order_detail': '订单详情',
+      'order_order_grap': '应打码量',
+      'order_order_hasGrap': '订单总额',
+      'order_order_frozenBalance': '冻结金额',
+      'order_order_totalProfit': '代理收益',
+      'order_order_total': '订单总数',
+      'order_order_success': '订单成功数',
+      'order_order_fail': '订单异常数',
+      'order_order_successRate': '订单确认成功率',
     },
     'en': {
       'userInfoPageButton': 'Quit current identity',
@@ -188,7 +175,6 @@ class WalletLocalizations {
       'network_time_out_error': 'Timeout, please check the network',
       'common_tips_refresh': 'Refresh',
       'common_tips_no_data_refresh': 'No Data,Refresh',
-
       'appVersionTitle': 'New Version',
       'appVersionContent1': 'A new version is available, update it',
       'appVersionBtn1': 'Speak later',
@@ -218,7 +204,6 @@ class WalletLocalizations {
       'startPageForgetPasswordButton': 'Change',
       'startPageOriginalPassInputs': 'Please enter original password',
       'startPageLoginPassword': 'Login Password',
-
       'startPageRegister': 'Register',
       'homePage': 'Home',
       'homePageAgent': 'Agent',
@@ -234,7 +219,6 @@ class WalletLocalizations {
       'homePageAgentOperation': 'Operation',
       'homePageAgentAvoiding': 'Avoiding',
       'homePageAgentAgency': 'Agency',
-
       'pull_to_refresh_releaseText': 'Refresh on release',
       'pull_to_refresh_refreshingText': 'Refreshing ...',
       'pull_to_refresh_completeText': 'Refresh completed',
@@ -248,7 +232,6 @@ class WalletLocalizations {
       'my_page_menu_record': 'Record',
       'my_page_menu_balance': 'Balance',
       'my_page_menu_orderNums': 'OrderNums:  ',
-
       'my_page_menu_handleing': 'Dealing',
       'my_page_menu_success': 'Success',
       'my_page_menu_failure': 'Failure',
@@ -270,7 +253,6 @@ class WalletLocalizations {
       'homePageManualFlows': 'Manual Flow',
       'homePageManualCourse': 'Course',
       'homeCard': 'Card',
-
       'homeEditCard': 'bank card modification',
       'homeCardName': 'cardholder',
       'homeCardNameTip': 'please enter cardholder information',
@@ -281,11 +263,10 @@ class WalletLocalizations {
       'publicButtonOK': 'OK',
       'publicDefaultName': 'Anonymous',
       'myPageSingleCard': 'Card',
-
       'common_title_userName': 'Name',
       'common_title_phone': 'Phone',
       'order_total_balance': 'Total',
-      'order_grap_ai':'AI match',
+      'order_grap_ai': 'AI match',
       'order_index': 'Index',
       'order_amount': 'Grab orders',
       'order_scale': 'My scale',
@@ -308,6 +289,10 @@ class WalletLocalizations {
       'order_recharge_my_card': 'Card',
       'order_recharge_submit': 'Submit',
       'order_recharge_input_bank': 'Please enter the bank card',
+      'order_recharge_success':
+          'Recharge submitted successfully, please wait for approval',
+      'order_withdraw_success':
+          'Withdrawal submitted successfully, please wait for approval',
       'order_recharge_input_name': 'Please enter a real name',
       'order_recharge_input_card':
           'Please enter the last four digits of the bank card',
@@ -319,34 +304,31 @@ class WalletLocalizations {
       'withdraw_amount': 'Withdrawal Amount',
       'withdraw_input_card': 'Please enter your bank card number',
       'share_code': 'My invitation code',
-      'share_rate':'Set rate',
-      'share_range':'Range',
-      'share_rate_unit':'Rate',
+      'share_rate': 'Set rate',
+      'share_range': 'Range',
+      'share_rate_unit': 'Rate',
       'share_range_inout_error': 'Please enter a value within the range',
       'share_agent_rate': 'set child proportion',
-      'share_copy':'Copy link',
-
-      'order_each':'Each',
-      'order_order':'Order',
-      'order_bankcard':'Bank card',
-      'order_start_grap':'Start grap',
-      'order_grap_check':'Check',
-      'order_graping':'Graping...',
-      'order_match_success':'AI match order',
-      'order_stop_grap':'No graping...',
-
-      'userInfoRecord':'Record',
-      'order_match':'Match Record',
-
-      'order_order_detail':'Order Detail',
-      'order_order_grap':'Grap',
-      'order_order_hasGrap':'HasGrap',
-      'order_order_frozenBalance':'FrozenBalance',
-      'order_order_totalProfit':'TotalProfit',
-      'order_order_total':'Total',
-      'order_order_success':'Success',
-      'order_order_fail':'Fail',
-      'order_order_successRate':'SuccessRate',
+      'share_copy': 'Copy link',
+      'order_each': 'Each',
+      'order_order': 'Order',
+      'order_bankcard': 'Bank card',
+      'order_start_grap': 'Start grap',
+      'order_grap_check': 'Check',
+      'order_graping': 'Graping...',
+      'order_match_success': 'AI match order',
+      'order_stop_grap': 'No graping...',
+      'userInfoRecord': 'Record',
+      'order_match': 'Match Record',
+      'order_order_detail': 'Order Detail',
+      'order_order_grap': 'Grap',
+      'order_order_hasGrap': 'HasGrap',
+      'order_order_frozenBalance': 'FrozenBalance',
+      'order_order_totalProfit': 'TotalProfit',
+      'order_order_total': 'Total',
+      'order_order_success': 'Success',
+      'order_order_fail': 'Fail',
+      'order_order_successRate': 'SuccessRate',
     }
   };
 
@@ -358,6 +340,7 @@ class WalletLocalizations {
 
   get common_tips_refresh =>
       _localizedValues[locale.languageCode]['common_tips_refresh'];
+
   get common_tips_no_data_refresh =>
       _localizedValues[locale.languageCode]['common_tips_no_data_refresh'];
 
@@ -436,29 +419,34 @@ class WalletLocalizations {
 
   get welcomePageTwoButtonBack =>
       _localizedValues[locale.languageCode]['welcomePageTwoButtonBack'];
+
   get startPageOriginalPassInputs =>
       _localizedValues[locale.languageCode]['startPageOriginalPassInputs'];
+
   get startPageLoginPassword =>
       _localizedValues[locale.languageCode]['startPageLoginPassword'];
 
   get startPageForgetPasswordButton =>
       _localizedValues[locale.languageCode]['startPageForgetPasswordButton'];
+
   get startPageChangePasswordButton =>
       _localizedValues[locale.languageCode]['startPageChangePasswordButton'];
 
   get homePageAgentDetail =>
       _localizedValues[locale.languageCode]['homePageAgentDetail'];
+
   get homePageAgentOperation =>
       _localizedValues[locale.languageCode]['homePageAgentOperation'];
+
   get homePageAgentAvoiding =>
       _localizedValues[locale.languageCode]['homePageAgentAvoiding'];
+
   get homePageAgentAgency =>
       _localizedValues[locale.languageCode]['homePageAgentAgency'];
 
-
-
   get homePageAgentChangeRatio =>
       _localizedValues[locale.languageCode]['homePageAgentChangeRatio'];
+
   get homePageAgentInputRatio =>
       _localizedValues[locale.languageCode]['homePageAgentInputRatio'];
 
@@ -478,11 +466,10 @@ class WalletLocalizations {
 
   get sellcoinTotalAssets =>
       _localizedValues[locale.languageCode]['sellcoinTotalAssets'];
-  get homePageAgent =>
-      _localizedValues[locale.languageCode]['homePageAgent'];
-  get homeCard =>
-      _localizedValues[locale.languageCode]['homeCard'];
 
+  get homePageAgent => _localizedValues[locale.languageCode]['homePageAgent'];
+
+  get homeCard => _localizedValues[locale.languageCode]['homeCard'];
 
   get singlePage => _localizedValues[locale.languageCode]['singlePage'];
 
@@ -516,19 +503,25 @@ class WalletLocalizations {
 
   get my_page_menu_withdrawal =>
       _localizedValues[locale.languageCode]['my_page_menu_withdrawal'];
+
   get my_page_menu_balance =>
       _localizedValues[locale.languageCode]['my_page_menu_balance'];
+
   get my_page_menu_orderNums =>
       _localizedValues[locale.languageCode]['my_page_menu_orderNums'];
 
   get my_page_menu_handleing =>
       _localizedValues[locale.languageCode]['my_page_menu_handleing'];
+
   get my_page_menu_success =>
       _localizedValues[locale.languageCode]['my_page_menu_success'];
+
   get my_page_menu_failure =>
       _localizedValues[locale.languageCode]['my_page_menu_failure'];
+
   get my_page_menu_cancel =>
       _localizedValues[locale.languageCode]['my_page_menu_cancel'];
+
   get my_page_menu_record =>
       _localizedValues[locale.languageCode]['my_page_menu_record'];
 
@@ -543,8 +536,10 @@ class WalletLocalizations {
 
   get my_page_server_income =>
       _localizedValues[locale.languageCode]['my_page_server_income'];
+
   get my_page_server_service =>
       _localizedValues[locale.languageCode]['my_page_server_service'];
+
   get my_page_server_help =>
       _localizedValues[locale.languageCode]['my_page_server_help'];
 
@@ -598,26 +593,32 @@ class WalletLocalizations {
 
   get publicDefaultName =>
       _localizedValues[locale.languageCode]['publicDefaultName'];
+
   get myPageSingleCard =>
       _localizedValues[locale.languageCode]['myPageSingleCard'];
 
   get userInfoPageButton =>
       _localizedValues[locale.languageCode]['userInfoPageButton'];
+
   get userInfoPageDeleteMsg =>
       _localizedValues[locale.languageCode]['userInfoPageDeleteMsg'];
+
   get createNewAddress_Cancel =>
       _localizedValues[locale.languageCode]['createNewAddress_Cancel'];
+
   get common_btn_confirm =>
       _localizedValues[locale.languageCode]['common_btn_confirm'];
+
   get common_title_userName =>
       _localizedValues[locale.languageCode]['common_title_userName'];
+
   get common_title_phone =>
       _localizedValues[locale.languageCode]['common_title_phone'];
+
   get order_total_balance =>
       _localizedValues[locale.languageCode]['order_total_balance'];
 
-  get order_grap_ai =>
-      _localizedValues[locale.languageCode]['order_grap_ai'];
+  get order_grap_ai => _localizedValues[locale.languageCode]['order_grap_ai'];
 
   get order_index => _localizedValues[locale.languageCode]['order_index'];
 
@@ -651,10 +652,9 @@ class WalletLocalizations {
   get order_grap_check =>
       _localizedValues[locale.languageCode]['order_grap_check'];
 
-
-
   get order_match_success =>
       _localizedValues[locale.languageCode]['order_match_success'];
+
   get order_stop_grap =>
       _localizedValues[locale.languageCode]['order_stop_grap'];
 
@@ -674,6 +674,12 @@ class WalletLocalizations {
 
   get order_recharge_input_bank =>
       _localizedValues[locale.languageCode]['order_recharge_input_bank'];
+
+  get order_recharge_success =>
+      _localizedValues[locale.languageCode]['order_recharge_success'];
+
+  get order_withdraw_success =>
+      _localizedValues[locale.languageCode]['order_withdraw_success'];
 
   get order_recharge_submit =>
       _localizedValues[locale.languageCode]['order_recharge_submit'];
@@ -720,37 +726,45 @@ class WalletLocalizations {
 
   get share_range => _localizedValues[locale.languageCode]['share_range'];
 
-  get share_range_inout_error => _localizedValues[locale.languageCode]['share_range_inout_error'];
+  get share_range_inout_error =>
+      _localizedValues[locale.languageCode]['share_range_inout_error'];
 
-  get share_agent_rate => _localizedValues[locale.languageCode]['share_agent_rate'];
+  get share_agent_rate =>
+      _localizedValues[locale.languageCode]['share_agent_rate'];
 
   get share_copy => _localizedValues[locale.languageCode]['share_copy'];
 
+  get share_rate_unit =>
+      _localizedValues[locale.languageCode]['share_rate_unit'];
 
-  get share_rate_unit => _localizedValues[locale.languageCode]['share_rate_unit'];
+  get order_match => _localizedValues[locale.languageCode]['order_match'];
 
+  get userInfoRecord => _localizedValues[locale.languageCode]['userInfoRecord'];
 
-
-  get order_match =>
-      _localizedValues[locale.languageCode]['order_match'];
-  get userInfoRecord =>
-      _localizedValues[locale.languageCode]['userInfoRecord'];
   get order_order_detail =>
       _localizedValues[locale.languageCode]['order_order_detail'];
+
   get order_order_grap =>
       _localizedValues[locale.languageCode]['order_order_grap'];
+
   get order_order_hasGrap =>
       _localizedValues[locale.languageCode]['order_order_hasGrap'];
+
   get order_order_frozenBalance =>
       _localizedValues[locale.languageCode]['order_order_frozenBalance'];
+
   get order_order_totalProfit =>
       _localizedValues[locale.languageCode]['order_order_totalProfit'];
+
   get order_order_total =>
       _localizedValues[locale.languageCode]['order_order_total'];
+
   get order_order_success =>
       _localizedValues[locale.languageCode]['order_order_success'];
+
   get order_order_fail =>
       _localizedValues[locale.languageCode]['order_order_fail'];
+
   get order_order_successRate =>
       _localizedValues[locale.languageCode]['order_order_successRate'];
 

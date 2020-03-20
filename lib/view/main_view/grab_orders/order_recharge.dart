@@ -292,7 +292,9 @@ class _OrderRechargeState extends State<OrderRecharge> {
       Tools.showToast(_scaffoldKey, msg);
     });
     future.then((data) {
-      if (NetConfig.checkData(data)) {}
+      if (NetConfig.checkData(data)) {
+        Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).order_recharge_success);
+      }
       Navigator.of(context).pop();
       setState(() {});
     });
