@@ -52,7 +52,7 @@ class WalletLocalizations {
       'homePageAgent': '代理模式',
       'homePageAgentOperation': '代理操作',
       'homePageAgentAvoiding': '规避雷区',
-      'homePageAgentAgency': '代理奖惩',
+      'homePageAgentAgency': '代理奖励',
       'sellcoinTotalAssets': '代理总收益',
       'homePageAgentNums': '代理总个数',
       'homePageAgentRatio': '我的比例',
@@ -93,7 +93,7 @@ class WalletLocalizations {
       'my_page_server_about': '关于我们',
       'my_page_server_agent': '我的代理',
       'my_page_server_download': '下载app',
-      'my_page_server_income': '今日收益',
+      'my_page_server_income': '订单详情',
       'my_page_server_service': '在线客服',
       'my_page_server_help': '帮助中心',
       'my_page_server_safe': '安全中心',
@@ -105,6 +105,8 @@ class WalletLocalizations {
       'common_btn_confirm': '确定',
       'common_title_userName': '用户名',
       'common_title_phone': '手机号',
+      'order_grap_ai': 'AI匹配',
+      'order_grap_check':'查看',
       'order_total_balance': '总额',
       'order_index': '指数',
       'order_amount': '抢单额度',
@@ -112,12 +114,13 @@ class WalletLocalizations {
       'order_guide': '抢单攻略',
       'order_error_balance_no_enough': '您的余额不足，请先充值',
       'order_recharge_now': '马上充值',
-      "order_have_a_new_open_order": '您有新的未确认订单',
+      "order_have_a_new_open_order": '您有已匹配订单',
       'order_sure_order': '确认订单',
+      'order_each': '个',
+      'order_order': '订单',
       'order_bankcard': '银行卡',
       'order_start_grap': '开始抢单',
       'order_graping': '正在抢单...',
-      'order_stop_grap':'停止抢单',
       'order_recharge_payee_name': '收款方户名',
       'order_recharge_payee_account': '收款方账号',
       'order_recharge_payee_bank': '开户行',
@@ -132,8 +135,9 @@ class WalletLocalizations {
       'order_recharge_input_card': '请输入银行卡后四位',
       'order_recharge_input_amount': '请输入充值金额',
       'order_recharge_tips_copy': '复制成功',
-      'order_recharge_guide_tip':'1、充值金额越多，抢单金额越大，抢单成功率更高；\n\n 2、开启AI匹配后，自动进入抢单排队中；抢单完成后可核对具体订单及收益; \n\n 3、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
-         'withdraw_balance': '钱包总额',
+      'order_recharge_guide_tip':
+          '1、充值金额越多，抢单金额越大，抢单成功率更高；\n 2、成功收款后请及时确认订单，认准对应收款账号和金额； \n 3、若长时间无订单或收款无效，请及时更换收款账号，规避风控； \n 4、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
+      'withdraw_balance': '钱包总额',
       'withdraw_amount': '提现金额',
       'withdraw_input_card': '请输入银行卡号',
       'share_code': '我的邀请码',
@@ -143,10 +147,12 @@ class WalletLocalizations {
       'share_range_inout_error': '请输入范围内的值',
       'share_agent_rate': '设置下级比例',
       'share_copy': '复制链接',
-
       'order_each': '个',
       'order_order': '订单',
-      'order_grap_ai': 'AI匹配',
+      'order_bankcard': '银行卡',
+      'order_start_grap': '开始抢单',
+      'order_graping': '正在抢单...',
+      'order_stop_grap': '未开始抢单...',
       'userInfoRecord': '记录',
       'order_order_detail': '订单详情',
       'order_order_grap': '应打码量',
@@ -231,7 +237,7 @@ class WalletLocalizations {
       'my_page_server_about': 'About us',
       'my_page_server_agent': 'Agent',
       'my_page_server_download': 'Download app',
-      'my_page_server_income': 'Income',
+      'my_page_server_income': 'Order',
       'my_page_server_service': 'Customer',
       'my_page_server_help': 'Help',
       'my_page_server_safe': 'Safety center',
@@ -257,6 +263,8 @@ class WalletLocalizations {
       'myPageSingleCard': 'Card',
       'common_title_userName': 'Name',
       'common_title_phone': 'Phone',
+      'order_grap_ai': 'AI match',
+      'order_grap_check':'Check',
       'order_total_balance': 'Total',
       'order_index': 'Index',
       'order_amount': 'Grab orders',
@@ -271,6 +279,8 @@ class WalletLocalizations {
       'order_order': 'Order',
       'order_bankcard': 'Bank card',
       'order_start_grap': 'Start grap',
+      'order_graping': 'Graping...',
+      'order_stop_grap': 'No graping...',
       'order_recharge_payee_name': 'Payee_name',
       'order_recharge_payee_account': 'Payee_account',
       'order_recharge_payee_bank': 'Payee_bank',
@@ -302,9 +312,6 @@ class WalletLocalizations {
       'order_order': 'Order',
       'order_bankcard': 'Bank card',
       'order_start_grap': 'Start grap',
-      'order_graping': 'Graping...',
-      'order_stop_grap':'Stop grap',
-      'order_grap_ai': 'AI Match',
       'userInfoRecord': 'Record',
       'order_order_detail': 'Order Detail',
       'order_order_grap': 'Grap',
@@ -601,6 +608,12 @@ class WalletLocalizations {
   get common_title_phone =>
       _localizedValues[locale.languageCode]['common_title_phone'];
 
+  get order_grap_ai =>
+      _localizedValues[locale.languageCode]['order_grap_ai'];
+
+  get order_grap_check =>
+      _localizedValues[locale.languageCode]['order_grap_check'];
+
   get order_total_balance =>
       _localizedValues[locale.languageCode]['order_total_balance'];
 
@@ -637,9 +650,6 @@ class WalletLocalizations {
 
   get order_stop_grap => _localizedValues[locale.languageCode]['order_stop_grap'];
 
-
-
-  get order_grap_ai => _localizedValues[locale.languageCode]['order_grap_ai'];
 
   get order_recharge_input_card =>
       _localizedValues[locale.languageCode]['order_recharge_input_card'];

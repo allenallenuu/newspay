@@ -14,6 +14,7 @@ import 'package:wpay_app/tools/Tools.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
 import 'package:wpay_app/tools/net_config.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
+import 'package:wpay_app/view/main_view/me/user_info_record.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -90,7 +91,6 @@ class _OrderCenterState extends State<OrderCenter> {
                 SizedBox(
                   height: 5,
                 ),
-                tipView(),
                 SizedBox(
                   height: 5,
                 ),
@@ -446,51 +446,115 @@ class _OrderCenterState extends State<OrderCenter> {
   }
 
   Widget tipView() {
-    return Text(
-        isSwitch
-            ? WalletLocalizations.of(context).order_graping
-            : WalletLocalizations.of(context).order_stop_grap,
-        style: TextStyle(fontSize: 18, color: Colors.grey));
+    return Expanded(
+      child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  Tools.imagePath('order_error'),
+                  width: 200,
+                  height: 200,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: Text(
+                      isSwitch
+                          ? WalletLocalizations.of(context).order_graping
+                          : WalletLocalizations.of(context).order_stop_grap,
+                      style: TextStyle(fontSize: 18, color: Colors.grey)),
+                ),
+                _grapModel.orderNum > 0
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return OrderRecharge();
+                          }));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 20),
+                          padding: EdgeInsets.only(
+                              left: 45, right: 45, top: 10, bottom: 10),
+                          decoration: BoxDecoration(
+                              color: Color(0xffF34545),
+                              borderRadius: BorderRadius.circular(90)),
+                          child: Text(
+                              WalletLocalizations.of(context)
+                                  .order_recharge_now,
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      )
+                    : Container(),
+              ],
+            ));
+          }),
+    );
   }
 
   Widget contentView() {
-    return _grapModel.orderNum > 0
-        ? Container(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-            child: Row(
-              children: <Widget>[
-                Image.asset(
-                  Tools.imagePath('order_qiang'),
-                  width: 25,
-                  height: 25,
+    return Column(
+      children: <Widget>[
+        _grapModel.orderNum > 0
+            ? Container(
+                padding:
+                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  WalletLocalizations.of(context).order_have_a_new_open_order,
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  _grapModel.orderNum.toString(),
-                  style: TextStyle(fontSize: 15, color: Color(0xffF34545)),
-                ),
-                Text(
-                  WalletLocalizations.of(context).order_each,
-                  style: TextStyle(fontSize: 15, color: Colors.black),
-                ),
-              ],
-            ),
-          )
-        : Container();
+                margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(UserInfoRecord.tag);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Image.asset(
+                              Tools.imagePath('order_qiang'),
+                              width: 25,
+                              height: 25,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              WalletLocalizations.of(context)
+                                  .order_have_a_new_open_order,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              _grapModel.orderNum.toString(),
+                              style: TextStyle(
+                                  fontSize: 15, color: Color(0xffF34545)),
+                            ),
+                            Text(
+                              WalletLocalizations.of(context).order_each,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          WalletLocalizations.of(context).order_grap_check,
+                          style: TextStyle(fontSize: 14, color: Colors.grey),
+                        )
+                      ],
+                    )))
+            : Container(),
+        tipView()
+      ],
+    );
   }
 }

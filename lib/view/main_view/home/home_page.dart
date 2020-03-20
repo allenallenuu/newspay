@@ -84,9 +84,17 @@ class _HomePageState extends State<HomePage> {
         } else if (tag == 1) {
           Navigator.of(context).pushNamed(HomePageAgent.tag);
         } else if (tag == 2) {
-          Navigator.of(context).pushNamed(HomePageManual.tag);
+//          Navigator.of(context).pushNamed(HomePageManual.tag);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return HomePageManualDetail(imageName: 'icon_manual_recharge',titleName: WalletLocalizations.of(context).homePageManualRecharge);
+          }));
         } else if (tag == 3) {
-          Navigator.of(context).pushNamed(HomePageAvoiding.tag);
+//          Navigator.of(context).pushNamed(HomePageAvoiding.tag);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return HomePageManualDetail(imageName: 'icon_course_detail',titleName: WalletLocalizations.of(context).homePageManualCourse);
+          }));
         } else if (tag == 4) {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (BuildContext context) {
