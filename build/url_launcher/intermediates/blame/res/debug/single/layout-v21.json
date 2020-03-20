@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout-v21/notification_action.xml"
+    }
+]

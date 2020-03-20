@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/flutter_webview_plugin/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/782fb4854e57618960bbd21fd67d6397/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/flutter_webview_plugin/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/782fb4854e57618960bbd21fd67d6397/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    }
+]

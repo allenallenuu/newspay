@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/layout/notification_template_icon_group.xml"
+    }
+]

@@ -173,8 +173,6 @@ class _UserInfoSetState extends State<UserInfoSet> {
                           (route) => route == null,
                     );
 
-
-                    GlobalEventBus().event.destroy();
                   });
                 },
               )

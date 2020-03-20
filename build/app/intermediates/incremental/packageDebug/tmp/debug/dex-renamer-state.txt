@@ -1,0 +1,4 @@
+#Fri Mar 20 17:06:54 CST 2020
+base.0=/Users/apple/Desktop/qiangdan/qiangdan/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

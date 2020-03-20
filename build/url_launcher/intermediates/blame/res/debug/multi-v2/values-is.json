@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/incremental/mergeDebugResources/merged.dir/values-is/values-is.xml",
+            "map": [
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/values-is/values-is.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/apple/Desktop/qiangdan/qiangdan/build/url_launcher/intermediates/res/merged/debug/values-is/values-is.xml",
+            "map": [
+                {
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/3f5f9892ade01060ebfbd6e5a7180024/res/values-is/values-is.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
