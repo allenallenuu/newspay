@@ -144,9 +144,8 @@ class WalletLocalizations {
       'order_recharge_input_card': '请输入银行卡后四位',
       'order_recharge_input_amount': '请输入充值金额',
       'order_recharge_tips_copy': '复制成功',
-      'order_recharge_guide_tip':
-          '1、充值金额越多，抢单金额越大，抢单成功率更高；\n 2、成功收款后请及时确认订单，认准对应收款账号和金额； \n 3、若长时间无订单或收款无效，请及时更换收款账号，规避风控； \n 4、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
-      'withdraw_balance': '钱包总额',
+      'order_recharge_guide_tip':'1、充值金额越多，抢单金额越大，抢单成功率更高；\n\n 2、开启AI匹配后，自动进入抢单排队中；抢单完成后可核对具体订单及收益; \n\n 3、请勿相信任何非官方人员言辞，提高防骗意识，如有问题请及时联系我们。',
+  'withdraw_balance': '钱包总额',
       'withdraw_amount': '提现金额',
       'withdraw_input_card': '请输入银行卡号',
       'share_code': '我的邀请码',
