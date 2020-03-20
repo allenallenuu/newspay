@@ -377,8 +377,8 @@ class _StartLoginPageState extends State<StartLoginPage>
           GlobalInfo.userInfo.webShareAddress = data['webUrl'];
         }
 
-        if (data['appDownUrl '] != null) {
-          GlobalInfo.userInfo.appDownloadAddress = data['appDownUrl '];
+        if (data['appDownUrl'] != null) {
+          GlobalInfo.userInfo.appDownloadAddress = data['appDownUrl'];
         }
 
         if (data['uid'] != null) {

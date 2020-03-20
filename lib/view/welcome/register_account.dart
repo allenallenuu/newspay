@@ -398,6 +398,7 @@ class _RegisterPageState extends State<RegisterPage> {
     result.then((data) {
       print('registerAccount = $data');
       if (data != null) {
+        GlobalInfo.userInfo.appDownloadAddress = data['appDownUrl'];
         if (kIsWeb) {
           if (GlobalInfo.userInfo.webPlation != null &&
               GlobalInfo.userInfo.webPlation == 'false') {
@@ -416,7 +417,6 @@ class _RegisterPageState extends State<RegisterPage> {
   void _upgradeAppDownload() async {
     // APK install file download url for Android.
     var url = GlobalInfo.userInfo.appDownloadAddress;
-
     if (await canLaunch(url)) {
       await launch(url);
     } else {
