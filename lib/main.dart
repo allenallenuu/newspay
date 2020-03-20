@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:wpay_app/l10n/chinese_local.dart';
 import 'package:wpay_app/tools/app_data_setting.dart';
+import 'package:wpay_app/view/main_view/grab_orders/order_match.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_withdraw.dart';
 import 'package:wpay_app/view/main_view/home/home_page_agency.dart';
@@ -120,6 +121,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     HomePageAgency.tag:(context) =>  HomePageAgency(),
     HomePageAvoiding.tag:(context) => HomePageAvoiding(),
     MyAbout.tag:(context) => MyAbout(),
+    OrderMatch.tag:(context) => OrderMatch(),
   };
 
   Brightness brightness = Brightness.light;

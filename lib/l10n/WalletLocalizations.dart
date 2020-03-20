@@ -163,6 +163,7 @@ class WalletLocalizations {
       'order_start_grap':'开始抢单',
       'order_graping':'正在抢单...',
       'userInfoRecord':'记录',
+      'order_match':'匹配订单',
 
       'order_order_detail':'订单详情',
       'order_order_grap':'应打码量',
@@ -331,6 +332,7 @@ class WalletLocalizations {
       'order_start_grap':'Start grap',
       'order_graping':'Graping...',
       'userInfoRecord':'Record',
+      'order_match':'Match Record',
 
       'order_order_detail':'Order Detail',
       'order_order_grap':'Grap',
@@ -712,6 +714,8 @@ class WalletLocalizations {
 
 
 
+  get order_match =>
+      _localizedValues[locale.languageCode]['order_match'];
   get userInfoRecord =>
       _localizedValues[locale.languageCode]['userInfoRecord'];
   get order_order_detail =>
