@@ -236,30 +236,14 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
           WalletLocalizations.of(context).order_recharge_input_amount);
       return;
     }
-    if (controllerBank.text.isEmpty) {
-      Tools.showToast(_scaffoldKey,
-          WalletLocalizations.of(context).order_recharge_input_bank);
-      return;
-    }
-    if (controllerCard.text.isEmpty) {
-      Tools.showToast(_scaffoldKey,
-          WalletLocalizations.of(context).order_recharge_input_card);
-      return;
-    }
-    if (controllerName.text.isEmpty) {
-      Tools.showToast(_scaffoldKey,
-          WalletLocalizations.of(context).order_recharge_input_name);
-      return;
-    }
+
     Tools.loadingAnimation(context);
     Future future = NetConfig.post(
         context,
         NetConfig.withDraw,
         {
           'withdrawCoin': controllerAmount.text,
-//          'payee': controllerName.text,
-//          'bankNumber': controllerCard.text,
-//          'bankName': controllerBank.text
+
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);

@@ -93,11 +93,16 @@ class _OrderCenterState extends State<OrderCenter> {
                 SizedBox(
                   height: 10,
                 ),
+                contentView(),
+                SizedBox(
+                  height: 10,
+                ),
                 _grapModel == null
                     ? Container()
-                    : _grapModel.errorMessage.trim().length > 0 && _grapModel.orderlist.length == 0
+                    : _grapModel.errorMessage.trim().length > 0 &&
+                            _grapModel.orderlist.length == 0
                         ? errorView()
-                        : contentView(),
+                        : Container(),
                 SizedBox(
                   height: 5,
                 ),
@@ -260,7 +265,10 @@ class _OrderCenterState extends State<OrderCenter> {
                         ),
                       )
                     : Container(),
-                _grapModel.orderlist.length == 0 &&_grapModel.errorMessage.trim().length == 0 ? tipView() : Container()
+                _grapModel.orderlist.length == 0 &&
+                        _grapModel.errorMessage.trim().length == 0
+                    ? tipView()
+                    : Container()
               ],
             ),
     );
@@ -677,61 +685,58 @@ class _OrderCenterState extends State<OrderCenter> {
   Widget contentView() {
     return Column(
       children: <Widget>[
-        _grapModel.orderNum > 0
-            ? Container(
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(OrderMatch.tag);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+        Container(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(OrderMatch.tag);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Row(
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Image.asset(
-                              Tools.imagePath('order_qiang'),
-                              width: 25,
-                              height: 25,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              WalletLocalizations.of(context)
-                                  .order_have_a_new_open_order,
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              _grapModel.orderNum.toString(),
-                              style: TextStyle(
-                                  fontSize: 15, color: Color(0xffF34545)),
-                            ),
-                            Text(
-                              WalletLocalizations.of(context).order_each,
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.black),
-                            ),
-                          ],
+                        Image.asset(
+                          Tools.imagePath('order_qiang'),
+                          width: 25,
+                          height: 25,
+                        ),
+                        SizedBox(
+                          width: 5,
                         ),
                         Text(
-                          WalletLocalizations.of(context).order_grap_check,
-                          style: TextStyle(fontSize: 14, color: Colors.grey),
-                        )
+                          WalletLocalizations.of(context)
+                              .order_have_a_new_open_order,
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          _grapModel.orderNum == null
+                              ? '0'
+                              : _grapModel.orderNum.toString(),
+                          style:
+                              TextStyle(fontSize: 15, color: Color(0xffF34545)),
+                        ),
+                        Text(
+                          WalletLocalizations.of(context).order_each,
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        ),
                       ],
-                    )))
-            : Container(),
+                    ),
+                    Text(
+                      WalletLocalizations.of(context).order_grap_check,
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    )
+                  ],
+                )))
       ],
     );
   }

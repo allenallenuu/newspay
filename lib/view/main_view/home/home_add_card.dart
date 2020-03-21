@@ -40,7 +40,7 @@ class _HomeAddCardState extends State<HomeAddCard> {
                       color: Color.fromRGBO(246, 246, 246, 1),
                     ),
                   ),
-                  _getPhoneInput(cardNameCtrl, WalletLocalizations.of(context).homeCardName, WalletLocalizations.of(context).homeCardNameTip),
+                  _getContextInput(cardNameCtrl, WalletLocalizations.of(context).homeCardName, WalletLocalizations.of(context).homeCardNameTip),
                   Divider(height: 1, indent: 15,endIndent: 15,),
                   SizedBox(
                     height: 12,
@@ -49,10 +49,10 @@ class _HomeAddCardState extends State<HomeAddCard> {
                       color: Color.fromRGBO(246, 246, 246, 1),
                     ),
                   ),
-                  _getPhoneInput(cardNumsCtrl, WalletLocalizations.of(context).homeCardNums, WalletLocalizations.of(context).homeCardNumsTip),
+                  _getContextInput(cardNumsCtrl, WalletLocalizations.of(context).homeCardNums, WalletLocalizations.of(context).homeCardNumsTip),
                   Divider(height: 1, indent: 15,endIndent: 15,),
 
-                  _getPhoneInput(cardTypesCtrl, WalletLocalizations.of(context).homeCardTypes, WalletLocalizations.of(context).homeCardTypesTip),
+                  _getContextInput(cardTypesCtrl, WalletLocalizations.of(context).homeCardTypes, WalletLocalizations.of(context).homeCardTypesTip),
                   Divider(height: 1, indent: 15,endIndent: 15,),
                   SizedBox(height: 30),
                   _getDataInfo(),
@@ -133,7 +133,7 @@ class _HomeAddCardState extends State<HomeAddCard> {
     };
   }
 
-  Widget _getPhoneInput(
+  Widget _getContextInput(
       TextEditingController controller, String titleText, String hitText) {
     return new Container(
       decoration: new BoxDecoration(
@@ -148,37 +148,38 @@ class _HomeAddCardState extends State<HomeAddCard> {
             new Container(
               padding: new EdgeInsets.only(left: 12.0),
               height: 64.0,
-              child: Center(
-                child: Text(titleText),
-              ),
+              width: 100.0,
+              alignment: Alignment.centerLeft,
+              child: Text(titleText),
             ),
-            new Container(
+            SizedBox(width: 10,),
+            Expanded(child:  new Container(
                 height: 50.0,
-                width: 180,
                 margin: EdgeInsets.only(right: 10),
                 child: new Center(
                     child: new Container(
-                  height: 50.0,
-                  child: new TextField(
-                    controller: controller,
-                    maxLines: 1,
-                    maxLength: 11,
-                    maxLengthEnforced: true,
-                    style: new TextStyle(color: Colors.black, fontSize: 16.0),
-                    decoration: new InputDecoration(
-                        hintText: hitText,
-                        counterText: '',
-                        border: InputBorder.none,
-                        hintStyle: new TextStyle(
+                      height: 50.0,
+                      child: new TextField(
+                        controller: controller,
+                        maxLines: 1,
+                        maxLengthEnforced: true,
+                        style: new TextStyle(color: Colors.black, fontSize: 16.0),
+                        decoration: new InputDecoration(
+                            hintText: hitText,
+                            counterText: '',
+                            border: InputBorder.none,
+                            hintStyle: new TextStyle(
 
-                          color: Colors.grey,
-                          fontSize: 16.0,
-                        )),
-                  ),
-                ))),
+                              color: Colors.grey,
+                              fontSize: 16.0,
+                            )),
+                      ),
+                    ))),)
+           ,
           ],
         ),
       ),
     );
   }
+
 }

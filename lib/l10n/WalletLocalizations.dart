@@ -41,6 +41,8 @@ class WalletLocalizations {
       'startPageOriginalPassInputs': '请输入原密码',
       'startPageLoginPassword': '登录密码',
       'startPageRegister': '注册',
+      'homePageCardAddCard':'添加银行卡',
+      'homePageCardList':'银行卡列表',
       'homePage': '首页',
       'homePageManual': '入门手册',
       'homePageManualFlow': '使用流程',
@@ -64,7 +66,7 @@ class WalletLocalizations {
       'myPageSingleCard': '抢单银行卡',
       'homeEditCard': '银行卡修改',
       'homeCardName': '持卡人',
-      'homeCardNameTip': '请输入持卡人信息',
+      'homeCardNameTip': '请输入持卡人姓名',
       'homeCardNums': '银行卡号',
       'homeCardNumsTip': '请输入银行卡号',
       'homeCardTypes': '卡类型',
@@ -190,6 +192,8 @@ class WalletLocalizations {
       'startPageNewPasswordInput': 'Please again enter a password',
       'startPageNoEqual': 'Enter the password inconsistently',
       'startPageRegisterAndLogin': 'Register',
+      'homePageCardAddCard':'Add bank card',
+      'homePageCardList':'Card list',
       'startPageInviteCode': 'Please enter a inviteCode',
       'startPageForgetAccount': 'Forget account',
       'startPageSearchAccount': 'Search account',
@@ -457,6 +461,12 @@ class WalletLocalizations {
 
   get startPageRegister =>
       _localizedValues[locale.languageCode]['startPageRegister'];
+
+  get homePageCardAddCard =>
+      _localizedValues[locale.languageCode]['homePageCardAddCard'];
+
+  get homePageCardList =>
+      _localizedValues[locale.languageCode]['homePageCardList'];
 
   get homePage => _localizedValues[locale.languageCode]['homePage'];
 
