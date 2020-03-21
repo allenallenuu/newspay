@@ -37,7 +37,7 @@ import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
 
 import 'view/main_view/home/home_page_avoiding.dart';
-//import 'dart:js' as js;
+import 'dart:js' as js;
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
@@ -143,23 +143,23 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   void switchPlatForm() {
     //webVersion
-//    if (kIsWeb) {
-//      var uri = Uri.tryParse(js.context['location']['href']);
-//      if (uri != null) {
-//        if (uri.queryParameters['shareCode'] != null &&
-//            uri.queryParameters['shareRato'] != null) {
-//          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
-//          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
-//          GlobalInfo.userInfo.webPlation = uri.queryParameters['type'];
-//          isSharePlatForm = true;
-//        } else {
-//          GlobalInfo.userInfo.webShareCode = null;
-//          GlobalInfo.userInfo.webShareRatio = null;
-//          GlobalInfo.userInfo.webPlation = null;
-//          isSharePlatForm = false;
-//        }
-//      }
-//    }
+    if (kIsWeb) {
+      var uri = Uri.tryParse(js.context['location']['href']);
+      if (uri != null) {
+        if (uri.queryParameters['shareCode'] != null &&
+            uri.queryParameters['shareRato'] != null) {
+          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
+          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
+          GlobalInfo.userInfo.webPlation = uri.queryParameters['type'];
+          isSharePlatForm = true;
+        } else {
+          GlobalInfo.userInfo.webShareCode = null;
+          GlobalInfo.userInfo.webShareRatio = null;
+          GlobalInfo.userInfo.webPlation = null;
+          isSharePlatForm = false;
+        }
+      }
+    }
   }
 
   @override
