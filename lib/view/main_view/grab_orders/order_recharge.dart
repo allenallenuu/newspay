@@ -164,9 +164,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
               height: 50.0,
               child: TextField(
                 controller: control,
-                keyboardType: TextInputType.phone,
                 maxLines: 1,
-                maxLength: 11,
                 maxLengthEnforced: true,
                 style: new TextStyle(color: Colors.black, fontSize: 18.0),
                 decoration: new InputDecoration(
