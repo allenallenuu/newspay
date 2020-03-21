@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 
 /// My profile page.
@@ -225,6 +226,21 @@ class _OrderCenterState extends State<OrderCenter> {
                                                     )
                                                   ],
                                                 ),
+
+                                                _grapListModel[index].adminStatus == 1 ?
+
+                                                Flexible(child: AutoSizeText(
+                                                  _grapListModel[index]
+                                                      .adminStatusStr,
+                                                  style: TextStyle(
+                                                      fontSize: 16, color: Colors.orange),
+                                                  minFontSize: 8,
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.end,
+                                                ),)
+                                               :
+
                                                 InkWell(
                                                   onTap: () {
                                                     sureGrap(
@@ -421,8 +437,8 @@ class _OrderCenterState extends State<OrderCenter> {
               //主要用来设置阴影设置
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 1,
-                  spreadRadius: 1,
+                  blurRadius: 5,
+                  spreadRadius: 0,
                   color: Color(0xffF34545),
                 ),
               ],
@@ -514,7 +530,9 @@ class _OrderCenterState extends State<OrderCenter> {
                 grabAmount: model['grabAmount'],
                 created: model['created'],
                 updated: model['updated'],
-                remarks: model['remarks']));
+                remarks: model['remarks'],
+                adminStatus: model['adminStatus'],
+                adminStatusStr: model['adminStatusStr']));
           }
         }
 

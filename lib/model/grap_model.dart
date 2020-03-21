@@ -35,7 +35,7 @@ class GrapListModel {
   //单号
   String grabOrder;
 
-  // 1:抢单成功，待确认；2:用户确认，交易完成
+  // 1:抢单成功，待确认；2:用户确认，交易完成（抢单记录时候用）
   int grabStatus;
 
   //金额
@@ -50,6 +50,11 @@ class GrapListModel {
   //备注
   String remarks;
 
+  //订单状态（抢单时候用）
+  int adminStatus;
+  //订单描述
+  String adminStatusStr;
+
   GrapListModel({
     @required this.id,
     @required this.uid,
@@ -59,6 +64,8 @@ class GrapListModel {
     @required this.created,
     @required this.updated,
     @required this.remarks,
+    @required this.adminStatus,
+    @required this.adminStatusStr,
   });
 }
 

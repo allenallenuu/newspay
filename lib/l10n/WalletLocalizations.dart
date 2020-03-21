@@ -153,7 +153,7 @@ class WalletLocalizations {
       'order_bankcard': '银行卡',
       'order_start_grap': '开始抢单',
       'order_grap_check': '查看',
-      'order_graping': '正在抢单...',
+      'order_graping': '订单匹配中...',
       'order_match_success': 'AI匹配订单',
       'order_stop_grap': '未开始抢单...',
       'userInfoRecord': '记录',
