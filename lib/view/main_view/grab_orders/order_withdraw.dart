@@ -14,18 +14,12 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   BalanceModel _balanceModel;
-  TextEditingController controllerAmount,
-      controllerBank,
-      controllerName,
-      controllerCard;
+  TextEditingController controllerAmount;
 
   @override
   void initState() {
     super.initState();
     controllerAmount = TextEditingController();
-    controllerBank = TextEditingController();
-    controllerName = TextEditingController();
-    controllerCard = TextEditingController();
     getWithdraw();
   }
 
@@ -33,9 +27,6 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
   void dispose() {
     super.dispose();
     controllerAmount.dispose();
-    controllerBank.dispose();
-    controllerName.dispose();
-    controllerCard.dispose();
   }
 
   @override
@@ -56,7 +47,6 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
                   children: <Widget>[
                     _withdrawInfo(),
                     _amountInput(),
-//                    myCardView(),
                     submitView()
                   ],
                 ),
@@ -158,31 +148,6 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
     );
   }
 
-  Widget myCardView() {
-    return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
-      margin: EdgeInsets.only(top: 10),
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          inputItemView(
-              WalletLocalizations.of(context).order_recharge_my_bank,
-              WalletLocalizations.of(context).order_recharge_input_bank,
-              controllerBank),
-          Divider(),
-          inputItemView(
-              WalletLocalizations.of(context).order_recharge_my_name,
-              WalletLocalizations.of(context).order_recharge_input_name,
-              controllerName),
-          Divider(),
-          inputItemView(
-              WalletLocalizations.of(context).order_recharge_my_card,
-              WalletLocalizations.of(context).withdraw_input_card,
-              controllerCard),
-        ],
-      ),
-    );
-  }
 
   Widget submitView() {
     return InkWell(
@@ -243,11 +208,10 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
         NetConfig.withDraw,
         {
           'withdrawCoin': controllerAmount.text,
-
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);
-    });
+    },showToast: false);
     future.then((data) {
       if (NetConfig.checkData(data)) {
         Tools.showToast(_scaffoldKey,
