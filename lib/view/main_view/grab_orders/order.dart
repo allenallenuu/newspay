@@ -226,48 +226,57 @@ class _OrderCenterState extends State<OrderCenter> {
                                                     )
                                                   ],
                                                 ),
-
-                                                _grapListModel[index].adminStatus == 1 ?
-
-                                                Flexible(child: AutoSizeText(
-                                                  _grapListModel[index]
-                                                      .adminStatusStr,
-                                                  style: TextStyle(
-                                                      fontSize: 16, color: Colors.orange),
-                                                  minFontSize: 8,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.end,
-                                                ),)
-                                               :
-
-                                                InkWell(
-                                                  onTap: () {
-                                                    sureGrap(
-                                                        _grapListModel[index]);
-                                                  },
-                                                  child: Container(
-                                                    margin: EdgeInsets.only(
-                                                        top: 20),
-                                                    padding: EdgeInsets.only(
-                                                        left: 25,
-                                                        right: 25,
-                                                        top: 5,
-                                                        bottom: 5),
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xffF34545),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(90)),
-                                                    child: Text(
-                                                        WalletLocalizations.of(
-                                                                context)
-                                                            .order_sure_order,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white)),
-                                                  ),
+                                                Column(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: <Widget>[
+                                                    _grapListModel[index]
+                                                                .adminStatus ==
+                                                            1
+                                                        ? Container()
+                                                        : InkWell(
+                                                            onTap: () {
+                                                              sureGrap(
+                                                                  _grapListModel[
+                                                                      index]);
+                                                            },
+                                                            child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      top: 20),
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 25,
+                                                                      right: 25,
+                                                                      top: 5,
+                                                                      bottom:
+                                                                          5),
+                                                              decoration: BoxDecoration(
+                                                                  color: Color(
+                                                                      0xffF34545),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              90)),
+                                                              child: Text(
+                                                                  WalletLocalizations.of(
+                                                                          context)
+                                                                      .order_sure_order,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white)),
+                                                            ),
+                                                          ),
+                                                    Flexible(child: AutoSizeText(
+                                                      _grapListModel[index]
+                                                          .adminStatusStr,
+                                                      style: TextStyle(
+                                                          fontSize: 16, color: Colors.orange),
+                                                      minFontSize: 8,
+                                                      maxLines: 2,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.end,
+                                                    ),)
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -581,7 +590,7 @@ class _OrderCenterState extends State<OrderCenter> {
       if (NetConfig.checkData(data)) {
         isSwitch = false;
         Tools.showToast(
-            _scaffoldKey, WalletLocalizations.of(context).order_start_grap);
+            _scaffoldKey, WalletLocalizations.of(context).order_stop_grap);
       }
       Navigator.of(context).pop();
       setState(() {});

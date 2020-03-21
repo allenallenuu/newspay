@@ -55,7 +55,7 @@ class _WithdrawListWidgetState extends State<WithdrawListWidget> {
             created: list[i]['created'].toString(),
             withdrawCoin: list[i]['withdrawCoin'].toString(),
             remark: list[i]['remark'].toString(),
-            status: list[i]['amount'],
+            status: list[i]['status'],
 
           );
           this._withdrawListModel.add(info);

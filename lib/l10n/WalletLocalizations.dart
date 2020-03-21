@@ -115,7 +115,7 @@ class WalletLocalizations {
       'order_guide': '抢单攻略',
       'order_error_balance_no_enough': '您的余额不足，请先充值',
       'order_recharge_now': '马上充值',
-      "order_have_a_new_open_order": '您有已匹配订单',
+      "order_have_a_new_open_order": '今日匹配完成订单',
       'order_sure_order': '确认订单',
       'order_each': '个',
       'order_order': '订单',
