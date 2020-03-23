@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wpay_app/model/BalanceModel.dart';
+import 'package:wpay_app/view/welcome/forget_safe_password.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 
 class OrderWithdraw extends StatefulWidget {
@@ -14,12 +15,14 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   BalanceModel _balanceModel;
-  TextEditingController controllerAmount;
+  TextEditingController controllerAmount, controllerPwd;
 
   @override
   void initState() {
     super.initState();
     controllerAmount = TextEditingController();
+    controllerPwd = TextEditingController();
+
     getWithdraw();
   }
 
@@ -27,6 +30,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
   void dispose() {
     super.dispose();
     controllerAmount.dispose();
+    controllerPwd.dispose();
   }
 
   @override
@@ -47,6 +51,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
                   children: <Widget>[
                     _withdrawInfo(),
                     _amountInput(),
+                    _passwordInput(),
                     submitView()
                   ],
                 ),
@@ -106,12 +111,53 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
           ),
-          inputItemView('￥', '', controllerAmount)
+          inputItemView('￥', '', controllerAmount),
         ],
       ),
     );
   }
 
+  Widget _passwordInput() {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      color: Colors.white,
+      padding: EdgeInsets.only(left: 20, right: 20,top: 5,bottom: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            WalletLocalizations.of(context).startPageForgetSafePassword,
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+          ),
+          inputItemView('', WalletLocalizations.of(context).startPageSafePwdError, controllerPwd),
+          Divider(height: 1, indent: 0),
+          SizedBox(height: 5,),
+          Container(
+            height: 30,
+            padding: EdgeInsets.only(top: 5, right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(ForgetSafePassword.tag).then((value){
+                      getWithdraw();
+                    });
+                  },
+                  child: Text(
+                    WalletLocalizations.of(context).startPageNoSafePassword,
+                    style: TextStyle(
+                        fontSize: 14, color: AppCustomColor.tabbarBackgroudColor),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   Widget inputItemView(
       String title, String hint, TextEditingController control) {
     return Row(
@@ -121,7 +167,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
         ),
-        SizedBox(
+        title.length == 0 ? SizedBox(): SizedBox(
           width: 10,
         ),
         Flexible(
@@ -186,6 +232,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
           totalBalance: double.parse(data['totalBalance'].toString()),
           frozenBalance: double.parse(data['frozenBalance'].toString()),
           totalProfit: double.parse(data['totalProfit'].toString()),
+          withdrawPwd:data['withdrawPwd'],
           id: data['id'],
           uid: data['uid'],
         );
@@ -200,13 +247,23 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
           WalletLocalizations.of(context).order_recharge_input_amount);
       return;
     }
-
+    if (controllerPwd.text.isEmpty) {
+      Tools.showToast(
+          _scaffoldKey, WalletLocalizations.of(context).startPageSafePwdError);
+      return;
+    }
+    if (!_balanceModel.withdrawPwd) {
+      Tools.showToast(
+          _scaffoldKey, WalletLocalizations.of(context).startPageSetSafePwdError);
+      return;
+    }
     Tools.loadingAnimation(context);
     Future future = NetConfig.post(
         context,
         NetConfig.withDraw,
         {
           'withdrawCoin': controllerAmount.text,
+          'withdrawPwd': controllerPwd.text,
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);

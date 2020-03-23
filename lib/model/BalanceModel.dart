@@ -6,6 +6,7 @@ class BalanceModel extends BaseInfo {
   double totalBalance;
   double totalProfit;
   double frozenBalance;
+  bool withdrawPwd;
   int id;
 
   BalanceModel({
@@ -15,6 +16,7 @@ class BalanceModel extends BaseInfo {
     @required this.frozenBalance,
     @required this.id,
     @required this.uid,
+    @required this.withdrawPwd,
     @required this.totalProfit,
   }) : super(name: name);
 }

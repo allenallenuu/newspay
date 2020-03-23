@@ -29,6 +29,7 @@ class WalletLocalizations {
       'startPageSearchAccount': '找回用户名',
       'startPageForgetPassword': '忘记密码?',
       'startPageForgetSafePassword': '安全密码',
+      'startPageNoSafePassword': '没有安全密码?',
 
       'startPageRegistedUser': '注册用户',
       'startPageCodeInput': '请输入验证码',
@@ -40,6 +41,7 @@ class WalletLocalizations {
       'startPageCodeError': '请输入正确的验证码',
       'startPagePwdError': '请输入密码',
       'startPageSafePwdError': '请输入安全密码',
+      'startPageSetSafePwdError': '请设置安全密码',
       'startPageSetting': '设置',
 
       'startPageUserInfoError': '用户信息获取失败',
@@ -208,6 +210,7 @@ class WalletLocalizations {
       'startPageSearchAccount': 'Search account',
       'startPageForgetPassword': 'Forgot your password?',
       'startPageForgetSafePassword': 'Safe Password',
+      'startPageNoSafePassword': 'No Safe Password?',
 
       'startPageCodeInput': 'Please enter a verification code',
       'startPageSendCode': 'Get Verification Code',
@@ -219,6 +222,7 @@ class WalletLocalizations {
       'startPagePwdError': 'Please enter a password',
       'startPageSafePwdError': 'Please enter a safe password',
       'startPageSetting': 'Setting',
+      'startPageSetSafePwdError': 'Please set a safe password',
 
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
@@ -418,6 +422,8 @@ class WalletLocalizations {
 
   get startPageForgetSafePassword =>
       _localizedValues[locale.languageCode]['startPageForgetSafePassword'];
+  get startPageNoSafePassword =>
+      _localizedValues[locale.languageCode]['startPageNoSafePassword'];
 
   get startPageCodeInput =>
       _localizedValues[locale.languageCode]['startPageCodeInput'];
@@ -445,6 +451,11 @@ class WalletLocalizations {
 
   get startPageSafePwdError =>
       _localizedValues[locale.languageCode]['startPageSafePwdError'];
+
+  get startPageSetSafePwdError =>
+      _localizedValues[locale.languageCode]['startPageSetSafePwdError'];
+
+
   get startPageSetting =>
       _localizedValues[locale.languageCode]['startPageSetting'];
 
