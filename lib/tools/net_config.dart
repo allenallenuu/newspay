@@ -316,7 +316,11 @@ class NetConfig {
     if (response.statusCode == 200) {
       await response.stream.transform(utf8.decoder).listen((data) {
         var result = json.decode(data);
-        callback(result['data'][returnKey]);
+        if(returnKey.isEmpty){
+          callback(result['data']);
+        }else{
+          callback(result['data'][returnKey]);
+        }
         flag = false;
       });
     }
