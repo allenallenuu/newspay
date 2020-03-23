@@ -46,11 +46,13 @@ class _OrderRechargeState extends State<OrderRecharge>
 
   @override
   onFileUploadCompleteWeb(List<int> file) {
-    NetConfig.updateImageWeb(NetConfig.updateVoucher,'file','', file,
+    Tools.loadingAnimation(context);
+    NetConfig.updateImageWeb(NetConfig.updateVoucher, 'file', '', file,
         errorCallback: () {
       Tools.showToast(_scaffoldKey,
           WalletLocalizations.of(context).order_recharge_voucher_error);
     }, callback: (data) {
+      Navigator.of(context).pop();
       if (NetConfig.checkData(data)) {
         // change locally data.
         imageUrl = data;
@@ -238,12 +240,7 @@ class _OrderRechargeState extends State<OrderRecharge>
       },
       child: Container(
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(
-            top: 20,
-            left: 40,
-            right: 40,
-            bottom: 10
-          ),
+          margin: EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 10),
           padding: EdgeInsets.only(top: 8, bottom: 8),
           decoration: BoxDecoration(
               color: Color(0xffF34545),
@@ -417,14 +414,16 @@ class _OrderRechargeState extends State<OrderRecharge>
     var dir = await path_provider.getTemporaryDirectory();
     var targetPath = dir.absolute.path + "/temp.png";
 
-    Future response = Tools.compressImage(image, targetPath, minHeight: 1920, minWidth: 1080);
+    Future response =
+        Tools.compressImage(image, targetPath, minHeight: 1920, minWidth: 1080);
     response.then((imgCompressed) {
       print('==> GET FILE = $imgCompressed');
-
-      NetConfig.updateImage(NetConfig.updateVoucher,'file','', imgCompressed,
+      Tools.loadingAnimation(context);
+      NetConfig.updateImage(NetConfig.updateVoucher, 'file', '', imgCompressed,
           errorCallback: () {
         Tools.showToast(_scaffoldKey, 'Update avatar fail!');
       }, callback: (data) {
+            Navigator.of(context).pop();
         if (NetConfig.checkData(data)) {
           imageUrl = data; // change locally data.
           setState(() {});
