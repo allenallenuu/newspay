@@ -40,6 +40,9 @@ class NetConfig {
   /// user/updateUserFace   更新用户头像
   static String updateUserFace = 'user/updateUserFace';
 
+  ///上传凭证
+  static String updateVoucher = 'common/uploadRechangeImg';
+
   /// bankList 获取充值方式
   static String GetPaymentMethodList = 'user/bankList';
   //发送短信
@@ -227,8 +230,10 @@ class NetConfig {
       if (status == 403) {}
     } else if (response.statusCode == 403) {
 
-      GlobalEventBus().event.fire(new StopGrapThreadModel());
-      NotificationCenter.instance.removeNotification('jumpToPage');
+      NotificationCenter.instance.postNotification(NotificationCenter.eventStopGrap, 1);
+
+      NotificationCenter.instance.removeNotification(NotificationCenter.eventStopGrap);
+      NotificationCenter.instance.removeNotification(NotificationCenter.eventJumpToPage);
 
       GlobalInfo.clear();
       msg = '请重新登录';
@@ -256,9 +261,9 @@ class NetConfig {
   }
 
   ///更新用户头像
-  static changeUserFace(File imageFile,
+  static updateImage(String api,String key,String returnKey,File imageFile,
       {@required Function callback, Function errorCallback}) async {
-    String url = apiHost + updateUserFace;
+    String url = apiHost + api;
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     var uri = Uri.parse(url);
@@ -266,7 +271,7 @@ class NetConfig {
     Map<String, String> header = new Map();
     header['authorization'] = 'Bearer ' + GlobalInfo.userInfo.loginToken;
     request.headers.addAll(header);
-    var multipartFile = new http.MultipartFile('faceFile', stream, length,
+    var multipartFile = new http.MultipartFile(key, stream, length,
         filename: basename(imageFile.path));
     request.files.add(multipartFile);
 
@@ -276,7 +281,11 @@ class NetConfig {
     if (response.statusCode == 200) {
       await response.stream.transform(utf8.decoder).listen((data) {
         var result = json.decode(data);
-        callback(result['data']['faceUrl']);
+        if(returnKey.isEmpty){
+          callback(result['data']);
+        }else{
+          callback(result['data'][returnKey]);
+        }
         flag = false;
       });
     }
@@ -286,16 +295,16 @@ class NetConfig {
   }
 
   //更新用户头像web
-  static changeUserFaceWeb(List<int> _selectedFile,
+  static updateImageWeb(String api,String key,String returnKey,List<int> _selectedFile,
       {@required Function callback, Function errorCallback}) async {
-    String url = apiHost + updateUserFace;
+    String url = apiHost + api;
     var uri = Uri.parse(url);
     var request = http.MultipartRequest("POST", uri);
     Map<String, String> header = new Map();
     header['authorization'] = 'Bearer ' + GlobalInfo.userInfo.loginToken;
     request.headers.addAll(header);
     request.files.add(await http.MultipartFile.fromBytes(
-        'faceFile', _selectedFile,
+        key, _selectedFile,
         contentType: new MediaType('application', 'octet-stream'),
         filename: "temp.png"));
 
@@ -305,7 +314,7 @@ class NetConfig {
     if (response.statusCode == 200) {
       await response.stream.transform(utf8.decoder).listen((data) {
         var result = json.decode(data);
-        callback(result['data']['faceUrl']);
+        callback(result['data'][returnKey]);
         flag = false;
       });
     }

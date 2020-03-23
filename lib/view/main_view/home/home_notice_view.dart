@@ -76,7 +76,7 @@ class _HomeNoticeView extends State<HomeNoticeView> {
                       onTap: (int index) {
 //                  print("index-----" + _noticeStringList[index]);
                         NotificationCenter.instance
-                            .postNotification('jumpToPage', 1);
+                            .postNotification(NotificationCenter.eventJumpToPage, 1);
                       },
                     ),
                   ),

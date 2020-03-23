@@ -166,8 +166,11 @@ class _UserInfoSetState extends State<UserInfoSet> {
                   SharedPreferences.getInstance();
                   prefs.then((share) {
                     share.clear();
-                    GlobalEventBus().event.fire(new StopGrapThreadModel());
-                    NotificationCenter.instance.removeNotification('jumpToPage');
+
+                    NotificationCenter.instance.postNotification(NotificationCenter.eventStopGrap, 1);
+
+                    NotificationCenter.instance.removeNotification(NotificationCenter.eventStopGrap);
+                    NotificationCenter.instance.removeNotification(NotificationCenter.eventJumpToPage);
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => StartLoginPage()),
                           (route) => route == null,

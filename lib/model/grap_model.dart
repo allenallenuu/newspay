@@ -69,6 +69,3 @@ class GrapListModel {
   });
 }
 
-class StopGrapThreadModel {
-  StopGrapThreadModel();
-}

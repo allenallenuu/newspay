@@ -32,12 +32,13 @@ import 'package:wpay_app/view/welcome/splash.dart';
 import 'package:wpay_app/view/main_view/me/user_info_page.dart';
 import 'package:wpay_app/view/payment_method/payment_method_bankcard_add.dart';
 import 'package:wpay_app/view/share/share_receive_page.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 import 'package:wpay_app/view_model/main_model.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 import 'package:wpay_app/view/welcome/start_login.dart';
 
 import 'view/main_view/home/home_page_avoiding.dart';
-import 'dart:js' as js;
+//import 'dart:js' as js;
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
@@ -143,23 +144,23 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   void switchPlatForm() {
     //webVersion
-    if (kIsWeb) {
-      var uri = Uri.tryParse(js.context['location']['href']);
-      if (uri != null) {
-        if (uri.queryParameters['shareCode'] != null &&
-            uri.queryParameters['shareRato'] != null) {
-          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
-          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
-          GlobalInfo.userInfo.webPlation = uri.queryParameters['type'];
-          isSharePlatForm = true;
-        } else {
-          GlobalInfo.userInfo.webShareCode = null;
-          GlobalInfo.userInfo.webShareRatio = null;
-          GlobalInfo.userInfo.webPlation = null;
-          isSharePlatForm = false;
-        }
-      }
-    }
+//    if (kIsWeb) {
+//      var uri = Uri.tryParse(js.context['location']['href']);
+//      if (uri != null) {
+//        if (uri.queryParameters['shareCode'] != null &&
+//            uri.queryParameters['shareRato'] != null) {
+//          GlobalInfo.userInfo.webShareCode = uri.queryParameters['shareCode'];
+//          GlobalInfo.userInfo.webShareRatio = uri.queryParameters['shareRato'];
+//          GlobalInfo.userInfo.webPlation = uri.queryParameters['type'];
+//          isSharePlatForm = true;
+//        } else {
+//          GlobalInfo.userInfo.webShareCode = null;
+//          GlobalInfo.userInfo.webShareRatio = null;
+//          GlobalInfo.userInfo.webPlation = null;
+//          isSharePlatForm = false;
+//        }
+//      }
+//    }
   }
 
   @override
@@ -171,6 +172,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     if (state == AppLifecycleState.paused) {
       // print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
       print("==> paused -> GlobalInfo.isLocked = ${GlobalInfo.isNeedLock}");
+
+      NotificationCenter.instance.postNotification(NotificationCenter.eventStopGrap, 1);
 
       if (GlobalInfo.userInfo.loginToken != null &&
           GlobalInfo.isNeedLock == true) {
@@ -194,7 +197,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // Back from background.
     if (state == AppLifecycleState.resumed) {
       // print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
-
+      NotificationCenter.instance.postNotification(NotificationCenter.eventStartGrap, 1);
     }
 
     super.didChangeAppLifecycleState(state);

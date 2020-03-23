@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage>
         .listen((JpushMessageModel data) => showTip(data));
 
     //添加监听者
-    NotificationCenter.instance.addObserver('jumpToPage', (object){
+    NotificationCenter.instance.addObserver(NotificationCenter.eventJumpToPage, (object){
       setState(() {
         _currentIndex = 1;
       });

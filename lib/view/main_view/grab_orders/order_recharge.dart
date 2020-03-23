@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:image_picker/image_picker.dart';
 import 'package:wpay_app/model/OrderRechargeModel.dart';
 import 'package:wpay_app/tools/WebTools.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
@@ -13,9 +14,11 @@ class OrderRecharge extends StatefulWidget {
   _OrderRechargeState createState() => _OrderRechargeState();
 }
 
-class _OrderRechargeState extends State<OrderRecharge> {
+class _OrderRechargeState extends State<OrderRecharge>
+    implements OnFileUploadListenerWeb {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  String imageUrl = null;
   OrderRechargeModel _model;
   TextEditingController controllerAmount,
       controllerBank,
@@ -42,6 +45,21 @@ class _OrderRechargeState extends State<OrderRecharge> {
   }
 
   @override
+  onFileUploadCompleteWeb(List<int> file) {
+    NetConfig.updateImageWeb(NetConfig.updateVoucher,'file','', file,
+        errorCallback: () {
+      Tools.showToast(_scaffoldKey,
+          WalletLocalizations.of(context).order_recharge_voucher_error);
+    }, callback: (data) {
+      if (NetConfig.checkData(data)) {
+        // change locally data.
+        imageUrl = data;
+        setState(() {});
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppCustomColor.themeBackgroudGrayColor,
@@ -60,6 +78,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
                     _cardInfo(),
                     _amountInput(),
                     myCardView(),
+                    updateVoucher(),
                     submitView()
                   ],
                 ),
@@ -132,7 +151,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
     return Container(
       margin: EdgeInsets.only(top: 10),
       color: Colors.white,
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -141,20 +160,22 @@ class _OrderRechargeState extends State<OrderRecharge> {
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
           ),
-          inputItemView('￥', '', controllerAmount)
+          inputItemView(true, '￥', '', controllerAmount)
         ],
       ),
     );
   }
 
   Widget inputItemView(
-      String title, String hint, TextEditingController control) {
+      bool isBold, String title, String hint, TextEditingController control) {
     return Row(
       children: <Widget>[
         Text(
           title,
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              fontSize: 18,
+              color: Colors.black),
         ),
         SizedBox(
           width: 10,
@@ -189,16 +210,19 @@ class _OrderRechargeState extends State<OrderRecharge> {
       child: Column(
         children: <Widget>[
           inputItemView(
+              false,
               WalletLocalizations.of(context).order_recharge_my_bank,
               WalletLocalizations.of(context).order_recharge_input_bank,
               controllerBank),
           Divider(),
           inputItemView(
+              false,
               WalletLocalizations.of(context).order_recharge_my_name,
               WalletLocalizations.of(context).order_recharge_input_name,
               controllerName),
           Divider(),
           inputItemView(
+              false,
               WalletLocalizations.of(context).order_recharge_my_card,
               WalletLocalizations.of(context).order_recharge_input_card,
               controllerCard),
@@ -218,6 +242,7 @@ class _OrderRechargeState extends State<OrderRecharge> {
             top: 20,
             left: 40,
             right: 40,
+            bottom: 10
           ),
           padding: EdgeInsets.only(top: 8, bottom: 8),
           decoration: BoxDecoration(
@@ -230,6 +255,53 @@ class _OrderRechargeState extends State<OrderRecharge> {
                   style: TextStyle(fontSize: 18, color: Colors.white)),
             ],
           )),
+    );
+  }
+
+  //上传凭证
+  Widget updateVoucher() {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      color: Colors.white,
+      padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            WalletLocalizations.of(context).order_recharge_voucher,
+            style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 18,
+                color: Colors.black),
+          ),
+          Divider(),
+          Row(
+            children: <Widget>[
+              imageUrl == null
+                  ? Container()
+                  : kIsWeb ? _avatar_web() : _avatar(),
+              SizedBox(
+                width: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  _bottomSheet();
+                },
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: new BoxDecoration(
+                      border:
+                          new Border.all(color: Color(0xffE9E9E9), width: 0.5)),
+                  child: Center(
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -272,6 +344,11 @@ class _OrderRechargeState extends State<OrderRecharge> {
           WalletLocalizations.of(context).order_recharge_input_name);
       return;
     }
+    if (imageUrl == null) {
+      Tools.showToast(_scaffoldKey,
+          WalletLocalizations.of(context).order_recharge_update_voucher);
+      return;
+    }
     Tools.loadingAnimation(context);
     Future future = NetConfig.post(
         context,
@@ -284,17 +361,98 @@ class _OrderRechargeState extends State<OrderRecharge> {
           'num': controllerAmount.text,
           'transferAccountName': controllerName.text,
           'userBankNumber': controllerCard.text,
-          'userBankName': controllerBank.text
+          'userBankName': controllerBank.text,
+          'rechangeImg': imageUrl,
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);
     });
     future.then((data) {
       if (NetConfig.checkData(data)) {
-        Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).order_recharge_success);
+        Tools.showToast(_scaffoldKey,
+            WalletLocalizations.of(context).order_recharge_success);
       }
       Navigator.of(context).pop();
       setState(() {});
     });
+  }
+
+  //图片上传
+  void _bottomSheet() {
+    if (kIsWeb) {
+      WebTools.startWebFilePicker(this);
+    } else {
+      showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.photo_library),
+                  title: Text(
+                      WalletLocalizations.of(context).imagePickerBottomSheet_1),
+                  onTap: () {
+                    _getImage(ImageSource.gallery);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.photo_camera),
+                  title: Text(
+                      WalletLocalizations.of(context).imagePickerBottomSheet_2),
+                  onTap: () {
+                    _getImage(ImageSource.camera);
+                  },
+                ),
+              ],
+            );
+          });
+    }
+  }
+
+  _getImage(ImageSource myImageSource) async {
+    var image = await ImagePicker.pickImage(source: myImageSource);
+
+    // compress image
+    var dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path + "/temp.png";
+
+    Future response = Tools.compressImage(image, targetPath, minHeight: 1920, minWidth: 1080);
+    response.then((imgCompressed) {
+      print('==> GET FILE = $imgCompressed');
+
+      NetConfig.updateImage(NetConfig.updateVoucher,'file','', imgCompressed,
+          errorCallback: () {
+        Tools.showToast(_scaffoldKey, 'Update avatar fail!');
+      }, callback: (data) {
+        if (NetConfig.checkData(data)) {
+          imageUrl = data; // change locally data.
+          setState(() {});
+        }
+      });
+    });
+
+    Navigator.pop(context);
+  }
+
+  /// Show user avatar
+  Widget _avatar() {
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      child: Tools.networkImage(imageUrl, width: 70, height: 70),
+    );
+  }
+
+  Widget _avatar_web() {
+    if (imageUrl == null || imageUrl == "") {
+      return Image.asset(
+        'assets/logo@2x.png',
+        width: 70,
+        height: 70,
+      );
+    } else {
+      return WebTools.networkImageWeb(NetConfig.imageHost + imageUrl,
+          width: 70.0, height: 70.0);
+    }
   }
 }

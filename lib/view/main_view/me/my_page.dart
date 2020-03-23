@@ -76,31 +76,10 @@ class _UserCenterState extends State<UserCenter> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              (GlobalInfo.userInfo != null &&
-                  GlobalInfo.userInfo.faceUrl != null)
-                  ? ClipOval(
-                  child: kIsWeb
-                      ? WebTools.networkImageWeb(
-                    NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
-                    width: 55,
-                    height: 55,
-                  )
-                      : CachedNetworkImage(
-                    imageUrl: NetConfig.imageHost +
-                        GlobalInfo.userInfo.faceUrl,
-                    errorWidget: (context, url, error) =>
-                    new Image.asset(
-                      Tools.imagePath('my_page_avatar'),
-                      fit: BoxFit.fitHeight,
-                      height: 42,
-                    ),
-                  ))
-                  : ClipOval(
-                child: Image.asset(
-                  Tools.imagePath('my_page_avatar'),
-                  fit: BoxFit.fitHeight,
-                  height: 42,
-                ),
+              Image.asset(
+                Tools.imagePath('my_page_avatar'),
+                fit: BoxFit.fitHeight,
+                height: 42,
               ),
               SizedBox(
                 width: 5,
@@ -348,7 +327,7 @@ class _UserCenterState extends State<UserCenter> {
               WalletLocalizations
                   .of(context)
                   .my_page_menu_qiangdan, onTap: () {
-                NotificationCenter.instance.postNotification('jumpToPage', 1);
+                NotificationCenter.instance.postNotification(NotificationCenter.eventJumpToPage, 1);
               }),
           menuItem('my_page_recharge',
               WalletLocalizations

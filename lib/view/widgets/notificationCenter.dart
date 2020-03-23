@@ -1,6 +1,11 @@
 typedef GetObject = Function(dynamic object);
 
 class NotificationCenter {
+
+  static final String eventStopGrap='stopGrapThread';
+  static final String eventStartGrap='startGrapThread';
+  static final String eventJumpToPage = 'jumpToPage';
+
   // 工厂模式
   factory NotificationCenter() => _getInstance();
 
@@ -21,13 +26,13 @@ class NotificationCenter {
   //创建Map来记录名称
   Map<String, dynamic> postNameMap = Map<String, dynamic>();
 
-  GetObject getObject;
+  Map<String,GetObject> getObjects = Map<String, GetObject>();
 
   //添加监听者方法
   addObserver(String postName, object(dynamic object)) {
 
     postNameMap[postName] = null;
-    getObject = object;
+    getObjects[postName] = object;
   }
 
   //发送通知传值
@@ -36,7 +41,7 @@ class NotificationCenter {
     if (postNameMap.containsKey(postName)) {
 
       postNameMap[postName] = object;
-      getObject(postNameMap[postName]);
+      getObjects[postName](postNameMap[postName]);
     }
 
   }
@@ -46,6 +51,10 @@ class NotificationCenter {
     if (postNameMap.containsKey(postName)) {
 
       postNameMap.remove(postName);
+    }
+    
+    if(getObjects.containsKey(postName)){
+      getObjects.remove((postName));
     }
   }
 }

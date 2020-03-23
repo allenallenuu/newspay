@@ -8,6 +8,8 @@ class BalanceModel extends BaseInfo {
   double frozenBalance;
   int id;
 
+  //是否设置安全密码 true:设置了安全密码 false:没有设置安全密码
+
   BalanceModel({
     String name,
     @required this.balance,

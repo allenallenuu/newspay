@@ -17,6 +17,7 @@ import 'package:wpay_app/tools/net_config.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_match.dart';
 import 'package:wpay_app/view/main_view/grab_orders/order_recharge.dart';
 import 'package:wpay_app/view/main_view/me/user_info_record.dart';
+import 'package:wpay_app/view/widgets/notificationCenter.dart';
 
 class OrderCenter extends StatefulWidget {
   @override
@@ -37,10 +38,26 @@ class _OrderCenterState extends State<OrderCenter> {
 
     grapOrderInfo();
 
-    GlobalEventBus()
-        .event
-        .on<StopGrapThreadModel>()
-        .listen((StopGrapThreadModel data) => cancelTimer());
+    //添加监听者
+    NotificationCenter.instance.addObserver(NotificationCenter.eventStopGrap,
+        (object) {
+      if (mounted) {
+        setState(() {
+          cancelTimer();
+        });
+      }
+    });
+
+    NotificationCenter.instance.addObserver(NotificationCenter.eventStartGrap,
+        (object) {
+      if (mounted) {
+        setState(() {
+          _timePeriodic = Timer.periodic(Duration(milliseconds: 5000), (timer) {
+            grapOrderInfo();
+          });
+        });
+      }
+    });
 
     _timePeriodic = Timer.periodic(Duration(milliseconds: 5000), (timer) {
       grapOrderInfo();
@@ -58,10 +75,12 @@ class _OrderCenterState extends State<OrderCenter> {
   void deactivate() {
     print('离开界面');
     cancelTimer();
+    super.deactivate();
   }
 
   @override
   void dispose() {
+    cancelTimer();
     super.dispose();
   }
 
@@ -226,50 +245,59 @@ class _OrderCenterState extends State<OrderCenter> {
                                                     )
                                                   ],
                                                 ),
-
-                                                _grapListModel[index].adminStatus == 1 ?
-
-                                                Flexible(child: AutoSizeText(
-                                                  _grapListModel[index]
-                                                      .adminStatusStr,
-                                                  style: TextStyle(
-                                                      fontSize: 16, color: Colors.orange),
-                                                  minFontSize: 8,
-                                                  maxLines: 2,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.end,
-                                                ),)
-                                               :
-
-                                                InkWell(
-                                                  onTap: () {
-                                                    sureGrap(
-                                                        _grapListModel[index]);
-                                                  },
-                                                  child: Container(
-                                                    margin: EdgeInsets.only(
-                                                        top: 10),
-                                                    padding: EdgeInsets.only(
-                                                        left: 10,
-                                                        right: 10,
-                                                        top: 5,
-                                                        bottom: 5),
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xffF34545),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(90)),
-                                                    child: Text(
-                                                        WalletLocalizations.of(
-                                                                context)
-                                                            .order_sure_order,
-                                                        style: TextStyle(
-                                                          fontSize: 14,
-                                                            color:
-                                                                Colors.white)),
-                                                  ),
-                                                ),
+                                                _grapListModel[index]
+                                                            .adminStatus ==
+                                                        1
+                                                    ? Flexible(
+                                                        child: AutoSizeText(
+                                                          _grapListModel[index]
+                                                              .adminStatusStr,
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              color: Colors
+                                                                  .orange),
+                                                          minFontSize: 8,
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                        ),
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          sureGrap(
+                                                              _grapListModel[
+                                                                  index]);
+                                                        },
+                                                        child: Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  top: 10),
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10,
+                                                                  right: 10,
+                                                                  top: 5,
+                                                                  bottom: 5),
+                                                          decoration: BoxDecoration(
+                                                              color: Color(
+                                                                  0xffF34545),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          90)),
+                                                          child: Text(
+                                                              WalletLocalizations
+                                                                      .of(
+                                                                          context)
+                                                                  .order_sure_order,
+                                                              style: TextStyle(
+                                                                  fontSize: 14,
+                                                                  color: Colors
+                                                                      .white)),
+                                                        ),
+                                                      ),
                                               ],
                                             ),
                                           ],
@@ -304,80 +332,31 @@ class _OrderCenterState extends State<OrderCenter> {
             ),
             child: Column(
               children: <Widget>[
-                Row(
+                Stack(
                   children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
-                            decoration: BoxDecoration(
-                                color: Color(0x33000000),
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(90),
-                                    topRight: Radius.circular(90))),
-                            child: Text(
-                              WalletLocalizations.of(context)
-                                      .order_total_balance +
-                                  ':  ' +
-                                  (_grapModel != null &&
-                                          _grapModel.balance != null
-                                      ? '￥' + _grapModel.balance.toString()
-                                      : '￥0.0'),
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20,
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
-                            decoration: BoxDecoration(
-                                color: Color(0x33000000),
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(90),
-                                    topRight: Radius.circular(90))),
-                            child: Text(
-                                WalletLocalizations.of(context).order_index +
-                                    ':  ' +
-                                    (_grapModel != null &&
-                                            _grapModel.grapRatioMinStr !=
-                                                null &&
-                                            _grapModel.grapRatioMaxStr != null
-                                        ? _grapModel.grapRatioMinStr
-                                                .toString() +
-                                            ' ~ ' +
-                                            _grapModel.grapRatioMaxStr
-                                                .toString() +
-                                            '%'
-                                        : '0.0 ~ 0.0%'),
+                            Text(
+                                WalletLocalizations.of(context)
+                                    .order_total_balance,
                                 style: TextStyle(
-                                    fontSize: 12, color: Colors.white)),
-                          ),
-                        ],
-                      ),
+                                    fontSize: 18, color: Colors.white)),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Text(WalletLocalizations.of(context).order_amount,
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
@@ -416,14 +395,9 @@ class _OrderCenterState extends State<OrderCenter> {
                   ],
                 ),
                 Text(
-                    '￥' +
-                        (_grapModel != null &&
-                                _grapModel.grabNumMin != null &&
-                                _grapModel.grabNumMax != null
-                            ? _grapModel.grabNumMin.toString() +
-                                ' ~ ' +
-                                _grapModel.grabNumMax.toString()
-                            : '0.0 ~ 0.0'),
+                    (_grapModel != null && _grapModel.balance != null
+                        ? '￥' + _grapModel.balance.toString()
+                        : '￥0.0'),
                     style: TextStyle(fontSize: 24, color: Colors.white))
               ],
             )),

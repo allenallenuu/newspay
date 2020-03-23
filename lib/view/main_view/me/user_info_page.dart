@@ -148,7 +148,7 @@ class _UserInfoPageState extends State<UserInfoPage>
 
   @override
   onFileUploadCompleteWeb(List<int> file) {
-    NetConfig.changeUserFaceWeb(file, errorCallback: () {
+    NetConfig.updateImageWeb(NetConfig.updateUserFace,'faceFile','faceUrl',file, errorCallback: () {
       Tools.showToast(
           _scaffoldKey,'1');
     }, callback: (data) {
@@ -239,7 +239,7 @@ class _UserInfoPageState extends State<UserInfoPage>
     response.then((imgCompressed) {
       print('==> GET FILE = $imgCompressed');
 
-      NetConfig.changeUserFace(imgCompressed, errorCallback: () {
+      NetConfig.updateImage(NetConfig.updateUserFace,'faceFile','faceUrl',imgCompressed, errorCallback: () {
         Tools.showToast(_scaffoldKey, 'Update avatar fail!');
       }, callback: (data) {
         if (NetConfig.checkData(data)) {

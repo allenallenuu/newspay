@@ -20,12 +20,17 @@ class WalletLocalizations {
       'startPagePhoneInputs': '请输入手机号',
       'startPagePasswordInput': '请输入密码',
       'startPageNewPasswordInput': '请再次输入密码',
+      'startPageNewSafePasswordInput': '请再次输入安全密码',
+
       'startPageNoEqual': '输入密码不一致',
       'startPageInviteCode': '请输入邀请码',
       'startPageRegisterAndLogin': '注册并登陆',
       'startPageForgetAccount': '忘记用户名',
       'startPageSearchAccount': '找回用户名',
       'startPageForgetPassword': '忘记密码?',
+      'startPageForgetSafePassword': '安全密码',
+      'startPageNoSafePassword': '没有安全密码?',
+
       'startPageRegistedUser': '注册用户',
       'startPageCodeInput': '请输入验证码',
       'startPageSendCode': '获取验证码',
@@ -35,6 +40,10 @@ class WalletLocalizations {
       'startPagePhoneError2': '请输入正确的手机号',
       'startPageCodeError': '请输入正确的验证码',
       'startPagePwdError': '请输入密码',
+      'startPageSafePwdError': '请输入安全密码',
+      'startPageSetSafePwdError': '请设置安全密码',
+      'startPageSetting': '设置',
+
       'startPageUserInfoError': '用户信息获取失败',
       'welcomePageTwoButtonBack': '返回',
       'startPageForgetPasswordButton': '修改密码',
@@ -129,6 +138,9 @@ class WalletLocalizations {
       'order_recharge_my_name': '户名',
       'order_recharge_my_card': '卡号',
       'order_recharge_submit': '提交',
+      'order_recharge_voucher_error':'图片上传失败',
+      'order_recharge_voucher':'上传凭证',
+      'order_recharge_update_voucher':'请上传凭证',
       'order_recharge_input_bank': '请输入银行卡',
       'order_recharge_success': '充值成功，请等待审核',
       'order_withdraw_success': '提现成功，请等待审核',
@@ -169,6 +181,8 @@ class WalletLocalizations {
       'order_order_successRate': '订单确认成功率',
     'order_add_success': '银行卡添加成功',
 
+      'imagePickerBottomSheet_1': '从手机相册选择',
+      'imagePickerBottomSheet_2': '拍照',
 
     },
     'en': {
@@ -190,6 +204,8 @@ class WalletLocalizations {
       'startPagePhoneInputs': 'Please enter a phone number',
       'startPagePasswordInput': 'Please enter a password',
       'startPageNewPasswordInput': 'Please again enter a password',
+      'startPageNewSafePasswordInput': 'Please again enter a safe password',
+
       'startPageNoEqual': 'Enter the password inconsistently',
       'startPageRegisterAndLogin': 'Register',
       'homePageCardAddCard':'Add bank card',
@@ -198,6 +214,9 @@ class WalletLocalizations {
       'startPageForgetAccount': 'Forget account',
       'startPageSearchAccount': 'Search account',
       'startPageForgetPassword': 'Forgot your password?',
+      'startPageForgetSafePassword': 'Safe Password',
+      'startPageNoSafePassword': 'No Safe Password?',
+
       'startPageCodeInput': 'Please enter a verification code',
       'startPageSendCode': 'Get Verification Code',
       'startPageSendCodeRetry': 'Resend',
@@ -206,6 +225,10 @@ class WalletLocalizations {
       'startPagePhoneError2': 'Please enter the correct phone number',
       'startPageCodeError': 'Please enter a verification code',
       'startPagePwdError': 'Please enter a password',
+      'startPageSafePwdError': 'Please enter a safe password',
+      'startPageSetting': 'Setting',
+      'startPageSetSafePwdError': 'Please set a safe password',
+
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
       'startPageForgetPasswordButton': 'Change',
@@ -295,6 +318,9 @@ class WalletLocalizations {
       'order_recharge_my_name': 'Account',
       'order_recharge_my_card': 'Card',
       'order_recharge_submit': 'Submit',
+      'order_recharge_voucher_error':'Pic upload failed',
+      'order_recharge_voucher':'Update voucher',
+      'order_recharge_update_voucher':'Please update voucher',
       'order_recharge_input_bank': 'Please enter the bank card',
       'order_recharge_success':
           'Recharge submitted successfully, please wait for approval',
@@ -338,6 +364,8 @@ class WalletLocalizations {
       'order_order_successRate': 'SuccessRate',
       'order_add_success': 'Success',
 
+      'imagePickerBottomSheet_1': 'Select from phone album',
+      'imagePickerBottomSheet_2': 'Take a photo',
     }
   };
 
@@ -381,6 +409,9 @@ class WalletLocalizations {
   get startPageNewPasswordInput =>
       _localizedValues[locale.languageCode]['startPageNewPasswordInput'];
 
+  get startPageNewSafePasswordInput =>
+      _localizedValues[locale.languageCode]['startPageNewSafePasswordInput'];
+
   get startPageNoEqual =>
       _localizedValues[locale.languageCode]['startPageNoEqual'];
 
@@ -398,6 +429,11 @@ class WalletLocalizations {
 
   get startPageForgetPassword =>
       _localizedValues[locale.languageCode]['startPageForgetPassword'];
+
+  get startPageForgetSafePassword =>
+      _localizedValues[locale.languageCode]['startPageForgetSafePassword'];
+  get startPageNoSafePassword =>
+      _localizedValues[locale.languageCode]['startPageNoSafePassword'];
 
   get startPageCodeInput =>
       _localizedValues[locale.languageCode]['startPageCodeInput'];
@@ -422,6 +458,16 @@ class WalletLocalizations {
 
   get startPagePwdError =>
       _localizedValues[locale.languageCode]['startPagePwdError'];
+
+  get startPageSafePwdError =>
+      _localizedValues[locale.languageCode]['startPageSafePwdError'];
+
+  get startPageSetSafePwdError =>
+      _localizedValues[locale.languageCode]['startPageSetSafePwdError'];
+
+
+  get startPageSetting =>
+      _localizedValues[locale.languageCode]['startPageSetting'];
 
   get startPageUserInfoError =>
       _localizedValues[locale.languageCode]['startPageUserInfoError'];
@@ -699,6 +745,15 @@ class WalletLocalizations {
   get order_recharge_submit =>
       _localizedValues[locale.languageCode]['order_recharge_submit'];
 
+  get order_recharge_voucher_error =>
+      _localizedValues[locale.languageCode]['order_recharge_voucher_error'];
+
+  get order_recharge_voucher =>
+      _localizedValues[locale.languageCode]['order_recharge_voucher'];
+
+  get order_recharge_update_voucher =>
+      _localizedValues[locale.languageCode]['order_recharge_update_voucher'];
+
   get order_recharge_my_bank =>
       _localizedValues[locale.languageCode]['order_recharge_my_bank'];
 
@@ -784,6 +839,12 @@ class WalletLocalizations {
       _localizedValues[locale.languageCode]['order_order_successRate'];
   get order_add_success =>
       _localizedValues[locale.languageCode]['order_add_success'];
+
+  get imagePickerBottomSheet_1 =>
+      _localizedValues[locale.languageCode]['imagePickerBottomSheet_1'];
+
+  get imagePickerBottomSheet_2 =>
+      _localizedValues[locale.languageCode]['imagePickerBottomSheet_2'];
 
 
   static WalletLocalizations of(BuildContext context) {
