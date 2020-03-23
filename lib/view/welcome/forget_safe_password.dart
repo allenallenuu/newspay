@@ -8,17 +8,17 @@ import 'package:wpay_app/view/welcome/forget_account.dart';
 import 'package:wpay_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wpay_app/view_model/state_lib.dart';
 
-class ForgetPassword extends StatefulWidget {
+class ForgetSafePassword extends StatefulWidget {
   var typeSet;
 
-  ForgetPassword({Key key, this.typeSet}) : super(key: key);
-  static String tag = "ForgetPassword";
+  ForgetSafePassword({Key key, this.typeSet}) : super(key: key);
+  static String tag = "ForgetSafePassword";
 
   @override
-  _ForgetPasswordState createState() => _ForgetPasswordState();
+  _ForgetSafePasswordState createState() => _ForgetSafePasswordState();
 }
 
-class _ForgetPasswordState extends State<ForgetPassword> {
+class _ForgetSafePasswordState extends State<ForgetSafePassword> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _hasUserPhoneFocus = false;
   bool _hasPasswdFocus = false;
@@ -180,7 +180,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             controller: controller,
                             focusNode:   focusNodes,
                             maxLines: 1,
-                            maxLength: 11,
                             maxLengthEnforced: true,
                             style:
                             new TextStyle(color: Colors.black, fontSize: 16.0),
@@ -210,7 +209,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               onPressed: () {
                 var passwordNums = userphoneCtrl.text;
                 if (passwordNums.length == 0 || passwordNums == null) {
-                  Tools.showToast(_scaffoldKey, '请输入正确的手机号');
+                  Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).startPagePhoneError2);
                   return;
                 }
                 _sendCode(userphoneCtrl.toString());
@@ -221,7 +220,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       ),
     );
   }
-  ///修改密码
+  ///修改安全密码
   Widget _getDataInfo() {
     return new Card(
       color: Colors.red,
@@ -235,7 +234,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         child: CustomRaiseButton(
           context: context,
           hasRow: false,
-          title: WalletLocalizations.of(context).startPageForgetPasswordButton,
+          title: WalletLocalizations.of(context).publicButtonOK,
           titleColor: Colors.white,
           titleSize: 18.0,
           callback: () {
@@ -254,13 +253,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             if (passwdNums.length == 0 || passwdNums == null) {
               Tools.showToast(
                   _scaffoldKey,
-                  WalletLocalizations.of(context).startPagePasswordInput);
+                  WalletLocalizations.of(context).startPageSafePwdError);
               return;
             }
             if (newPasswdNums.length == 0 || newPasswdNums == null) {
               Tools.showToast(
                   _scaffoldKey,
-                  WalletLocalizations.of(context).startPagePasswordInput);
+                  WalletLocalizations.of(context).startPageNewSafePasswordInput);
               return;
             }
             if (newPasswdNums != passwdNums) {
@@ -275,7 +274,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             }
 
             _onSubmit();
-//            _loginActionByPwd(userphoneCtrl.text, passwdCtrl.text);
+
           },
         ),
       ),
@@ -288,7 +287,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        title: Text(WalletLocalizations.of(context).startPageForgetPassword),
+        title: Text(WalletLocalizations.of(context).startPageForgetSafePassword),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -300,11 +299,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             SizedBox(height: 24),
 
             _getPhoneInput(_hasPasswdFocus,'login_password_select','login_password_unselect',passwdCtrl,_nodePasswd,WalletLocalizations.of(context)
-                .startPagePwdError,false),
+                .startPageSafePwdError,false),
             SizedBox(height: 24),
 
             _getPhoneInput(_hasNewPasswdFocus,'login_password_select','login_password_unselect',newPasswdCtrl,_nodeNewPasswd,WalletLocalizations.of(context)
-                .startPageNewPasswordInput,false),
+                .startPageNewSafePasswordInput,false),
             SizedBox(
               height: 24,
             ),
@@ -327,15 +326,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     var newPasswdNums = newPasswdCtrl.text;
     var codeNums = verificationCodeCtrl.text;
 
-    Future result = NetConfig.post(context, NetConfig.retrievePassword, {
+    Future result = NetConfig.post(context, NetConfig.addWithdrawPwd, {
       'cellphone': phonesNums,
       'code': codeNums,
-      'password':passwdNums
+      'withdrawPwd':passwdNums
     }, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg.toString());
     });
     result.then((data) {
-      print('retrievePassword = $data');
+      print('addWithdrawPwd = $data');
       if (data != null) {
         Tools.showToast(_scaffoldKey, '设置成功');
         Navigator.of(context).pop();

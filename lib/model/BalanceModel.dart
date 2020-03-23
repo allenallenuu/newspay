@@ -6,6 +6,7 @@ class BalanceModel extends BaseInfo {
   double totalBalance;
   double totalProfit;
   double frozenBalance;
+  bool withdrawPwd;
   int id;
 
   //是否设置安全密码 true:设置了安全密码 false:没有设置安全密码
@@ -17,6 +18,7 @@ class BalanceModel extends BaseInfo {
     @required this.frozenBalance,
     @required this.id,
     @required this.uid,
+    @required this.withdrawPwd,
     @required this.totalProfit,
   }) : super(name: name);
 }

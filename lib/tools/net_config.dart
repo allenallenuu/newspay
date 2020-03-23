@@ -71,6 +71,8 @@ class NetConfig {
 
   //忘记密码
   static String retrievePassword = 'common/retrievePassword';
+  //安全密码
+  static String addWithdrawPwd = 'withdraw/addWithdrawPwd';
 
   //忘记安全密码
   static String forgetPayPwd = 'common/forgetPayPwd';
