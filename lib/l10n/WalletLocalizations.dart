@@ -20,12 +20,16 @@ class WalletLocalizations {
       'startPagePhoneInputs': '请输入手机号',
       'startPagePasswordInput': '请输入密码',
       'startPageNewPasswordInput': '请再次输入密码',
+      'startPageNewSafePasswordInput': '请再次输入安全密码',
+
       'startPageNoEqual': '输入密码不一致',
       'startPageInviteCode': '请输入邀请码',
       'startPageRegisterAndLogin': '注册并登陆',
       'startPageForgetAccount': '忘记用户名',
       'startPageSearchAccount': '找回用户名',
       'startPageForgetPassword': '忘记密码?',
+      'startPageForgetSafePassword': '安全密码',
+
       'startPageRegistedUser': '注册用户',
       'startPageCodeInput': '请输入验证码',
       'startPageSendCode': '获取验证码',
@@ -35,6 +39,9 @@ class WalletLocalizations {
       'startPagePhoneError2': '请输入正确的手机号',
       'startPageCodeError': '请输入正确的验证码',
       'startPagePwdError': '请输入密码',
+      'startPageSafePwdError': '请输入安全密码',
+      'startPageSetting': '设置',
+
       'startPageUserInfoError': '用户信息获取失败',
       'welcomePageTwoButtonBack': '返回',
       'startPageForgetPasswordButton': '修改密码',
@@ -116,7 +123,7 @@ class WalletLocalizations {
       'order_error_balance_no_enough': '您的余额不足，请先充值',
       'order_recharge_now': '马上充值',
       "order_have_a_new_open_order": '今日匹配完成订单',
-      'order_sure_order': '确认订单',
+      'order_sure_order': '已打款,确认订单',
       'order_each': '个',
       'order_order': '订单',
       'order_bankcard': '银行卡',
@@ -190,6 +197,8 @@ class WalletLocalizations {
       'startPagePhoneInputs': 'Please enter a phone number',
       'startPagePasswordInput': 'Please enter a password',
       'startPageNewPasswordInput': 'Please again enter a password',
+      'startPageNewSafePasswordInput': 'Please again enter a safe password',
+
       'startPageNoEqual': 'Enter the password inconsistently',
       'startPageRegisterAndLogin': 'Register',
       'homePageCardAddCard':'Add bank card',
@@ -198,6 +207,8 @@ class WalletLocalizations {
       'startPageForgetAccount': 'Forget account',
       'startPageSearchAccount': 'Search account',
       'startPageForgetPassword': 'Forgot your password?',
+      'startPageForgetSafePassword': 'Safe Password',
+
       'startPageCodeInput': 'Please enter a verification code',
       'startPageSendCode': 'Get Verification Code',
       'startPageSendCodeRetry': 'Resend',
@@ -206,6 +217,9 @@ class WalletLocalizations {
       'startPagePhoneError2': 'Please enter the correct phone number',
       'startPageCodeError': 'Please enter a verification code',
       'startPagePwdError': 'Please enter a password',
+      'startPageSafePwdError': 'Please enter a safe password',
+      'startPageSetting': 'Setting',
+
       'startPageUserInfoError': 'Failed to get user information',
       'welcomePageTwoButtonBack': 'Return',
       'startPageForgetPasswordButton': 'Change',
@@ -381,6 +395,9 @@ class WalletLocalizations {
   get startPageNewPasswordInput =>
       _localizedValues[locale.languageCode]['startPageNewPasswordInput'];
 
+  get startPageNewSafePasswordInput =>
+      _localizedValues[locale.languageCode]['startPageNewSafePasswordInput'];
+
   get startPageNoEqual =>
       _localizedValues[locale.languageCode]['startPageNoEqual'];
 
@@ -398,6 +415,9 @@ class WalletLocalizations {
 
   get startPageForgetPassword =>
       _localizedValues[locale.languageCode]['startPageForgetPassword'];
+
+  get startPageForgetSafePassword =>
+      _localizedValues[locale.languageCode]['startPageForgetSafePassword'];
 
   get startPageCodeInput =>
       _localizedValues[locale.languageCode]['startPageCodeInput'];
@@ -422,6 +442,11 @@ class WalletLocalizations {
 
   get startPagePwdError =>
       _localizedValues[locale.languageCode]['startPagePwdError'];
+
+  get startPageSafePwdError =>
+      _localizedValues[locale.languageCode]['startPageSafePwdError'];
+  get startPageSetting =>
+      _localizedValues[locale.languageCode]['startPageSetting'];
 
   get startPageUserInfoError =>
       _localizedValues[locale.languageCode]['startPageUserInfoError'];

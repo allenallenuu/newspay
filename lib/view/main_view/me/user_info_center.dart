@@ -2,13 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wpay_app/view/welcome/change_password.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wpay_app/view/welcome/forget_safe_password.dart';
 
-import '../../../l10n/WalletLocalizations.dart';
-import '../../../model/global_model.dart';
-import '../../../tools/Tools.dart';
-import '../../../tools/app_data_setting.dart';
-import '../main_page.dart';
-import 'user_info_page.dart';
+import 'package:wpay_app/l10n/WalletLocalizations.dart';
+import 'package:wpay_app/tools/app_data_setting.dart';
 
 class UserInfoCenter extends StatefulWidget {
   static String tag = "UserInfoCenter";
@@ -54,6 +51,28 @@ class _UserInfoCenterState extends State<UserInfoCenter> {
                 ),
                 onTap: () {
                   Navigator.of(context).pushNamed(ChangePassword.tag);
+                },
+              ),
+            ),
+            Divider(height: 0, indent: 15),
+            Ink(
+              // nick name
+              color: AppCustomColor.themeBackgroudColor,
+              child: ListTile(
+                title: Text(WalletLocalizations.of(context).startPageForgetSafePassword),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      WalletLocalizations.of(context).startPageSetting,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(width: 15),
+                    Icon(Icons.keyboard_arrow_right),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.of(context).pushNamed(ForgetSafePassword.tag);
                 },
               ),
             ),

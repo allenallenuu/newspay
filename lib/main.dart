@@ -27,6 +27,7 @@ import 'package:wpay_app/view/main_view/me/user_info_set.dart';
 import 'package:wpay_app/view/payment_method/payment_method_bankcard_edit.dart';
 import 'package:wpay_app/view/welcome/change_password.dart';
 import 'package:wpay_app/view/welcome/forget_password.dart';
+import 'package:wpay_app/view/welcome/forget_safe_password.dart';
 import 'package:wpay_app/view/welcome/register_account.dart';
 import 'package:wpay_app/view/welcome/splash.dart';
 import 'package:wpay_app/view/main_view/me/user_info_page.dart';
@@ -122,6 +123,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     HomePageAvoiding.tag:(context) => HomePageAvoiding(),
     MyAbout.tag:(context) => MyAbout(),
     OrderMatch.tag:(context) => OrderMatch(),
+    ForgetSafePassword.tag:(context) => ForgetSafePassword(),
+
+
   };
 
   Brightness brightness = Brightness.light;

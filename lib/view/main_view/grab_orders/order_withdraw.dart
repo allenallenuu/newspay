@@ -148,7 +148,6 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
     );
   }
 
-
   Widget submitView() {
     return InkWell(
       onTap: () {
@@ -211,7 +210,7 @@ class _OrderWithdrawState extends State<OrderWithdraw> {
         },
         timeOut: 10, errorCallback: (msg) {
       Tools.showToast(_scaffoldKey, msg);
-    },showToast: false);
+    }, showToast: false);
     future.then((data) {
       if (NetConfig.checkData(data)) {
         Tools.showToast(_scaffoldKey,
