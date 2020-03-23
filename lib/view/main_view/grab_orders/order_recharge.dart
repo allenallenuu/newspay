@@ -376,6 +376,8 @@ class _OrderRechargeState extends State<OrderRecharge>
 
   //图片上传
   void _bottomSheet() {
+
+    FocusScope.of(context).requestFocus(new FocusNode());
     if (kIsWeb) {
       WebTools.startWebFilePicker(this);
     } else {

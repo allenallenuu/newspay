@@ -101,7 +101,7 @@ class _OrderCenterState extends State<OrderCenter> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    WalletLocalizations.of(context).singlePage,
+                    '',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -323,7 +323,7 @@ class _OrderCenterState extends State<OrderCenter> {
     return Stack(
       children: <Widget>[
         Container(
-            height: 200.0,
+            height: 180.0,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
@@ -341,7 +341,7 @@ class _OrderCenterState extends State<OrderCenter> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             Text(
                                 WalletLocalizations.of(context)
@@ -404,7 +404,7 @@ class _OrderCenterState extends State<OrderCenter> {
         Container(
             height: 50,
             alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 175.0, left: 50, right: 50),
+            margin: EdgeInsets.only(top: 155.0, left: 50, right: 50),
             padding: EdgeInsets.only(left: 10, right: 10),
             decoration: BoxDecoration(
               color: Colors.white,
