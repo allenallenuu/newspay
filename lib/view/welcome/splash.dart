@@ -80,7 +80,7 @@ class _SplashState extends State<Splash> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Scaffold(
-        backgroundColor: Color(0xffFE2C55),
+        backgroundColor: Color(0xff1c7bc1),
         key: _scaffoldKey,
         body: SafeArea(
             child:  imageIcon == null

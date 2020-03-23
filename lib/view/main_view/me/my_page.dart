@@ -388,7 +388,7 @@ class _UserCenterState extends State<UserCenter> {
                         .of(context)
                         .my_page_server_service,
                     onTap: () {
-                      Tools.showToast(_scaffoldKey, WalletLocalizations.of(context).my_page_server_wait);
+                      _upgradeNewerVersion();
                     }),
               ],
             ),
@@ -461,5 +461,18 @@ class _UserCenterState extends State<UserCenter> {
             ],
           ),
         ));
+  }
+
+  void _upgradeNewerVersion() async {
+    String path = 'https://api.pop800.com/chat/733234';
+    // APK install file download url for Android.
+    var url = path;
+
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      Tools.showToast(_scaffoldKey, 'Could not launch $url');
+    }
   }
 }

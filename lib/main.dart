@@ -228,7 +228,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
       child: MaterialApp(
-        title: 'wpay',
+        title: 'e宝付',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             splashFactory: const NoSplashFactory(),
