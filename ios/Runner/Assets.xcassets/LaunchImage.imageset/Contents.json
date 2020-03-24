@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LaunchSreenImage.png",
+      "filename" : "编组 2备份 3.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LaunchSreenImage@2x.png",
+      "filename" : "编组 2备份 3@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LaunchSreenImage@3x.png",
+      "filename" : "编组 2备份 3@3x.png",
       "scale" : "3x"
     }
   ],
